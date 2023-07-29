@@ -26,12 +26,13 @@ body
     color: var(--white)
 
 *::-webkit-scrollbar
-  background-color: hsla(var(--hue-selected), 69%, 61%, 0.15)
-  width: 0.7rem
+  background-color: rgba(10, 10, 10, 0.1)
+  width: 0.5rem
+  border-radius: var(--base-radius)
 
   &-thumb
-    background-color: hsla(var(--hue-selected), 69%, 61%, 0.7)
-    border-radius: 0.7rem
+    background-color: rgba(10, 10, 10, 0.2)
+    border-radius: var(--base-radius)
 
     &:hover
-      background-color: hsla(var(--hue-selected), 69%, 61%, 1)
+      background-color: rgba(10, 10, 10, 0.5)

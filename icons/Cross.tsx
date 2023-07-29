@@ -1,4 +1,4 @@
-import { IIconProps } from '@/types/globals'
+import { IIconProps } from '@/types/icons'
 
 const CrossIcon: React.FC<IIconProps> = ({
   color = 'var(--text)',

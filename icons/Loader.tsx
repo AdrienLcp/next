@@ -1,4 +1,4 @@
-import { IIconProps } from '@/types/globals'
+import { IIconProps } from '@/types/icons'
 
 const Spinner: React.FC<IIconProps> = ({
   color = 'var(--primary)',

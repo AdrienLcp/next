@@ -6,7 +6,8 @@
       "limit": "caractère(s) restant(s)"
     },
     "combobox": {
-      "select": "Sélectionner"
+      "select": "Sélectionner",
+      "filter": "Filtrer"
     }
   },
   "actions": {

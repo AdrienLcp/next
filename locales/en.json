@@ -6,7 +6,8 @@
       "limit": "character(s) remaining"
     },
     "combobox": {
-      "select": "Select"
+      "select": "Select",
+      "filter": "Filter"
     }
   },
   "actions": {

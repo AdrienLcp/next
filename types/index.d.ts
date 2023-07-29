@@ -3,5 +3,6 @@ export type { LocaleName as LocaleName } from './contexts'
 export type { PathInto as PathInto } from './contexts'
 export type { ILocaleContext as ILocaleContext } from './contexts'
 
-export type { IIconProps as IIconProps } from './globals'
-export type { IEyeIconProps as IEyeIconProps } from './globals'
+export type { IIconProps as IIconProps } from './icons'
+export type { IEyeIconProps as IEyeIconProps } from './icons'
+export type { IArrowIconProps as IArrowIconProps } from './icons'

@@ -3,9 +3,8 @@ import { NextPage } from 'next'
 import { useContext, useState } from 'react'
 import { Button, Combobox, TextField } from '@/components'
 import { LocaleContext } from '@/contexts'
-import { Loader, LockIcon } from '@/icons'
+import { Loader, LockIcon, UserIcon } from '@/icons'
 import { Locales } from '@/utils'
-import UserIcon from '@/icons/User'
 import { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
 
 const Home: NextPage = () => {
@@ -29,47 +28,57 @@ const Home: NextPage = () => {
   const options = [
     {
       key: "Key 1",
-      value: "Choix 1"
+      value: "Choix 1",
+      icon: <UserIcon />
     },
     {
       key: "Key 2",
-      value: "Choix 2"
+      value: "Choix 2",
+      icon: <UserIcon />
     },
     {
       key: "Key 3",
-      value: "Choix 3"
+      value: "Choix 3",
+      icon: <UserIcon />
     },
     {
       key: "Key 4",
-      value: "Choix 4"
+      value: "Choix 4",
+      icon: <UserIcon />
     },
     {
       key: "Key 5",
-      value: "Choix 5"
+      value: "Choix 5",
+      icon: <UserIcon />
     },
     {
       key: "Key 6",
-      value: "Choix 6"
+      value: "Choix 6",
+      icon: <UserIcon />
     },
     {
       key: "Key 7",
-      value: "Choix 7"
+      value: "Choix 7",
+      icon: <UserIcon />
     },
     {
       key: "Key 8",
-      value: "Choix 8"
+      value: "Choix 8",
+      icon: <UserIcon />
     },
     {
       key: "Key 9",
-      value: "Choix 9"
+      value: "Choix 9",
+      icon: <UserIcon />
     },
     {
       key: "Key 10",
-      value: "Choix 10"
+      value: "Choix 10",
+      icon: <UserIcon />
     }
   ]
 
-  const onSelectChange = (option: IComboboxOption) => {
+  const onSelectChange = (option: IComboboxOption | null) => {
     console.log(option)
   }
 

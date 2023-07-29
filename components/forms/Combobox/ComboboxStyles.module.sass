@@ -1,22 +1,70 @@
 .combobox
   position: relative
+
+.input
+  caret-color: transparent
+  cursor: pointer
+
+  &:focus,
+  &:valid
+    cursor: default
   
 .icon
   transform: translateY(0.7em)
 
-  &.search
-    transform: translateY(0.75em)
-
 .list
   position: absolute
-  visibility: hidden
-  overflow: hidden
-  opacity: 1
+  top: calc(100% + 0.2rem)
+  border-radius: var(--small-radius)
+  z-index: 1
+  width: 100%
+  overflow-y: auto
+  background-color: var(--neutral)
   max-height: 0
-  transition: max-height 100ms ease-out forwards
+  transition-delay: 200ms
+  transition: max-height 150ms ease-out
 
   &.open
-    overflow: visible
-    visibility: visible
+    max-height: 200px
+    transition-delay: 0
+    border: 1px solid var(--text-lighter)
+
+.option
+  &:nth-child(odd)
+    background-color: var(--neutral-close)
+
+.button
+  display: flex
+  align-items: center
+  justify-content: space-between
+  width: 100%
+  text-align: start
+  padding: var(--small-padding)
+  opacity: 0.75
+
+  &:hover
     opacity: 1
-    max-height: 50px
+    background-color: var(--neutral-light)
+
+.content
+  display: flex
+  align-items: center
+  gap: 0.5ch
+  font-size: 0.9em
+
+.arrow
+  position: absolute
+  top: 33%
+  right: 1rem
+
+.filterField
+  padding: 0
+
+.filter
+  background-color: transparent
+  width: 100%
+  padding: 0.8em 1em
+  margin-left: 0.5ch
+
+.search
+  transform: translateX(0.8rem)

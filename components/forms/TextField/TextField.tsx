@@ -108,8 +108,8 @@ const TextField: React.FC<ITextFieldProps> = ({
               isDisabled
                 ? ''
                 : isPasswordVisible
-                ? getString('actions.hidePassword')
-                : getString('actions.showPassword')
+                  ? getString('actions.hidePassword')
+                  : getString('actions.showPassword')
             }
           >
             <Button
@@ -122,7 +122,7 @@ const TextField: React.FC<ITextFieldProps> = ({
               tabIndex={-1}
               onClick={handleTogglePasswordVisibily}
             >
-              <EyeIcon size={'1.2em'} isCrossed={isPasswordVisible} />
+              <EyeIcon size='1.2em' isCrossed={isPasswordVisible} color='var(--text-light)' />
             </Button>
           </Tooltip>
         </div>
@@ -139,7 +139,7 @@ const TextField: React.FC<ITextFieldProps> = ({
                 tabIndex={-1}
                 onClick={handleClearInput}
               >
-                <CrossIcon size={'1.2em'} />
+                <CrossIcon size='1.2em' color='var(--text-light)' />
               </Button>
             </Tooltip>
           </div>

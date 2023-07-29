@@ -109,7 +109,10 @@
 
   &:focus,
   &:valid
+    animation-delay: 200ms
+
     & ~ .label
+      animation-delay: 200ms
       cursor: default
       z-index: 1
       color: var(--text)
@@ -137,9 +140,11 @@
     cursor: text
 
     & ~ .label
+      animation-delay: 200ms
       color: var(--primary)
 
     & ~ .limit
+      animation-delay: 200ms
       opacity: 1
       transform: translateY(0.4em)
 

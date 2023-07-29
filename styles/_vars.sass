@@ -10,10 +10,12 @@
 
   // Colors
   --black: hsl(var(--hue-selected), 10%, 12%)
+  --black-close: hsl(var(--hue-selected), 10%, 15%)
   --black-light: hsl(var(--hue-selected), 10%, 20%)
   --black-lighter: hsl(var(--hue-selected), 10%, 28%)
 
   --white: hsl(var(--hue-selected), 10%, 95%)
+  --white-close: hsl(var(--hue-selected), 10%, 92%)
   --white-light: hsl(var(--hue-selected), 10%, 87%)
   --white-lighter: hsl(var(--hue-selected), 10%, 79%)
 
@@ -32,10 +34,12 @@
   --secondary-lighter: hsl(calc(var(--hue-selected) + 180), 45%, 75%)
 
   --neutral: var(--white)
+  --neutral-close: var(--white-close)
   --neutral-light: var(--white-light)
   --neutral-lighter: var(--white-lighter)
 
   --text: hsla(var(--hue-selected), 15%, 10%, 0.8)
+  --text-close: hsla(var(--hue-selected), 15%, 13%, 0.8)
   --text-light: hsla(var(--hue-selected), 15%, 10%, 0.6)
   --text-lighter: hsla(var(--hue-selected), 15%, 10%, 0.4)
 
@@ -91,6 +95,7 @@
   --base-spacing: 1.5rem
   --base-padding: 0.8em
   --wide-padding: var(--base-padding) calc(var(--base-padding) * 1.5)
+  --small-padding: calc(var(--base-padding) / 1.5) var(--base-padding)
 
   // Shadows
   --card-shadow: 0 0 1.5rem hsla(var(--hue-selected), 10%, 10%, 0.1)
@@ -98,9 +103,9 @@
   --inner-shadow: inset 0 0.5rem 1.5rem hsla(var(--hue-selected), 10%, 10%, 0.1)
 
   // Radius
-  --large-radius: 1.5rem
-  --base-radius: 0.6rem
-  --small-radius: 0.3rem
+  --large-radius: 1.5em
+  --base-radius: 0.6em
+  --small-radius: 0.4em
 
   // Opacity
   --base-opacity: hsla(var(--hue-selected), 10%, 10%, 0.1)
@@ -108,10 +113,12 @@
 @media (prefers-scheme: dark)
   :root
     --neutral: var(--black)
+    --neutral-close: var(--black-close)
     --neutral-light: var(--black-light)
     --neutral-lighter: var(--black-lighter)
 
     --text: hsla(var(--hue-selected), 15%, 90%, 0.8)
+    --text-close: hsla(var(--hue-selected), 15%, 87%, 0.8)
     --text-light: hsla(var(--hue-selected), 15%, 90%, 0.6)
     --text-lighter: hsla(var(--hue-selected), 15%, 90%, 0.4)
 
