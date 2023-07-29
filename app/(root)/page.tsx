@@ -6,9 +6,12 @@ import { LocaleContext } from '@/contexts'
 import { Loader, LockIcon, UserIcon } from '@/icons'
 import { Locales } from '@/utils'
 import { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
+import { CreateUserError } from '@/utils'
+
+const url = process.env.API_URL
 
 const Home: NextPage = () => {
-  const { changeLocale } = useContext(LocaleContext)
+  const { changeLocale, getString } = useContext(LocaleContext)
   const [pseudo, setPseudo] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
@@ -82,6 +85,8 @@ const Home: NextPage = () => {
     console.log(option)
   }
 
+  console.log(url)
+
   return (
     <main>
       Hello World
@@ -111,6 +116,7 @@ const Home: NextPage = () => {
         }}
         onSubmit={handleSubmit}
       >
+        {url}
         <Combobox
           icon={<UserIcon />}
           onChange={onSelectChange}
@@ -127,7 +133,7 @@ const Home: NextPage = () => {
             limit={20}
           />
         </div>
-
+        <p>{getString(CreateUserError.UsernameRequired)}</p>
         <TextField
           placeholder='Je fais un test pas très utile mais on sait jamais je pense que ça va bug'
           value={password}

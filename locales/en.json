@@ -17,5 +17,18 @@
     },
     "hidePassword": "Hide password",
     "showPassword": "Show password"
+  },
+  "errors": {
+    "api": {
+      "common": {
+        "internal": "The server encountered a problem. Try again later or contact us."
+      },
+      "user": {
+        "usernameRequired": "Username is required",
+        "usernameTaken": "This username is already taken",
+        "passwordError": "The password must contain at least 8 characters including 1 lowercase letter, 1 uppercase letter, 1 number & a special character",
+        "passwordRequired": "Password is required"
+      }
+    }
   }
 }

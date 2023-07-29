@@ -10,12 +10,12 @@
 
   // Colors
   --black: hsl(var(--hue-selected), 10%, 12%)
-  --black-close: hsl(var(--hue-selected), 10%, 15%)
+  --black-secondary: hsl(var(--hue-selected), 10%, 15%)
   --black-light: hsl(var(--hue-selected), 10%, 20%)
   --black-lighter: hsl(var(--hue-selected), 10%, 28%)
 
   --white: hsl(var(--hue-selected), 10%, 95%)
-  --white-close: hsl(var(--hue-selected), 10%, 92%)
+  --white-secondary: hsl(var(--hue-selected), 10%, 92%)
   --white-light: hsl(var(--hue-selected), 10%, 87%)
   --white-lighter: hsl(var(--hue-selected), 10%, 79%)
 
@@ -34,12 +34,17 @@
   --secondary-lighter: hsl(calc(var(--hue-selected) + 180), 45%, 75%)
 
   --neutral: var(--white)
-  --neutral-close: var(--white-close)
+  --neutral-secondary: var(--white-secondary)
   --neutral-light: var(--white-light)
   --neutral-lighter: var(--white-lighter)
 
+  --complementary: var(--black)
+  --complementary-secondary: var(--black-secondary)
+  --complementary-light: var(--black-light)
+  --complementary-lighter: var(--black-lighter)
+
   --text: hsla(var(--hue-selected), 15%, 10%, 0.8)
-  --text-close: hsla(var(--hue-selected), 15%, 13%, 0.8)
+  --text-secondary: hsla(var(--hue-selected), 15%, 13%, 0.8)
   --text-light: hsla(var(--hue-selected), 15%, 10%, 0.6)
   --text-lighter: hsla(var(--hue-selected), 15%, 10%, 0.4)
 
@@ -113,12 +118,17 @@
 @media (prefers-scheme: dark)
   :root
     --neutral: var(--black)
-    --neutral-close: var(--black-close)
+    --neutral-secondary: var(--black-secondary)
     --neutral-light: var(--black-light)
     --neutral-lighter: var(--black-lighter)
 
+    --complementary: var(--white)
+    --complementary-secondary: var(--white-secondary)
+    --complementary-light: var(--white-light)
+    --complementary-lighter: var(--white-lighter)
+
     --text: hsla(var(--hue-selected), 15%, 90%, 0.8)
-    --text-close: hsla(var(--hue-selected), 15%, 87%, 0.8)
+    --text-secondary: hsla(var(--hue-selected), 15%, 87%, 0.8)
     --text-light: hsla(var(--hue-selected), 15%, 90%, 0.6)
     --text-lighter: hsla(var(--hue-selected), 15%, 90%, 0.4)
 

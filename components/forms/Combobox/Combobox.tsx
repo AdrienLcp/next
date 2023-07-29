@@ -68,6 +68,7 @@ const Combobox: React.FC<IComboboxProps> = ({
         onClear={reset}
         icon={icon}
         inputClassName={styles.input}
+        onChange={() => {}}
       />
 
       {!selectedOption && !value && (
