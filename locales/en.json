@@ -1,0 +1,20 @@
+{
+  "appName": "Shop",
+  "components": {
+    "textField": {
+      "max": "characters max",
+      "limit": "character(s) remaining"
+    },
+    "combobox": {
+      "select": "Select"
+    }
+  },
+  "actions": {
+    "clear": {
+      "label": "Clear input",
+      "title": "Clear"
+    },
+    "hidePassword": "Hide password",
+    "showPassword": "Show password"
+  }
+}

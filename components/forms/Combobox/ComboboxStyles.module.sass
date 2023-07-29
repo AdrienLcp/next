@@ -1,0 +1,22 @@
+.combobox
+  position: relative
+  
+.icon
+  transform: translateY(0.7em)
+
+  &.search
+    transform: translateY(0.75em)
+
+.list
+  position: absolute
+  visibility: hidden
+  overflow: hidden
+  opacity: 1
+  max-height: 0
+  transition: max-height 100ms ease-out forwards
+
+  &.open
+    overflow: visible
+    visibility: visible
+    opacity: 1
+    max-height: 50px

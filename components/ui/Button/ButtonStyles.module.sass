@@ -1,0 +1,54 @@
+@import '@/styles/mixins'
+
+.button
+  display: flex
+  align-items: center
+  gap: 1ch
+  border: 1px solid transparent
+  box-shadow: var(--base-shadow)
+  border-radius: var(--base-radius)
+  padding: var(--base-padding)
+  font-size: 0.8em
+  transition: transform .1s
+
+  &.right
+    flex-direction: row-reverse
+
+  &.icon
+    border-radius: 50%
+    border-color: var(--primary)
+
+  &.primary
+    padding: var(--wide-padding)
+    background-color: var(--primary)
+    border-color: var(--primary)
+    color: var(--neutral)
+    
+  &.secondary
+    padding: var(--wide-padding)
+    border-color: var(--primary)
+    color: var(--primary)
+
+  &.underline
+    text-decoration: underline
+
+  &.danger
+
+  &.warning
+
+  &.success
+
+  &.info
+
+  &:hover
+    opacity: 0.9
+
+  &:active
+    transform: scale(0.96)
+
+  &:disabled
+    @include disabled
+
+  &.loading
+
+  &.disabled

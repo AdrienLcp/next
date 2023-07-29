@@ -1,0 +1,20 @@
+{
+  "appName": "Shop",
+  "components": {
+    "textField": {
+      "max": "caractères maximum",
+      "limit": "caractère(s) restant(s)"
+    },
+    "combobox": {
+      "select": "Sélectionner"
+    }
+  },
+  "actions": {
+    "clear": {
+      "label": "Effacer la saisie",
+      "title": "Effacer"
+    },
+    "hidePassword": "Cacher le mot de passe",
+    "showPassword": "Montrer le mot de passe"
+  }
+}

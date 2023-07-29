@@ -1,0 +1,161 @@
+@import '@/styles/mixins'
+
+.field
+  position: relative
+  cursor: default
+  opacity: 0.8
+
+  &:hover
+    opacity: 1
+
+.buttonWrapper
+  position: absolute
+  top: 20%
+  right: 0.6em
+
+.button
+  box-shadow: none
+  border-radius: 50%
+  padding: 0.3em
+
+  &:hover
+    background-color: var(--neutral-light)
+
+.icon
+  position: absolute
+  top: 0
+  left: 0.9em
+  transform: translate(0, 60%)
+
+
+.label
+  position: absolute
+  top: 0
+  left: 0.6em
+  transform: translate(0, 80%)
+  z-index: -1
+  color: var(--text-lighter)
+  background-color: var(--neutral)
+  padding: 0 0.4em
+  font-weight: 500
+  font-size: 0.9em
+  transition: transform 250ms ease-out, font-size 250ms ease-out
+
+.labelWithIcon
+  transform: translate(1.5em, 80%)
+
+.limit
+  position: absolute
+  bottom: -0.8em
+  right: 0.5em
+  font-size: 0.6em
+  color: var(--text-light)
+  opacity: 0
+  transition: transform 250ms, opacity 250ms
+
+.tooltip
+  top: calc(100% + 1.5rem)
+
+.error
+  cursor: default
+  position: absolute
+  bottom: -1.3em
+  left: 50%
+  transform: translate(-50%, 0)
+  width: 100%
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+  font-weight: 500
+  padding: 0.5em 1em
+  font-size: 0.6em
+  color: var(--error)
+  opacity: 0
+  animation: slide-in 300ms ease-out forwards
+
+.input
+  padding: var(--base-padding) 2.8rem var(--wide-padding)
+  border-radius: var(--base-radius)
+  cursor: pointer
+  background-color: transparent
+  border: 1px solid var(--text-lighter)
+  width: var(--base-width)
+
+  &::placeholder
+    font-size: 0.9em
+    color: transparent
+    
+  &::-webkit-input-placeholder
+    font-size: 0.9em
+    color: transparent
+    
+  &::-moz-placeholder
+    font-size: 0.9em
+    color: transparent
+  
+  &:-ms-input-placeholder
+    font-size: 0.9em
+    color: transparent
+
+  &:-moz-placeholder
+    font-size: 0.9em
+    color: transparent
+
+  &.inputWithIcon
+    padding: var(--base-padding) 2.8rem var(--base-padding) calc(var(--base-padding) + 1.8em)
+
+  &:hover
+    border-color: var(--text)
+
+  &:focus,
+  &:valid
+    & ~ .label
+      cursor: default
+      z-index: 1
+      color: var(--text)
+      font-size: 0.8em
+      transform: translate(0.5em, -55%)
+
+    &::placeholder
+      color: var(--text-lighter)
+
+    &::-webkit-input-placeholder
+      color: var(--text-lighter)
+
+    &::-moz-placeholder
+      color: var(--text-lighter)
+    
+    &:-ms-input-placeholder
+      color: var(--text-lighter)
+
+    &:-moz-placeholder
+      color: var(--text-lighter)
+    
+
+  &:focus
+    border-color: var(--primary)
+    cursor: text
+
+    & ~ .label
+      color: var(--primary)
+
+    & ~ .limit
+      opacity: 1
+      transform: translateY(0.4em)
+
+  &:disabled
+    @include disabled
+
+    &:hover
+      border-color: var(--text-lighter)
+    
+    &.valid ~ .label
+      cursor: default
+      z-index: 1
+      color: var(--text)
+      transform: translate(0.4em, -65%)
+
+@keyframes slide-in
+  to
+    opacity: 1
+    transform: translate(-50%, 0.4em)

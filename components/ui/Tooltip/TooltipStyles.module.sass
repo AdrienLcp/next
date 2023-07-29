@@ -1,0 +1,44 @@
+.container
+  position: relative
+  // width: fit-content
+  width: 100%
+
+  &:hover .tooltip
+    transition-delay: 0.5s
+    visibility: visible
+    opacity: 1
+
+.tooltip
+  position: absolute
+  z-index: 1
+  visibility: hidden
+  opacity: 0
+  top: calc(100% + 0.7rem)
+  left: 50%
+  transform: translateX(-50%)
+  color: var(--neutral)
+  background-color: var(--gray-darker)
+  padding: 1em
+  width: max-content
+  max-width: 20rem
+  font-weight: 500
+  font-size: 0.6rem
+  text-align: center
+  border-radius: var(--small-radius)
+  box-shadow: var(--base-shadow)
+  transition: opacity 250ms
+
+  &::before
+    content: ''
+    position: absolute
+    top: -0.3rem
+    left: 50%
+    width: 0.6rem
+    height: 0.6rem
+    background-color: var(--gray-darker)
+    z-index: -1
+    transform: translateX(-50%) rotate(45deg)
+
+@media (pointer: coarse)
+  .tooltip
+    display: none
