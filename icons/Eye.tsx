@@ -1,9 +1,10 @@
-import { IEyeIconProps } from '@/types'
+import type { IEyeIconProps } from '@/types'
 
 const EyeIcon: React.FC<IEyeIconProps> = ({
   color = 'var(--text)',
   size = '1em',
-  isCrossed = false
+  isCrossed = false,
+  ...rest
 }) => {
   return (
     <svg
@@ -11,6 +12,7 @@ const EyeIcon: React.FC<IEyeIconProps> = ({
       width={size}
       height={size}
       viewBox='0 0 24 24'
+      {...rest}
     >
       <path
         fill={color}

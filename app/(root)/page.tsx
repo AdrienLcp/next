@@ -1,11 +1,11 @@
 'use client'
 import { NextPage } from 'next'
+import type { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
 import { useContext, useState } from 'react'
-import { Button, Combobox, Switch, TextField } from '@/components'
+import { Button, CloseButton, Combobox, Modal, Switch, TextField } from '@/components'
 import { LocaleContext } from '@/contexts'
 import { Loader, LockIcon, UserIcon } from '@/icons'
 import { Locales } from '@/utils'
-import { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
 import { CreateUserError } from '@/utils'
 
 interface HomeProps {
@@ -17,6 +17,7 @@ const Home: React.FC<HomeProps> = ({ url }) => {
   const [pseudo, setPseudo] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [bool, setBool] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const onPseudoChange = (event: any) => {
     setPseudo(event.target.value)
@@ -122,6 +123,7 @@ const Home: React.FC<HomeProps> = ({ url }) => {
 
         <Switch
           value={bool}
+          tooltip={"BORDEL DE MERde"}
           onChange={(value) => setBool(value)}
           label='test'
         />
@@ -140,7 +142,7 @@ const Home: React.FC<HomeProps> = ({ url }) => {
           onClick={() => changeLocale(Locales.FR)}
         >
           french
-        </Button>          
+        </Button>
         </div>
 
 
@@ -153,8 +155,19 @@ const Home: React.FC<HomeProps> = ({ url }) => {
           label='Mot de passe'
           onChange={onPasswordChange}
           isPassword
+          error='ERROR ERROR ERROR'
         />
+
+        <Button
+          onClick={() => setIsOpen(true)}
+          variant='secondary'
+        >
+          OPEN MODAL
+        </Button>
       </form>
+
+        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        </Modal>
     </main>
   )
 }

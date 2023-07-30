@@ -1,8 +1,9 @@
-import { IIconProps } from '@/types/icons'
+import type { IIconProps } from '@/types'
 
 const CrossIcon: React.FC<IIconProps> = ({
   color = 'var(--text)',
-  size = '1em'
+  size = '1em',
+  ...rest
 }) => {
   return (
     <svg
@@ -10,6 +11,7 @@ const CrossIcon: React.FC<IIconProps> = ({
       width={size}
       height={size}
       viewBox='0 0 16 16'
+      {...rest}
     >
       <path
         fill='none'

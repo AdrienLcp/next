@@ -1,8 +1,9 @@
-import { IIconProps } from '@/types/icons'
+import type { IIconProps } from '@/types'
 
 const Spinner: React.FC<IIconProps> = ({
   color = 'var(--primary)',
-  size = '1em'
+  size = '1em',
+  ...rest
 }) => {
   return (
     <svg
@@ -10,6 +11,7 @@ const Spinner: React.FC<IIconProps> = ({
       width={size}
       height={size}
       viewBox='0 0 24 24'
+      {...rest}
     >
       <circle cx='12' cy='12' r='0' fill={color}>
         <animate

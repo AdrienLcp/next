@@ -1,3 +1,5 @@
+export { Task as Task } from './actions'
+
 export { ServerError as ServerError} from './api'
 export { CreateUserError as CreateUserError} from './api'
 

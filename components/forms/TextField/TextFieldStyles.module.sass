@@ -4,7 +4,7 @@
   position: relative
   cursor: default
   opacity: 0.8
-
+  width: var(--elem-width)
   &:hover
     opacity: 1
 
@@ -39,7 +39,7 @@
   transform: translate(1.5em, 85%)
 
 .limit
-  @include posAbsolute(auto, 0.5em, -0.8em, auto)
+  @include posAbsolute(auto, 0.5em, -0.9em, auto)
   font-size: 0.6em
   color: var(--text-light)
   opacity: 0
@@ -50,9 +50,8 @@
 
 .error
   cursor: default
-  @include posAbsolute(auto, auto, -1.3em, 50%)
+  @include posAbsolute(auto, auto, -1.4em, 50%)
   transform: translate(-50%, 0)
-  width: 100%
   overflow: hidden
   white-space: nowrap
   text-overflow: ellipsis
@@ -61,6 +60,7 @@
   font-size: 0.6em
   color: var(--error)
   opacity: 0
+  width: max-content
   animation: slide-in 300ms ease-out forwards
 
 .input
@@ -69,7 +69,7 @@
   cursor: pointer
   background-color: transparent
   border: 1px solid var(--text-lighter)
-  width: var(--base-width)
+  width: 100%
 
   &::placeholder
     font-size: 0.9em

@@ -1,7 +1,6 @@
 type OmittedInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
 
 export interface ISwitchProps extends OmittedInputProps {
-
   /**
    * Boolean value
    * 

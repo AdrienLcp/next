@@ -11,34 +11,36 @@ const Switch: React.FC<ISwitchProps> = ({
   ...rest
 }) => {
   return (
-    <Tooltip text={tooltip}>
-      <Button
-        className={styles.button}
-        onClick={() => onChange(!value)}
-      >
-        <label
-          style={{ "--switch-size": size } as React.CSSProperties}
-          className={styles.switch}
-          htmlFor={`${label}-switch-input`}
+    <div className={styles.container}>
+      <Tooltip text={tooltip}>
+        <Button
+          className={styles.button}
+          onClick={() => onChange(!value)}
         >
-          <input
-            className={styles.input}
-            type='checkbox'
-            id={`${label}-switch-input`}
-            checked={value}
-            onChange={() => onChange(value)}
-            {...rest}
-          />
-          <div className={styles.slider} />
-        </label>
+          <label
+            style={{ "--switch-size": size } as React.CSSProperties}
+            className={styles.switch}
+            htmlFor={`${label}-switch-input`}
+          >
+            <input
+              className={styles.input}
+              type='checkbox'
+              id={`${label}-switch-input`}
+              checked={value}
+              onChange={() => onChange(value)}
+              {...rest}
+            />
+            <div className={styles.slider} />
+          </label>
 
-        {label && (
-          <span className={styles.label}>
-            {label}
-          </span>
-        )}
-      </Button>
-    </Tooltip>
+          {label && (
+            <span className={styles.label}>
+              {label}
+            </span>
+          )}
+        </Button>
+      </Tooltip>      
+    </div>
   )
 }
 

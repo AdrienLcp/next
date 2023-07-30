@@ -1,19 +1,26 @@
-import { useCallback, useEffect, useState } from 'react'
-import { ServerError, isApiError } from '@/utils'
-import { ApiErrorMessage } from '@/types'
+import { useCallback, useEffect, useReducer, useRef } from 'react'
+import type { Cache, IUseApiState } from '@/types'
+import { ServerError, Task, isApiError } from '@/utils'
+import { fetchReducer } from '@/reducers'
       
 const baseUrl = process.env.BASE_URL || ''
 const apiKey = process.env.API_KEY || ''
 const token = localStorage.getItem('token') || ''
 
-export const useApi = <T = unknown>(url?: string, init?: RequestInit) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [data, setData] = useState<T | null>(null)
-  const [error, setError] = useState<ApiErrorMessage | null>(null)
+export const useApi = <T = unknown>(url?: string, init?: RequestInit): IUseApiState<T> => {
+  const cache = useRef<Cache<T>>({})
+  const cancelRequest = useRef<boolean>(false)
 
-  const fetchData = useCallback(async (controller: AbortController) => {
+  const initialState: IUseApiState<T> = {
+    data: undefined,
+    error: undefined,
+    isLoading: false
+  }
+  const [state, dispatch] = useReducer(fetchReducer, initialState)
+
+  const fetchData = useCallback(async (url: string, controller: AbortController) => {
     try {
-      setIsLoading(true)
+      dispatch({ type: Task.Loading })
 
       const signal = controller.signal
       const headers = init?.headers || {}
@@ -27,36 +34,47 @@ export const useApi = <T = unknown>(url?: string, init?: RequestInit) => {
           'token': token
         }
       })
+      
+      if (cancelRequest.current) return
 
       if (response) {
         const data = await response.json() as T
-        setData(data)
+
+        cache.current[url] = data
+        if (cancelRequest.current) return
+        
+        dispatch({ type: Task.Success, payload: data })
       }
     } catch (error) {
       console.error(error)
 
-      if (isApiError(error)) {
-        setError(error.message)
-      } else {
-        setError(ServerError.InternalServerError)
-      }
-    } finally {
-      setIsLoading(false)
+      dispatch({
+        type: Task.Error,
+        payload: isApiError(error) ? error.message : ServerError.InternalServerError
+      })
     }
-  }, [url, init])
+  }, [init])
 
   useEffect(() => {
     if (!url) {
       return
     }
 
+    cancelRequest.current = false
+
+    if (cache.current[url]) {
+      dispatch({ type: Task.Success, payload: cache.current[url] })
+      return
+    }
+
     const controller = new AbortController()
-    fetchData(controller)
+    fetchData(url, controller)
 
     return () => {
+      cancelRequest.current = true
       controller.abort()
     }
   }, [url, fetchData])
 
-  return [data, error, isLoading]
+  return state as IUseApiState<T>
 }
