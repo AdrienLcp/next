@@ -1,6 +1,6 @@
-type ButtonOmit = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'className'>
+type OmittedButtonProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'className'>
 
-export interface IButtonProps extends ButtonOmit {
+export interface IButtonProps extends OmittedButtonProps {
   /**
    * Button variant
    * @type 'neutral' |

@@ -42,8 +42,8 @@ const Combobox: React.FC<IComboboxProps> = ({
 
   const reset = () => {
     setSelectedOption(null)
-    setOptionsFilterText('')
     onChange(null)
+    setOptionsFilterText('')
   }
 
   const handleBlur = (event: any) => {

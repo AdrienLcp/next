@@ -9,9 +9,7 @@
     opacity: 1
 
 .buttonWrapper
-  position: absolute
-  top: 20%
-  right: 0.6em
+  @include posAbsolute(20%, 0.6em, auto, auto)
 
 .button
   box-shadow: none
@@ -22,17 +20,13 @@
     background-color: var(--neutral-light)
 
 .icon
-  position: absolute
-  top: 0
-  left: 0.9em
+  @include posAbsolute(0, auto, auto, 0.9em)
   transform: translate(0, 60%)
 
 
 .label
-  position: absolute
-  top: 0
-  left: 0.6em
-  transform: translate(0, 80%)
+  @include posAbsolute(0, auto, auto, 0.6em)
+  transform: translate(0, 85%)
   z-index: -1
   color: var(--text-lighter)
   background-color: var(--neutral)
@@ -42,12 +36,10 @@
   transition: transform 250ms ease-out, font-size 250ms ease-out
 
 .labelWithIcon
-  transform: translate(1.5em, 80%)
+  transform: translate(1.5em, 85%)
 
 .limit
-  position: absolute
-  bottom: -0.8em
-  right: 0.5em
+  @include posAbsolute(auto, 0.5em, -0.8em, auto)
   font-size: 0.6em
   color: var(--text-light)
   opacity: 0
@@ -58,9 +50,7 @@
 
 .error
   cursor: default
-  position: absolute
-  bottom: -1.3em
-  left: 50%
+  @include posAbsolute(auto, auto, -1.3em, 50%)
   transform: translate(-50%, 0)
   width: 100%
   overflow: hidden

@@ -1,0 +1,44 @@
+@import '@/styles/mixins'
+
+.button
+  display: flex
+  align-items: center
+  gap: 1ch
+  padding: 0
+  // background: red
+  
+  &:active
+    transform: none
+
+.switch
+  position: relative
+  height: var(--switch-size)
+  width: calc(var(--switch-size) * 1.77)
+
+.slider
+  @include posAbsolute(0, 0, 0, 0)
+  background: var(--neutral-lighter)
+  transition: .4s
+  border-radius: var(--switch-size)
+
+  &:before
+    @include posAbsolute(auto, auto, calc(var(--switch-size) / 8.5), calc(var(--switch-size) / 8.5))
+    content: ''
+    background: var(--neutral)
+    height: calc(var(--switch-size) / 1.3)
+    width: calc(var(--switch-size) / 1.3)
+    transition: .4s
+    border-radius: 50%
+
+.input
+  display: none
+
+  &:checked + .slider
+    background: var(--primary)
+
+    &:before
+      transform: translateX(calc(var(--switch-size) / 1.3))
+
+.label
+  color: var(--text-light)
+  font-size: var(--switch-size)

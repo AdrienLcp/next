@@ -1,19 +1,22 @@
 'use client'
 import { NextPage } from 'next'
 import { useContext, useState } from 'react'
-import { Button, Combobox, TextField } from '@/components'
+import { Button, Combobox, Switch, TextField } from '@/components'
 import { LocaleContext } from '@/contexts'
 import { Loader, LockIcon, UserIcon } from '@/icons'
 import { Locales } from '@/utils'
 import { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
 import { CreateUserError } from '@/utils'
 
-const url = process.env.API_URL
+interface HomeProps {
+  url?: string
+}
 
-const Home: NextPage = () => {
+const Home: React.FC<HomeProps> = ({ url }) => {
   const { changeLocale, getString } = useContext(LocaleContext)
   const [pseudo, setPseudo] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [bool, setBool] = useState<boolean>(false)
 
   const onPseudoChange = (event: any) => {
     setPseudo(event.target.value)
@@ -85,25 +88,8 @@ const Home: NextPage = () => {
     console.log(option)
   }
 
-  console.log(url)
-
   return (
     <main>
-      Hello World
-      <Button
-        variant='primary'
-        icon={<Loader color='white' />}
-        onClick={() => changeLocale(Locales.FR)}
-      >
-        french
-      </Button>
-      <Button
-        variant='primary'
-        icon={<Loader color='white' />}
-        onClick={() => changeLocale(Locales.EN)}
-      >
-        english
-      </Button>
       <form
         style={{
           display: 'flex',
@@ -116,24 +102,50 @@ const Home: NextPage = () => {
         }}
         onSubmit={handleSubmit}
       >
-        {url}
+        Hello World
+        <div style={{ display: 'flex', gap: 5 }}>
+
         <Combobox
           icon={<UserIcon />}
           onChange={onSelectChange}
           label="Sélection"
           options={options}
         />
-        <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-          <TextField
-            label='Pseudo'
-            icon={<UserIcon />}
-            value={pseudo}
-            onChange={onPseudoChange}
-            onClear={() => setPseudo('')}
-            limit={20}
-          />
+        <Button
+          variant='primary'
+          icon={<Loader color='white' />}
+          onClick={() => changeLocale(Locales.EN)}
+        >
+          english
+        </Button>
         </div>
+
+        <Switch
+          value={bool}
+          onChange={(value) => setBool(value)}
+          label='test'
+        />
+        <div style={{ display: 'flex', gap: 5 }}>
+        <TextField
+          label='Pseudo'
+          icon={<UserIcon />}
+          value={pseudo}
+          onChange={onPseudoChange}
+          onClear={() => setPseudo('')}
+          limit={20}
+        />
+        <Button
+          variant='primary'
+          icon={<Loader color='white' />}
+          onClick={() => changeLocale(Locales.FR)}
+        >
+          french
+        </Button>          
+        </div>
+
+
         <p>{getString(CreateUserError.UsernameRequired)}</p>
+
         <TextField
           placeholder='Je fais un test pas très utile mais on sait jamais je pense que ça va bug'
           value={password}

@@ -11,6 +11,9 @@
   font-size: 0.8em
   transition: transform .1s
 
+  &.neutral
+    box-shadow: none
+
   &.right
     flex-direction: row-reverse
 
@@ -52,3 +55,7 @@
   &.loading
 
   &.disabled
+
+@media screen and (min-width: 750px)
+  .button
+    // width: fit-content

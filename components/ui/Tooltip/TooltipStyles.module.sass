@@ -1,7 +1,8 @@
+@import @/styles/mixins
+
 .container
   position: relative
-  // width: fit-content
-  width: 100%
+  width: fit-content
 
   &:hover .tooltip
     transition-delay: 0.5s
@@ -9,12 +10,10 @@
     opacity: 1
 
 .tooltip
-  position: absolute
+  @include posAbsolute(calc(100% + 0.7rem), auto, auto, 50%)
   z-index: 50
   visibility: hidden
   opacity: 0
-  top: calc(100% + 0.7rem)
-  left: 50%
   transform: translateX(-50%)
   color: var(--neutral-light)
   background-color: var(--complementary-lighter)
@@ -22,7 +21,7 @@
   width: max-content
   max-width: 20rem
   font-weight: 500
-  font-size: 0.6rem
+  font-size: 0.7rem
   text-align: center
   border-radius: var(--small-radius)
   box-shadow: var(--base-shadow)
@@ -30,9 +29,7 @@
 
   &::before
     content: ''
-    position: absolute
-    top: -0.3rem
-    left: 50%
+    @include posAbsolute(-0.3rem, auto, auto, 50%)
     width: 0.6rem
     height: 0.6rem
     background-color: var(--complementary-lighter)
