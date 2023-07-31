@@ -1,0 +1,61 @@
+@import '@/styles/mixins'
+
+.toast
+  @include posFixed(20px, auto, auto, 50%)
+  transform: translate(-50%, -400%)
+  box-shadow: var(--base-shadow)
+  border-radius: var(--base-radius)
+  background: var(--neutral)
+  padding: calc(var(--base-padding) * 1.2) calc(var(--base-padding) * 5) calc(var(--base-padding) * 1.2) calc(var(--base-padding) * 1.5)
+  max-width: 600px
+  text-align: center
+  display: flex
+  align-items: center
+  gap: 1ch
+
+  &.success
+    @include success
+
+  &.warning
+    @include warning
+
+  &.error
+    @include error
+
+  &.info
+    background: var(--green)
+    color: var(--white)
+
+  &.displayed
+    animation: slide-in 30s forwards
+
+  &.hidden
+    animation: slide-out 500ms forwards
+
+@keyframes slide-in
+  0%
+    opacity: 0
+    transform: translate(-50%, -400%)
+    
+  2%
+    opacity: 1
+    transform: translate(-50%, 0)
+  
+  98%
+    opacity: 1
+    transform: translate(-50%, 0)
+  
+  100%
+    opacity: 0
+    transform: translate(-50%, -400%)
+
+@keyframes slide-out
+  from
+    opacity: 1
+    transform: translate(-50%, 0)
+    
+  to
+    opacity: 0
+    transform: translate(-50%, -400%)
+
+    

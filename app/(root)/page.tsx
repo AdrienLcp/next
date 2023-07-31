@@ -2,7 +2,7 @@
 import { NextPage } from 'next'
 import type { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
 import { useContext, useState } from 'react'
-import { Button, CloseButton, Combobox, Modal, Switch, TextField } from '@/components'
+import { Button, CloseButton, Combobox, Modal, Switch, TextField, Toast } from '@/components'
 import { LocaleContext } from '@/contexts'
 import { Loader, LockIcon, UserIcon } from '@/icons'
 import { Locales } from '@/utils'
@@ -91,6 +91,8 @@ const Home: React.FC<HomeProps> = ({ url }) => {
 
   return (
     <main>
+
+        <Toast message={"User created"}/>
       <form
         style={{
           display: 'flex',
@@ -158,16 +160,25 @@ const Home: React.FC<HomeProps> = ({ url }) => {
           error='ERROR ERROR ERROR'
         />
 
-        <Button
-          onClick={() => setIsOpen(true)}
-          variant='secondary'
-        >
-          OPEN MODAL
-        </Button>
+        <div style={{ display: 'flex', gap: 5 }}>
+          <Button
+            onClick={() => setIsOpen(true)}
+            variant='secondary'
+          >
+            OPEN
+          </Button>
+          <Button
+            onClick={() => setIsOpen(true)}
+            variant='primary'
+          >
+            MODAL
+          </Button>
+        </div>
+
       </form>
 
-        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        </Modal>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      </Modal>
     </main>
   )
 }

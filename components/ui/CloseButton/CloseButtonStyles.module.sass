@@ -1,10 +1,13 @@
 @import '@/styles/mixins'
   
 .close
-  @include posAbsolute(1em, 1em, auto, auto)
+  @include posAbsolute(var(--close-button-top), 1em, auto, auto)
+  transform: translate(var(--close-button-translate), 0)
   
 .button
-  padding: 0.3em
+  padding: calc(var(--close-button-base-size) / 5)
+  border-color: var(--close-button-border-color)
+  opacity: 0.7
 
   &:hover
-    border-color: var(--text)
+    opacity: 1
