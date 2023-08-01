@@ -7,6 +7,7 @@ import { LocaleContext } from '@/contexts'
 import { Loader, LockIcon, UserIcon } from '@/icons'
 import { Locales } from '@/utils'
 import { CreateUserError } from '@/utils'
+import Tabs from '@/components/layouts/Tabs/Tabs'
 
 interface HomeProps {
   url?: string
@@ -91,8 +92,6 @@ const Home: React.FC<HomeProps> = ({ url }) => {
 
   return (
     <main>
-
-        <Toast message={"User created"}/>
       <form
         style={{
           display: 'flex',
@@ -105,6 +104,27 @@ const Home: React.FC<HomeProps> = ({ url }) => {
         }}
         onSubmit={handleSubmit}
       >
+
+        <Tabs
+          tabs={[
+            {
+              label: 'Tab 1',
+              icon: <>icon1</>,
+              content: <>CONTENT 1</>
+            },
+            {
+              label: 'Tab 2',
+              icon: <>icon2</>,
+              content: <>CONTENT 2</>
+            }
+          ]}
+        />
+
+
+
+
+
+
         Hello World
         <div style={{ display: 'flex', gap: 5 }}>
 
@@ -179,6 +199,8 @@ const Home: React.FC<HomeProps> = ({ url }) => {
 
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
       </Modal>
+
+      <Toast message={"User created"}/>
     </main>
   )
 }

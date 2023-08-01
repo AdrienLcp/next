@@ -3,8 +3,7 @@ type OmittedButtonProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'd
 export interface IButtonProps extends OmittedButtonProps {
   /**
    * Button variant
-   * @type 'neutral' |
-   *       'icon' |
+   * @type 'icon' |
    *       'primary' |
    *       'secondary' |
    *       'underline' |
@@ -12,7 +11,7 @@ export interface IButtonProps extends OmittedButtonProps {
    *       'warning' |
    *       'success' |
    *       'info'
-   * @default 'neutral'
+   * @default null
    */
   variant?: ButtonVariant
 
@@ -51,7 +50,6 @@ export interface IButtonProps extends OmittedButtonProps {
 }
 
 type ButtonVariant =
-  'neutral' |
   'icon' |
   'primary' |
   'secondary' |

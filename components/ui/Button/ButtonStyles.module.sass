@@ -4,27 +4,31 @@
   display: flex
   align-items: center
   gap: 1ch
-  border: 1px solid transparent
-  border-radius: var(--base-radius)
   padding: var(--base-padding)
   font-size: 0.8em
+  border: 1px solid transparent
   transition: transform .1s
 
   &.right
     flex-direction: row-reverse
 
   &.icon
+    border-radius: var(--base-radius)
 
   &.primary
     padding: var(--wide-padding)
     background-color: var(--primary)
     border-color: var(--primary)
     color: var(--neutral)
+    border-radius: var(--base-radius)
+    border: 1px solid transparent
     
   &.secondary
     padding: var(--wide-padding)
     border-color: var(--primary)
     color: var(--primary)
+    border-radius: var(--base-radius)
+    border: 1px solid transparent
 
   &.underline
     text-decoration: underline

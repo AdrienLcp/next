@@ -1,0 +1,49 @@
+.tabs
+  width: var(--wide-width)
+  overflow-y: auto
+  margin: 0 auto
+  border-radius: var(--small-radius)
+  border: 1px solid var(--text-lighter)
+
+.heading
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: space-evenly
+  border-bottom: 1px solid var(--text-lighter)
+  width: 100%
+
+.button
+  position: relative
+  flex: 1
+  padding: var(--wide-padding)
+  border: none
+  display: flex
+  align-items: center
+  justify-content: center
+  background-color: var(--neutral-secondary)
+
+  &::after
+    content: ''
+    position: absolute
+    top: 50%
+    right: 0
+    transform: translateY(-50%)
+    width: 0.1px
+    height: 65%
+    background-color: var(--text)
+
+  &:last-child
+    &::after
+      display: none
+
+  &:hover
+    background-color: var(--neutral-light) 
+
+  &:active
+    transform: none
+
+.content
+  padding: var(--wide-padding)
+  min-height: 200px
+  max-height: 70vh

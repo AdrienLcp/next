@@ -7,7 +7,7 @@ const Button: React.FC<IButtonProps> = ({
   children = null,
   icon = null,
   iconSide = 'left',
-  variant = 'neutral',
+  variant = '',
   isLoading = false,
   isDisabled = false,
   className = '',
@@ -22,7 +22,6 @@ const Button: React.FC<IButtonProps> = ({
       case 'info':
         return 'var(--white)'
 
-      case 'neutral':
       case 'icon':
       case 'secondary':
       case 'underline':
