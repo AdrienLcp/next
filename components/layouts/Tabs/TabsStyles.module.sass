@@ -4,6 +4,7 @@
   margin: 0 auto
   border-radius: var(--small-radius)
   border: 1px solid var(--text-lighter)
+  background-color: var(--neutral-secondary)
 
 .heading
   display: flex
@@ -21,7 +22,7 @@
   display: flex
   align-items: center
   justify-content: center
-  background-color: var(--neutral-secondary)
+  background-color: var(--neutral)
 
   &::after
     content: ''
@@ -42,6 +43,13 @@
 
   &:active
     transform: none
+
+  &.selected
+    background-color: var(--neutral-secondary)
+    cursor: default
+
+    &:hover
+      opacity: 1
 
 .content
   padding: var(--wide-padding)

@@ -26,7 +26,7 @@ export interface ISwitchProps extends OmittedInputProps {
   /**
    * Size
    * 
-   * @default '1.6em'
+   * @default '1.2em'
    */
   size?: string
 }

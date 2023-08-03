@@ -39,7 +39,7 @@
   transform: translate(1.5em, 85%)
 
 .limit
-  @include posAbsolute(auto, 0.5em, -0.9em, auto)
+  @include posAbsolute(auto, 0.5em, -1em, auto)
   font-size: 0.6em
   color: var(--text-light)
   opacity: 0
@@ -50,7 +50,7 @@
 
 .error
   cursor: default
-  @include posAbsolute(auto, auto, -1.4em, 50%)
+  @include posAbsolute(auto, auto, -1.5em, 50%)
   transform: translate(-50%, 0)
   overflow: hidden
   white-space: nowrap
@@ -68,6 +68,7 @@
   border-radius: var(--base-radius)
   cursor: pointer
   background-color: transparent
+  color: var(--text)
   border: 1px solid var(--text-lighter)
   width: 100%
 

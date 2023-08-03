@@ -15,7 +15,7 @@ const Tabs: React.FC<ITabsProps> = ({
         {tabs.map((tab, index) => (
           <Button
             key={index}
-            className={styles.button}
+            className={`${styles.button} ${selectedTab === index && styles.selected}`}
             onClick={() => setSelectedTad(index)}
           >
             {tab.icon}

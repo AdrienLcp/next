@@ -1,5 +1,18 @@
 import { locales } from '@/contexts'
 
+// ================================================== //
+
+// =========== //  Dark mode context  // =========== //
+
+export interface IDarkModeContext {
+  isDarkModeActive: boolean
+  changeDarkMode: (isNowDarkModeActive: boolean) => void
+}
+
+// ================================================== //
+
+// ============= //  Locale context  // ============= //
+
 type LocaleMap = typeof locales
 
 export type LocaleName = keyof LocaleMap

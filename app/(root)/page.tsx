@@ -2,12 +2,10 @@
 import { NextPage } from 'next'
 import type { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
 import { useContext, useState } from 'react'
-import { Button, CloseButton, Combobox, Modal, Switch, TextField, Toast } from '@/components'
-import { LocaleContext } from '@/contexts'
+import { Button, CloseButton, Combobox, Modal, Switch, TextField, Toast, Tabs } from '@/components'
+import { DarkmodeContext, LocaleContext } from '@/contexts'
 import { Loader, LockIcon, UserIcon } from '@/icons'
-import { Locales } from '@/utils'
-import { CreateUserError } from '@/utils'
-import Tabs from '@/components/layouts/Tabs/Tabs'
+import { Locales, CreateUserError } from '@/utils'
 
 interface HomeProps {
   url?: string
@@ -15,9 +13,9 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ url }) => {
   const { changeLocale, getString } = useContext(LocaleContext)
+  const { isDarkModeActive, changeDarkMode } = useContext(DarkmodeContext)
   const [pseudo, setPseudo] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const [bool, setBool] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const onPseudoChange = (event: any) => {
@@ -104,7 +102,6 @@ const Home: React.FC<HomeProps> = ({ url }) => {
         }}
         onSubmit={handleSubmit}
       >
-
         <Tabs
           tabs={[
             {
@@ -120,51 +117,47 @@ const Home: React.FC<HomeProps> = ({ url }) => {
           ]}
         />
 
-
-
-
-
-
         Hello World
-        <div style={{ display: 'flex', gap: 5 }}>
 
-        <Combobox
-          icon={<UserIcon />}
-          onChange={onSelectChange}
-          label="Sélection"
-          options={options}
-        />
-        <Button
-          variant='primary'
-          icon={<Loader color='white' />}
-          onClick={() => changeLocale(Locales.EN)}
-        >
-          english
-        </Button>
+        <div style={{ display: 'flex', gap: 5 }}>
+          <Combobox
+            icon={<UserIcon />}
+            onChange={onSelectChange}
+            label="Sélection"
+            options={options}
+          />
+          <Button
+            variant='primary'
+            icon={<Loader color='white' />}
+            onClick={() => changeLocale(Locales.EN)}
+          >
+            english
+          </Button>
         </div>
 
         <Switch
-          value={bool}
+          value={isDarkModeActive}
           tooltip={"BORDEL DE MERde"}
-          onChange={(value) => setBool(value)}
-          label='test'
+          onChange={(value) => changeDarkMode(value)}
+          label='Dark Mode ACTIVE'
         />
+
         <div style={{ display: 'flex', gap: 5 }}>
-        <TextField
-          label='Pseudo'
-          icon={<UserIcon />}
-          value={pseudo}
-          onChange={onPseudoChange}
-          onClear={() => setPseudo('')}
-          limit={20}
-        />
-        <Button
-          variant='primary'
-          icon={<Loader color='white' />}
-          onClick={() => changeLocale(Locales.FR)}
-        >
-          french
-        </Button>
+          <TextField
+            label='Pseudo'
+            icon={<UserIcon />}
+            value={pseudo}
+            onChange={onPseudoChange}
+            onClear={() => setPseudo('')}
+            limit={20}
+          />
+          <Button
+            variant='primary'
+            icon={<Loader color='white' />}
+            onClick={() => changeLocale(Locales.FR)}
+          >
+            french
+          </Button>
         </div>
 
 

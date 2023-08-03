@@ -29,19 +29,15 @@
   --primary-light: hsl(var(--hue-selected), 50%, 69%)
   --primary-lighter: hsl(var(--hue-selected), 45%, 75%)
 
-  --secondary: hsl(calc(var(--hue-selected) + 180), 69%, 61%)
-  --secondary-light: hsl(calc(var(--hue-selected) + 180), 50%, 69%)
-  --secondary-lighter: hsl(calc(var(--hue-selected) + 180), 45%, 75%)
-
   --neutral: var(--white)
   --neutral-secondary: var(--white-secondary)
   --neutral-light: var(--white-light)
   --neutral-lighter: var(--white-lighter)
 
-  --complementary: var(--black)
-  --complementary-secondary: var(--black-secondary)
-  --complementary-light: var(--black-light)
-  --complementary-lighter: var(--black-lighter)
+  --accent: var(--black)
+  --accent-secondary: var(--black-secondary)
+  --accent-light: var(--black-light)
+  --accent-lighter: var(--black-lighter)
 
   --text: hsla(var(--hue-selected), 15%, 10%, 0.8)
   --text-secondary: hsla(var(--hue-selected), 15%, 13%, 0.8)
@@ -116,27 +112,6 @@
 
   // Opacity
   --base-opacity: hsla(var(--hue-selected), 10%, 10%, 0.1)
-  
-@media (prefers-scheme: dark)
-  :root
-    --neutral: var(--black)
-    --neutral-secondary: var(--black-secondary)
-    --neutral-light: var(--black-light)
-    --neutral-lighter: var(--black-lighter)
-
-    --complementary: var(--white)
-    --complementary-secondary: var(--white-secondary)
-    --complementary-light: var(--white-light)
-    --complementary-lighter: var(--white-lighter)
-
-    --text: hsla(var(--hue-selected), 15%, 90%, 0.8)
-    --text-secondary: hsla(var(--hue-selected), 15%, 87%, 0.8)
-    --text-light: hsla(var(--hue-selected), 15%, 90%, 0.6)
-    --text-lighter: hsla(var(--hue-selected), 15%, 90%, 0.4)
-
-    --card-shadow: 0 0 1.5rem hsla(var(--hue-selected), 10%, 90%, 0.1)
-    --base-shadow: 0 0 1rem hsla(var(--hue-selected), 10%, 90%, 0.15)
-    --inner-shadow: inset 0 0.5rem 1.5rem hsla(var(--hue-selected), 10%, 90%, 0.1)
 
 @media screen and (min-width: 750px)
   :root

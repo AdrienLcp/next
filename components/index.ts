@@ -8,5 +8,6 @@ export { default as TextField } from './forms/TextField/TextField'
 export { default as Combobox } from './forms/Combobox/Combobox'
 
 export { default as Navbar } from './layouts/Navigation/Navbar'
+export { default as Tabs } from './layouts/Tabs/Tabs'
 
 export { default as Modal } from './modals/Modal/Modal'
