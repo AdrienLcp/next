@@ -1,6 +1,10 @@
 import type { IApiError } from '@/types'
 import { Task } from '@/utils'
 
+// ================================================== //
+
+// ============= //  API Hook  // ============= //
+
 export interface IUseApiState<T> {
   data?: T
   error?: string

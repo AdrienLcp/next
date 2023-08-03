@@ -3,20 +3,22 @@ import { NextPage } from 'next'
 import type { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
 import { useContext, useState } from 'react'
 import { Button, CloseButton, Combobox, Modal, Switch, TextField, Toast, Tabs } from '@/components'
-import { DarkmodeContext, LocaleContext } from '@/contexts'
 import { Loader, LockIcon, UserIcon } from '@/icons'
 import { Locales, CreateUserError } from '@/utils'
+import { useLocale, useTheme } from '@/hooks'
 
 interface HomeProps {
   url?: string
 }
 
 const Home: React.FC<HomeProps> = ({ url }) => {
-  const { changeLocale, getString } = useContext(LocaleContext)
-  const { isDarkModeActive, changeDarkMode } = useContext(DarkmodeContext)
+  const { changeLocale, getString } = useLocale()
+
   const [pseudo, setPseudo] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  const { changeDarkMode, isDarkModeActive } = useTheme()
 
   const onPseudoChange = (event: any) => {
     setPseudo(event.target.value)

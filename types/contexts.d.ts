@@ -4,9 +4,13 @@ import { locales } from '@/contexts'
 
 // =========== //  Dark mode context  // =========== //
 
-export interface IDarkModeContext {
+export type Hue = 'purple' | 'blue' | 'pink' | 'red' | 'orange'
+
+export interface IThemeContext {
   isDarkModeActive: boolean
   changeDarkMode: (isNowDarkModeActive: boolean) => void
+  hue: Hue
+  changeHue: (newHue: Hue) => void
 }
 
 // ================================================== //

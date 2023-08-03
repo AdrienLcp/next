@@ -1,7 +1,7 @@
 'use client'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { DarkmodeContextProvider, LocaleContextProvider } from '@/contexts'
+import { ThemeContextProvider, LocaleContextProvider } from '@/contexts'
 import '@/styles/globals.sass'
 import '@/styles/reset.css'
 
@@ -19,13 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <LocaleContextProvider>
-      <DarkmodeContextProvider>
+      <ThemeContextProvider>
         <html lang='fr'>
           <body className={inter.className}>
             {children}
           </body>
         </html>
-      </DarkmodeContextProvider>
+      </ThemeContextProvider>
     </LocaleContextProvider>
   )
 }

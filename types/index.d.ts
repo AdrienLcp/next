@@ -1,7 +1,8 @@
 export type { IApiError as IApiError } from './api'
 export type { ApiErrorMessage as ApiErrorMessage } from './api'
 
-export type { IDarkModeContext as IDarkModeContext } from './contexts'
+export type { IThemeContext as IThemeContext } from './contexts'
+export type { Hue as Hue } from './contexts'
 export type { Locale as Locale } from './contexts'
 export type { LocaleName as LocaleName } from './contexts'
 export type { PathInto as PathInto } from './contexts'

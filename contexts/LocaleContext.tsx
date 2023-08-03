@@ -1,16 +1,12 @@
-import type { ILocaleContext, Locale, PathInto, LocaleName } from '@/types'
 import { createContext, useEffect, useState } from 'react'
+import type { ILocaleContext, Locale, PathInto, LocaleName } from '@/types'
 import { isLocaleName } from '@/utils'
 import { Locales } from '@/utils'
 import { en, fr } from '@/locales'
 
 export const locales = { en, fr }
 
-export const LocaleContext = createContext<ILocaleContext>({
-  locale: Locales.FR,
-  changeLocale: (_newLocale: LocaleName) => {},
-  getString: (_key: PathInto<Locale>) => Locales.FR
-})
+export const LocaleContext = createContext<ILocaleContext | null>(null)
 
 export const LocaleContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [locale, setLocale] = useState<LocaleName>(Locales.FR)
