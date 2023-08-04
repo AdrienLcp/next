@@ -23,7 +23,18 @@
   color: var(--text)
   border-radius: var(--small-radius)
   box-shadow: var(--base-shadow)
-  padding: var(--wide-padding)
-  width: clamp(260px, 95vw, 500px)
+  padding: calc(var(--base-spacing) * 1.6)
+  width: clamp(260px, 95vw, 700px)
   min-height: 250px
   max-height: 50vh
+
+.header
+  display: flex
+  align-items: flex-start
+  justify-content: space-between
+  margin-bottom: 1.5rem
+
+.title
+  width: 85%
+  font-size: 1.3em
+  transform: translateY(3px)

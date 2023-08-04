@@ -6,7 +6,7 @@ import { CheckIcon, ErrorIcon, InfoIcon, WarningIcon } from '@/icons'
 
 const Toast: React.FC<IToastProps> = ({
   message = '',
-  variant = 'info',
+  variant = 'warning',
   className = ''
 }) => {
   const [isDisplayed, setIsDisplayed] = useState<boolean>(true)
@@ -57,16 +57,17 @@ const Toast: React.FC<IToastProps> = ({
           ${styles[variant]}
           ${className}
         `}>
-          {icon}
+          <div className={styles.content}>
+            {icon}
 
-          <p className={styles.message}>
-            {message}
-          </p>
+            <p className={styles.message}>
+              {message}
+            </p>
+          </div>
 
           <CloseButton
-            position='middle'
             size={'1em'}
-            color={variant === 'info' ? 'var(--white-light)' : 'var(--text-light)'}
+            color={variant === 'info' ? 'var(--white-light)' : 'var(--black-lighter)'}
             onClick={() => setIsHidden(true)}
           />
         </div>

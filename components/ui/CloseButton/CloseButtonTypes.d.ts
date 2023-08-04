@@ -26,13 +26,6 @@ export interface ICloseButtonProps {
   tooltip?: string
 
   /**
-   * Place the button on left-top or on middle-left of parent element
-   * 
-   * @default 'top'
-   */
-  position?: 'top' | 'middle'
-
-  /**
    * Add styles to Close Button
    */
   className?: string

@@ -6,12 +6,12 @@
   box-shadow: var(--base-shadow)
   border-radius: var(--base-radius)
   background-color: var(--neutral)
-  padding: calc(var(--base-padding) * 1.2) calc(var(--base-padding) * 5) calc(var(--base-padding) * 1.2) calc(var(--base-padding) * 1.5)
+  padding: var(--wide-padding)
   max-width: 600px
-  text-align: center
   display: flex
   align-items: center
-  gap: 1ch
+  justify-content: space-between
+  gap: 2ch
 
   &.success
     @include success
@@ -32,6 +32,14 @@
   &.hidden
     animation: slide-out 500ms forwards
 
+.content
+  display: flex
+  align-items: center
+  gap: 1ch
+
+.message
+  text-align: center
+
 @keyframes slide-in
   0%
     opacity: 0
@@ -41,13 +49,16 @@
     opacity: 1
     transform: translate(-50%, 0)
   
-  98%
+  97%
     opacity: 1
     transform: translate(-50%, 0)
   
-  100%
+  99%
     opacity: 0
     transform: translate(-50%, -400%)
+
+  100%
+    display: none
 
 @keyframes slide-out
   from

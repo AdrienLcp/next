@@ -5,6 +5,7 @@ import { Button, Combobox, Modal, Switch, TextField, Toast, Tabs } from '@/compo
 import { Loader, LockIcon, UserIcon } from '@/icons'
 import { Locales } from '@/utils'
 import { useLocale, useTheme } from '@/hooks'
+import AlertModal from '@/components/modals/AlertModal/AlertModal'
 
 interface HomeProps {
   url?: string
@@ -171,7 +172,7 @@ const Home: React.FC<HomeProps> = ({ url }) => {
           label='Mot de passe'
           onChange={onPasswordChange}
           isPassword
-          error='ERROR ERROR ERROR'
+          error='ERROR ERROR ERRO dmkfnlodfgn^dsù;gf,ls gnsdfplk jdms njslk gjsdkl sj glks jlksf jR'
         />
 
         <div style={{ display: 'flex', gap: 5 }}>
@@ -191,8 +192,13 @@ const Home: React.FC<HomeProps> = ({ url }) => {
 
       </form>
 
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-      </Modal>
+      <AlertModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        onConfirm={() => {}}
+        text={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi fugiat labore inventore? Eius modi consequatur adipisci quo voluptate consequuntur excepturi, hic porro veritatis incidunt minima quisquam ad officia nostrum deserunt laudantium"}
+        title={"Voulez vous vraiment supprimer ce portrait ?"}
+      />
 
       <Toast message={"User created"}/>
     </main>

@@ -37,7 +37,7 @@ const Modal: React.FC<IModalProps> = ({
   return (
     <>
       {isOpen && createPortal(
-        <div
+        <section
           className={styles.wrapper}
           ref={wrapperRef}
         >
@@ -51,21 +51,22 @@ const Modal: React.FC<IModalProps> = ({
             className={`${styles.container} ${modalClassName}`}
             ref={modalRef}
           >
-            {title && (
-              <header className={styles.header}>
-                <h1 className={styles.title}>
-                  {title}
-                </h1>
-              </header>
-            )}
+            <header className={styles.header}>
+              <h1 className={styles.title}>
+                {title}
+              </h1>
+
+              {!isBlocking && (
+                <CloseButton
+                  className={closeButtonClassName}
+                  onClick={closeModal}
+                />
+              )}
+            </header>
 
             {children}
-
-            {!isBlocking && (
-              <CloseButton className={closeButtonClassName} onClick={closeModal} />
-            )}
           </dialog>
-        </div>,
+        </section>,
         document.body
       )}
     </>

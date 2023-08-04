@@ -1,7 +1,6 @@
-export interface IAlertModalProps {
-  title?: string
+import type { IModalProps } from '../Modal/ModalTypes'
+
+export interface IAlertModalProps extends IModalProps {
   text: string
-  isOpen: boolean
   onConfirm: () => void
-  onCancel: () => void
 }
