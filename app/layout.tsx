@@ -1,11 +1,9 @@
 'use client'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { ThemeContextProvider, LocaleContextProvider } from '@/contexts'
 import '@/styles/globals.sass'
 import '@/styles/reset.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import type { Metadata } from 'next'
+import { ThemeContextProvider, LocaleContextProvider } from '@/contexts'
+import { Container } from '@/components'
 
 export const metadata: Metadata = {
   title: 'Admin',
@@ -20,11 +18,9 @@ export default function RootLayout({
   return (
     <LocaleContextProvider>
       <ThemeContextProvider>
-        <html lang='fr'>
-          <body className={inter.className}>
-            {children}
-          </body>
-        </html>
+        <Container>
+          {children}
+        </Container>
       </ThemeContextProvider>
     </LocaleContextProvider>
   )

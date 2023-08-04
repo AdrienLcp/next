@@ -1,9 +1,9 @@
-import { useContext, useMemo, useRef, useState } from 'react'
 import styles from './ComboboxStyles.module.sass'
 import type { IComboboxOption, IComboboxProps } from './ComboboxTypes'
+import { useMemo, useRef, useState } from 'react'
 import { SearchIcon, ArrowIcon, CheckIcon } from '@/icons'
-import { LocaleContext } from '@/contexts'
 import { TextField } from '@/components'
+import { useLocale } from '@/hooks'
 
 const Combobox: React.FC<IComboboxProps> = ({
   options,
@@ -14,7 +14,7 @@ const Combobox: React.FC<IComboboxProps> = ({
   placeholder = '',
   onChange
 }) => {
-  const { getString } = useContext(LocaleContext)
+  const { getString } = useLocale()
 
   const listRef = useRef<HTMLUListElement | null>(null)
 
@@ -46,7 +46,7 @@ const Combobox: React.FC<IComboboxProps> = ({
     setOptionsFilterText('')
   }
 
-  const handleBlur = (event: any) => {
+  const handleBlur = (event: React.FocusEvent) => {
     if (listRef && listRef.current) {
       if (!listRef?.current.contains(event.relatedTarget)) {
         setIsFocused(false)

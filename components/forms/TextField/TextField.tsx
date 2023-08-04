@@ -1,9 +1,9 @@
 import styles from './TextFieldStyles.module.sass'
 import type { ITextFieldProps } from './TextFieldTypes'
-import { useContext, useMemo, useRef, useState } from 'react'
-import { LocaleContext } from '@/contexts'
+import { useMemo, useRef, useState } from 'react'
 import { CrossIcon, EyeIcon } from '@/icons'
 import { Button, Tooltip } from '@/components'
+import { useLocale } from '@/hooks'
 
 const TextField: React.FC<ITextFieldProps> = ({
   value = '',
@@ -24,7 +24,7 @@ const TextField: React.FC<ITextFieldProps> = ({
   iconClassName = '',
   ...rest
 }) => {
-  const { getString } = useContext(LocaleContext)
+  const { getString } = useLocale()
   const inputRef = useRef<HTMLInputElement>(null)
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false)
 

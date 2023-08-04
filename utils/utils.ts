@@ -1,4 +1,4 @@
-import type { Hue, IApiError, ITheme, LocaleName } from '@/types'
+import type { IApiError, LocaleName } from '@/types'
 import { Locales, CreateUserError, ServerError } from '@/utils'
 
 export const isLocaleName = (value: any): value is LocaleName => {

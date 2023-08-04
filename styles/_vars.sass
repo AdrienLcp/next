@@ -113,6 +113,28 @@
   // Opacity
   --base-opacity: hsla(var(--hue-selected), 10%, 10%, 0.1)
 
-@media screen and (min-width: 750px)
+// Mobile  
+@media (max-width: 480px)
   :root
     --elem-width: 260px
+
+// Small device
+@media (min-width: 481px) and (max-width: 767px)
+  :root
+    --elem-width: 260px
+
+// Tablet
+@media (min-width: 768px) and (max-width: 991px)
+  :root
+
+// Laptop
+@media (min-width: 992px) and (max-width: 1199px)
+  :root
+
+// Desktop
+@media (min-width: 1200px) and (max-width: 1919px)
+  :root
+
+// Large
+@media (min-width: 1920px)
+  :root

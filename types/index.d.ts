@@ -1,11 +1,10 @@
 export type { IApiError as IApiError } from './api'
 export type { ApiErrorMessage as ApiErrorMessage } from './api'
 
+export type { DotNestedKeys as DotNestedKeys } from './contexts'
 export type { IThemeContext as IThemeContext } from './contexts'
 export type { Hue as Hue } from './contexts'
-export type { Locale as Locale } from './contexts'
 export type { LocaleName as LocaleName } from './contexts'
-export type { PathInto as PathInto } from './contexts'
 export type { ILocaleContext as ILocaleContext } from './contexts'
 
 export type { Action as Action } from './hooks'

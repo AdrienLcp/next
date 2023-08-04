@@ -1,10 +1,9 @@
 'use client'
-import { NextPage } from 'next'
 import type { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
-import { useContext, useState } from 'react'
-import { Button, CloseButton, Combobox, Modal, Switch, TextField, Toast, Tabs } from '@/components'
+import { useState } from 'react'
+import { Button, Combobox, Modal, Switch, TextField, Toast, Tabs } from '@/components'
 import { Loader, LockIcon, UserIcon } from '@/icons'
-import { Locales, CreateUserError } from '@/utils'
+import { Locales } from '@/utils'
 import { useLocale, useTheme } from '@/hooks'
 
 interface HomeProps {
@@ -163,7 +162,7 @@ const Home: React.FC<HomeProps> = ({ url }) => {
         </div>
 
 
-        <p>{getString(CreateUserError.UsernameRequired)}</p>
+        <p>{getString('actions.cancel')}</p>
 
         <TextField
           placeholder='Je fais un test pas très utile mais on sait jamais je pense que ça va bug'

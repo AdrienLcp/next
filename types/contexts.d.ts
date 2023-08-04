@@ -1,4 +1,4 @@
-import { locales } from '@/contexts'
+import { en, fr } from '@/locales'
 
 // ================================================== //
 
@@ -17,23 +17,21 @@ export interface IThemeContext {
 
 // ============= //  Locale context  // ============= //
 
+const locales = { en, fr }
+
+export type DotPrefix<T extends string> = T extends '' ? '' : `.${T}`
+
+export type DotNestedKeys<T> = (T extends object ?
+    { [K in Exclude<keyof T, symbol>]: `${K}${DotPrefix<DotNestedKeys<T[K]>>}` }[Exclude<keyof T, symbol>]
+    : '') extends infer D ? Extract<D, string> : never;
+
 type LocaleMap = typeof locales
-
 export type LocaleName = keyof LocaleMap
-
-export type Locale = LocaleMap[LocaleName]
-
-export type PathInto<T extends Record<string, unknown>> = keyof {
-  [K in keyof T as T[K] extends string
-    ? K
-    : T[K] extends Record<string, unknown>
-      ? `${K & string}.${PathInto<T[K]> & string}`
-      : never
-  ]: unknown
-}
+export type I18NStringPaths = DotNestedKeys<typeof locales['en']>
 
 export interface ILocaleContext {
-  locale: LocaleName
+  locales: typeof locales
+  selectedLocale: LocaleName
   changeLocale: (newLocale: LocaleName) => void
-  getString: (key: PathInto<Locale>) => string
+  getString: (key: I18NStringPaths, options?: { [key: string]: unknown }) => string
 }

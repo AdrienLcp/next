@@ -5,5 +5,6 @@ export enum Locales {
 
 export enum LocalStorage {
   DarkMode = 'dark-mode',
-  Hue = 'hue'
+  Hue = 'hue',
+  Locale = 'locale'
 }

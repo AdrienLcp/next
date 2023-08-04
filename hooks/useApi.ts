@@ -2,14 +2,14 @@ import { useCallback, useEffect, useReducer, useRef } from 'react'
 import type { Cache, IUseApiState } from '@/types'
 import { ServerError, Task, isApiError } from '@/utils'
 import { fetchReducer } from '@/reducers'
-      
-const baseUrl = process.env.BASE_URL || ''
-const apiKey = process.env.API_KEY || ''
-const token = localStorage.getItem('token') || ''
 
 export const useApi = <T = unknown>(url?: string, init?: RequestInit): IUseApiState<T> => {
   const cache = useRef<Cache<T>>({})
   const cancelRequest = useRef<boolean>(false)
+      
+  const baseUrl = process.env.BASE_URL || ''
+  const apiKey = process.env.API_KEY || ''
+  const token = window.localStorage.getItem('token') || ''
 
   const initialState: IUseApiState<T> = {
     data: undefined,
@@ -53,7 +53,7 @@ export const useApi = <T = unknown>(url?: string, init?: RequestInit): IUseApiSt
         payload: isApiError(error) ? error.message : ServerError.InternalServerError
       })
     }
-  }, [init])
+  }, [apiKey, baseUrl, init, token])
 
   useEffect(() => {
     if (!url) {

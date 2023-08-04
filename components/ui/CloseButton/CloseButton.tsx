@@ -1,9 +1,8 @@
 import styles from './CloseButtonStyles.module.sass'
 import type { ICloseButtonProps } from './CloseButtonTypes'
-import { useContext } from 'react'
 import { Button, Tooltip } from '@/components'
 import { CrossIcon } from '@/icons'
-import { LocaleContext } from '@/contexts'
+import { useLocale } from '@/hooks'
 
 const CloseButton: React.FC<ICloseButtonProps> = ({
   onClick,
@@ -13,7 +12,7 @@ const CloseButton: React.FC<ICloseButtonProps> = ({
   tooltip = '',
   className = ''
 }) => {
-  const { getString } = useContext(LocaleContext)
+  const { getString } = useLocale()
 
   return (
     <div className={styles.close}>

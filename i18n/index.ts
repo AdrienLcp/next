@@ -1,0 +1,1 @@
+export { default as Polyglot } from './polyglot.js'

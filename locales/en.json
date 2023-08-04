@@ -11,6 +11,8 @@
     }
   },
   "actions": {
+    "cancel": "Cancel",
+    "confirm": "Confirm",
     "close": "Close",
     "clear": {
       "label": "Clear input",

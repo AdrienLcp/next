@@ -11,6 +11,8 @@
     }
   },
   "actions": {
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
     "close": "Fermer",
     "clear": {
       "label": "Effacer la saisie",
