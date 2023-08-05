@@ -1,11 +1,10 @@
 'use client'
 import type { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
 import { useState } from 'react'
-import { Button, Combobox, Modal, Switch, TextField, Toast, Tabs } from '@/components'
+import { Button, Combobox, Switch, TextField, Toast, Tabs, AlertModal, Pagination } from '@/components'
 import { Loader, LockIcon, UserIcon } from '@/icons'
 import { Locales } from '@/utils'
 import { useLocale, useTheme } from '@/hooks'
-import AlertModal from '@/components/modals/AlertModal/AlertModal'
 
 interface HomeProps {
   url?: string
@@ -17,6 +16,7 @@ const Home: React.FC<HomeProps> = ({ url }) => {
   const [pseudo, setPseudo] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [page, setPage] = useState<number>(1)
 
   const { changeDarkMode, isDarkModeActive } = useTheme()
 
@@ -189,6 +189,13 @@ const Home: React.FC<HomeProps> = ({ url }) => {
             MODAL
           </Button>
         </div>
+
+        <Pagination
+          totalContentsCount={10}
+          maxContentsCountPerPage={1}
+          onPageChange={(newPage: number) => setPage(newPage)}
+          currentPage={page}
+        />
 
       </form>
 

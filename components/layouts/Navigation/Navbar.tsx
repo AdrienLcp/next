@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import styles from './NavBarStyles.module.sass'
-import routes from './Routes'
+import routes from './routes'
 
 const NavBar: React.FC = () => {
   return (
@@ -10,9 +10,10 @@ const NavBar: React.FC = () => {
           <li key={route.pathname}>
             <Link
               href={route.pathname}
-              className={`${styles.link} ${
-                route.pathname === window.location.pathname && styles.active
-              }`}
+              className={`
+                ${styles.link}
+                ${route.pathname === window.location.pathname && styles.active}
+              `}
             >
               {route.icon}
               {route.label}

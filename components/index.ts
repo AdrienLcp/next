@@ -9,6 +9,8 @@ export { default as Combobox } from './forms/Combobox/Combobox'
 
 export { default as Container } from './layouts/Container/Container'
 export { default as Navbar } from './layouts/Navigation/Navbar'
+export { default as Pagination } from './layouts/Pagination/Pagination'
 export { default as Tabs } from './layouts/Tabs/Tabs'
 
+export { default as AlertModal } from './modals/AlertModal/AlertModal'
 export { default as Modal } from './modals/Modal/Modal'
