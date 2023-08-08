@@ -6,5 +6,6 @@ export { CreateUserError as CreateUserError} from './api'
 export { Locales as Locales } from './enums'
 export { LocalStorage as LocalStorage } from './enums'
 
+export { sortByAlphabeticalOrder  as sortByAlphabeticalOrder  } from './utils'
 export { isLocaleName as isLocaleName } from './utils'
 export { isApiError as isApiError } from './utils'

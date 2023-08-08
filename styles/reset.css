@@ -194,3 +194,19 @@ input[type='password']::-ms-reveal {
 input[type='password']::-moz-password-toggle {
   display: none;
 }
+
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button {
+  appearance: none;
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-ms-clear {
+  display: none;
+}

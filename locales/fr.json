@@ -33,5 +33,8 @@
         "passwordRequired": "Le mot de passe est requis"
       }
     }
+  },
+  "formats": {
+    "date": "DD-MM-YYYY"
   }
 }

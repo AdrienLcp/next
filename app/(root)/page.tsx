@@ -1,22 +1,24 @@
 'use client'
 import type { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
 import { useState } from 'react'
-import { Button, Combobox, Switch, TextField, Toast, Tabs, AlertModal, Pagination } from '@/components'
+import { Button, Combobox, Switch, TextField, Toast, Tabs, AlertModal, Pagination, ContextMenu } from '@/components'
 import { Loader, LockIcon, UserIcon } from '@/icons'
 import { Locales } from '@/utils'
 import { useLocale, useTheme } from '@/hooks'
+import DatePicker from '@/components/forms/DatePicker/DatePicker'
 
 interface HomeProps {
   url?: string
 }
 
-const Home: React.FC<HomeProps> = ({ url }) => {
+const HomePage: React.FC<HomeProps> = ({ url }) => {
   const { changeLocale, getString } = useLocale()
 
   const [pseudo, setPseudo] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [page, setPage] = useState<number>(1)
+  const [date, setDate] = useState<Date>(new Date())
 
   const { changeDarkMode, isDarkModeActive } = useTheme()
 
@@ -36,52 +38,52 @@ const Home: React.FC<HomeProps> = ({ url }) => {
   const options = [
     {
       key: "Key 1",
-      value: "Choix 1",
+      value: "Banane",
       icon: <UserIcon />
     },
     {
       key: "Key 2",
-      value: "Choix 2",
+      value: "Ananas",
       icon: <UserIcon />
     },
     {
       key: "Key 3",
-      value: "Choix 3",
+      value: "Pomme",
       icon: <UserIcon />
     },
     {
       key: "Key 4",
-      value: "Choix 4",
+      value: "Chorizo",
       icon: <UserIcon />
     },
     {
       key: "Key 5",
-      value: "Choix 5",
+      value: "Cacahuète",
       icon: <UserIcon />
     },
     {
       key: "Key 6",
-      value: "Choix 6",
+      value: "Raclette",
       icon: <UserIcon />
     },
     {
       key: "Key 7",
-      value: "Choix 7",
+      value: "Poisson",
       icon: <UserIcon />
     },
     {
       key: "Key 8",
-      value: "Choix 8",
+      value: "Cheval",
       icon: <UserIcon />
     },
     {
       key: "Key 9",
-      value: "Choix 9",
+      value: "Moisissure",
       icon: <UserIcon />
     },
     {
       key: "Key 10",
-      value: "Choix 10",
+      value: "Fromage",
       icon: <UserIcon />
     }
   ]
@@ -104,6 +106,12 @@ const Home: React.FC<HomeProps> = ({ url }) => {
         }}
         onSubmit={handleSubmit}
       >
+        <DatePicker
+          onChange={(newDate) => setDate(newDate)}
+          label='date test'
+          value={date}
+        />
+
         <Tabs
           tabs={[
             {
@@ -122,12 +130,15 @@ const Home: React.FC<HomeProps> = ({ url }) => {
         Hello World
 
         <div style={{ display: 'flex', gap: 5 }}>
+
           <Combobox
             icon={<UserIcon />}
             onChange={onSelectChange}
             label="Sélection"
             options={options}
+            isAlphabeticallySorted
           />
+
           <Button
             variant='primary'
             icon={<Loader color='white' />}
@@ -190,13 +201,32 @@ const Home: React.FC<HomeProps> = ({ url }) => {
           </Button>
         </div>
 
-        <Pagination
-          totalContentsCount={10}
-          maxContentsCountPerPage={1}
-          onPageChange={(newPage: number) => setPage(newPage)}
-          currentPage={page}
+        <ContextMenu
+          actions={[
+            {
+              onClick: () => console.log('action 1'),
+              label: 'Action 1',
+              icon: <UserIcon />
+            },
+            {
+              onClick: () => console.log('action 2'),
+              label: 'Action 2',
+              icon: <UserIcon />
+            },
+            {
+              onClick: () => console.log('action 3'),
+              label: 'Action 3',
+              icon: <UserIcon />
+            }
+          ]}
         />
 
+        <Pagination
+          totalContentsCount={10}
+          maxContentsCountPerPage={3}
+          onPageChange={(newPage) => setPage(newPage)}
+          currentPage={page}
+        />
       </form>
 
       <AlertModal
@@ -212,4 +242,4 @@ const Home: React.FC<HomeProps> = ({ url }) => {
   )
 }
 
-export default Home
+export default HomePage

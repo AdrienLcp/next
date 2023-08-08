@@ -15,9 +15,16 @@ export const LocaleContextProvider: React.FC<React.PropsWithChildren> = ({ child
 
   useEffect(() => {
     const favoriteLocale = window.localStorage.getItem(LocalStorage.Locale)
-    
+
     if (favoriteLocale && isLocaleName(favoriteLocale)) {
       changeLocale(favoriteLocale)
+    } else {
+      const navigatorLanguage = window.navigator.language
+      const formattedLocale = navigatorLanguage.substring(0, 2)
+
+      if (isLocaleName(formattedLocale)) {
+        changeLocale(formattedLocale)
+      }
     }
   }, [])
 

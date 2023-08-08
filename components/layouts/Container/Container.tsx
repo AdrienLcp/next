@@ -4,10 +4,10 @@ import { useLocale } from '@/hooks'
 const inter = Inter({ subsets: ['latin'] })
 
 const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const { locale } = useLocale()
+  const { selectedLocale } = useLocale()
 
   return (
-    <html lang={locale}>
+    <html lang={selectedLocale}>
       <body className={inter.className}>
         {children}
       </body>

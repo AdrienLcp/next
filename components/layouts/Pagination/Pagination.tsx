@@ -3,13 +3,17 @@ import type { IPaginationProps } from './PaginationTypes'
 import { useMemo } from 'react'
 import { Button } from '@/components'
 import { ArrowIcon } from '@/icons'
+import { useLocale } from '@/hooks'
 
 const Pagination: React.FC<IPaginationProps> = ({
   totalContentsCount,
   maxContentsCountPerPage = 10,
   currentPage = 1,
-  onPageChange
+  onPageChange,
+  isDisabled = false
 }) => {
+  const { getString } = useLocale()
+
   const pages: number[] = useMemo(() => {
     if (totalContentsCount <= maxContentsCountPerPage) {
       return []
@@ -42,43 +46,65 @@ const Pagination: React.FC<IPaginationProps> = ({
     }
   }, [pages, currentPage])
 
+  const contentsDisplayedRange = useMemo(() => {
+    const firstRange = Math.max(1, maxContentsCountPerPage * currentPage - maxContentsCountPerPage + 1)
+    let lastRange = maxContentsCountPerPage * currentPage
+
+    if (lastRange > totalContentsCount) {
+      lastRange = totalContentsCount
+    }
+
+    if (firstRange === lastRange) {
+      return firstRange
+    }
+
+    return `${firstRange} - ${lastRange}`
+  }, [maxContentsCountPerPage, currentPage, totalContentsCount])
+
   if (pages.length < 2) {
     return null
   }
 
   return (
-    <ul className={styles.list}>
-      {/* <li key='pagination-list-item-previous-page'>
-        <Button
-          className={`${styles.button} ${styles.arrow}`}
-          isDisabled={currentPage === 1}
-          onClick={() => onPageChange(currentPage - 1)}
-        >
-          <ArrowIcon size='2em' orientation='left' />
-        </Button>
-      </li> */}
-
-      {displayedButtons.map(page => (
-        <li key={page}>
+    <section className={styles.pagination}>
+      <ul className={styles.list}>
+        {/* <li key='pagination-list-item-previous-page'>
           <Button
-            className={`${styles.button} ${currentPage === page && styles.active}`}
-            onClick={() => currentPage !== page && onPageChange(page)}
+            className={`${styles.button} ${styles.arrow}`}
+            isDisabled={currentPage === 1 || isDisabled}
+            onClick={() => onPageChange(currentPage - 1)}
           >
-            {page}
+            <ArrowIcon size='2em' orientation='left' />
           </Button>
-        </li>
-      ))}
+        </li> */}
 
-      {/* <li key='pagination-list-item-next-page'>
-        <Button
-          className={`${styles.button} ${styles.arrow}`}
-          isDisabled={currentPage === pages.length}
-          onClick={() => onPageChange(currentPage + 1)}
-        >
-          <ArrowIcon size='2em' orientation='right' />
-        </Button>
-      </li> */}
-    </ul>
+        {displayedButtons.map(page => (
+          <li key={page}>
+            <Button
+              className={`${styles.button} ${currentPage === page && styles.active}`}
+              onClick={() => currentPage !== page && onPageChange(page)}
+              isDisabled={isDisabled}
+            >
+              {page}
+            </Button>
+          </li>
+        ))}
+
+        {/* <li key='pagination-list-item-next-page'>
+          <Button
+            className={`${styles.button} ${styles.arrow}`}
+            isDisabled={currentPage === pages.length || isDisabled}
+            onClick={() => onPageChange(currentPage + 1)}
+          >
+            <ArrowIcon size='2em' orientation='right' />
+          </Button>
+        </li> */}
+      </ul>
+
+      <p className={styles.text}>
+        {contentsDisplayedRange} / {totalContentsCount}
+      </p>
+    </section>
   )
 }
 

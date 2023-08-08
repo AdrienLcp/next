@@ -84,9 +84,11 @@ const TextField: React.FC<ITextFieldProps> = ({
         {icon && <div className={`${styles.icon} ${iconClassName}`}>{icon}</div>}
 
         <label
-          className={`${styles.label} ${
-            icon && styles.labelWithIcon
-          } ${labelClassName}`}
+          className={`
+            ${styles.label}
+            ${icon && styles.labelWithIcon}
+            ${labelClassName}
+          `}
         >
           {label}
         </label>

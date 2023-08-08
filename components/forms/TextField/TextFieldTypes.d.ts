@@ -27,7 +27,7 @@ export interface ITextFieldProps extends InputOmit {
    * Text field type
    * @default 'text'
    */
-  type?: 'text' | 'email' | 'search'
+  type?: 'text' | 'email' | 'search' | 'number'
 
   /**
    * Can show password only if isPassword is true

@@ -4,14 +4,16 @@ import { useMemo, useRef, useState } from 'react'
 import { SearchIcon, ArrowIcon, CheckIcon } from '@/icons'
 import { TextField } from '@/components'
 import { useLocale } from '@/hooks'
+import { sortByAlphabeticalOrder  } from '@/utils'
 
 const Combobox: React.FC<IComboboxProps> = ({
-  options,
+  options = [],
   label = '',
+  placeholder = '',
   value = null,
   defaultValue = null,
   icon = null,
-  placeholder = '',
+  isAlphabeticallySorted = false,
   onChange
 }) => {
   const { getString } = useLocale()
@@ -22,14 +24,22 @@ const Combobox: React.FC<IComboboxProps> = ({
   const [optionsFilterText, setOptionsFilterText] = useState<string>('')
   const [selectedOption, setSelectedOption] = useState<IComboboxOption | null>(defaultValue)
 
-  const filteredOptions = useMemo(() => {
-    if (optionsFilterText) {
-      const filter = optionsFilterText.trim().toLowerCase()
-      return options.filter(option => option.value.trim().toLowerCase().includes(filter))
+  const sortedOptions = useMemo(() => {
+    if (isAlphabeticallySorted) {
+      return sortByAlphabeticalOrder (options, 'value')
     }
 
     return options
-  }, [options, optionsFilterText])
+  }, [options, isAlphabeticallySorted])
+
+  const filteredOptions = useMemo(() => {
+    if (optionsFilterText) {
+      const filter = optionsFilterText.trim().toLowerCase()
+      return sortedOptions.filter(option => option.value.trim().toLowerCase().includes(filter))
+    }
+
+    return sortedOptions
+  }, [sortedOptions, optionsFilterText])
   
   const handleSelectOption = (option: IComboboxOption) => {
     if (option !== selectedOption) {

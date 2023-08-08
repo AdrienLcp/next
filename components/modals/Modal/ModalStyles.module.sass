@@ -2,19 +2,15 @@
 @import '@/styles/animations'
 
 .wrapper
+  @include fullScreen
   @include flexCenter
-  @include posFixed(0, auto, auto, 0)
-  @include animate(fade-in, 200ms, ease-out)
-  transition: opacity 200ms
-  width: 100vw
-  height: 100vh
-  z-index: 100
 
 .behind
-  @include posFixed(0, auto, auto 0)
-  width: 100vw
-  height: 100vh
+  @include fullScreen
+  @include animate(fade-in, 200ms, ease-out)
   background-color: var(--large-opacity)
+  backdrop-filter: blur(3px)
+  transition: opacity 200ms
 
 .container
   position: relative

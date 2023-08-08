@@ -16,3 +16,7 @@ export const isApiError = (value: any): value is IApiError => {
   }
   return false
 }
+
+export const sortByAlphabeticalOrder = <T>(array: T[], prop: keyof T): T[] => {
+  return array.sort((a, b) => String(a[prop]).localeCompare(String(b[prop])))
+}

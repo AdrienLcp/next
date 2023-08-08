@@ -22,4 +22,9 @@ export interface IPaginationProps {
    * Change page function
    */
   onPageChange: (newPage: number) => void
+
+  /**
+   * Disable all buttons when true
+   */
+  isDisabled?: boolean
 }
