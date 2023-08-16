@@ -1,8 +1,13 @@
-import Link from 'next/link'
 import styles from './NavBarStyles.module.sass'
 import routes from './routes'
 
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
+
+
 const NavBar: React.FC = () => {
+  const pathname = usePathname()
+
   return (
     <nav>
       <ul className={styles.list}>
@@ -12,7 +17,7 @@ const NavBar: React.FC = () => {
               href={route.pathname}
               className={`
                 ${styles.link}
-                ${route.pathname === window.location.pathname && styles.active}
+                ${route.pathname === pathname && styles.active}
               `}
             >
               {route.icon}

@@ -1,5 +1,6 @@
 import styles from './AlertModalStyles.module.sass'
 import type { IAlertModalProps } from './AlertModalTypes'
+
 import { Button, Modal } from '@/components'
 import { useLocale } from '@/hooks'
 

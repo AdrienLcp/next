@@ -1,5 +1,6 @@
 import styles from './SwitchStyles.module.sass'
 import type { ISwitchProps } from './SwitchTypes'
+
 import { Tooltip } from '@/components'
 
 const Switch: React.FC<ISwitchProps> = ({

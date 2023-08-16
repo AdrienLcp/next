@@ -1,6 +1,8 @@
-import { useState } from 'react'
 import type { IContextMenuProps } from './ContextMenuTypes'
 import styles from './ContextMenuStyles.module.sass'
+
+import { useState } from 'react'
+
 import { Button } from '@/components'
 import { DotsIcon } from '@/icons'
 

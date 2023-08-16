@@ -1,4 +1,5 @@
 import type { IHeadProps } from './HeadTypes'
+
 import { default as NextHead } from 'next/head'
 
 export const metadata = {

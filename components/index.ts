@@ -1,6 +1,7 @@
 export { default as Button } from './ui/Button/Button'
 export { default as CloseButton } from './ui/CloseButton/CloseButton'
 export { default as ContextMenu } from './ui/ContextMenu/ContextMenu'
+export { default as NoResult } from './ui/NoResult/NoResults'
 export { default as Switch} from './ui/Switch/Switch'
 export { default as Toast } from './ui/Toast/Toast'
 export { default as Tooltip } from './ui/Tooltip/Tooltip'

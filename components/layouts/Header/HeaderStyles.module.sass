@@ -1,0 +1,15 @@
+@import '@/styles/mixins'
+  
+.header
+  @include posFixed(0, auto, auto, 0)
+  width: 100vw
+
+.title
+  font-size: 2em
+  font-weight: 600
+  padding: 0.5em
+  color: var(--text-light)
+  text-transform: uppercase
+
+  &:hover
+    color: var(--text)

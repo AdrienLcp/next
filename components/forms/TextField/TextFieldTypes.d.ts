@@ -5,12 +5,12 @@ export interface ITextFieldProps extends InputOmit {
   /**
    * Input value
    */
-  value: string
+  value?: string
 
   /**
    * Text field label
    */
-  label: string
+  label?: string
 
   /**
    * Error text below input

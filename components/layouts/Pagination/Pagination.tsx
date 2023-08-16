@@ -1,8 +1,9 @@
 import styles from './PaginationStyles.module.sass'
 import type { IPaginationProps } from './PaginationTypes'
+
 import { useMemo } from 'react'
+
 import { Button } from '@/components'
-import { ArrowIcon } from '@/icons'
 import { useLocale } from '@/hooks'
 
 const Pagination: React.FC<IPaginationProps> = ({

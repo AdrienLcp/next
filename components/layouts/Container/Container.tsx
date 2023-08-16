@@ -1,15 +1,27 @@
-import { Inter } from 'next/font/google'
-import { useLocale } from '@/hooks'
+import styles from './ContainerStyles.module.sass'
 
-const inter = Inter({ subsets: ['latin'] })
+import { Urbanist } from 'next/font/google'
+
+import { useLocale } from '@/hooks'
+import { Footer, Header } from '@/components'
+
+const font = Urbanist({ subsets: ['latin'] })
 
 const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { selectedLocale } = useLocale()
 
   return (
     <html lang={selectedLocale}>
-      <body className={inter.className}>
-        {children}
+      <body className={font.className}>
+
+        <Header />
+        
+        <main className={styles.main}>
+          {children}
+        </main>
+
+        <Footer />
+
       </body>
     </html>
   )

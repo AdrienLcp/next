@@ -3,9 +3,12 @@
 .button
   display: flex
   align-items: center
+  justify-content: center
   gap: 1ch
   padding: var(--base-spacing)
   font-size: 0.8em
+  width: fit-content
+  opacity: 0.8
   border: 1px solid transparent
   transition: transform .1s
 
@@ -24,6 +27,7 @@
     border: 1px solid var(--primary)
     
   &.secondary
+    font-weight: 600
     padding: var(--wide-padding)
     border-color: var(--primary)
     color: var(--primary)
@@ -42,7 +46,7 @@
   &.info
 
   &:hover
-    opacity: 0.9
+    opacity: 1
 
   &:active
     transform: scale(0.96)

@@ -1,19 +1,18 @@
 'use client'
 import type { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
+
 import { useState } from 'react'
-import { Button, Combobox, Switch, TextField, Toast, Tabs, AlertModal, Pagination, ContextMenu } from '@/components'
+
+import { Button, Combobox, DatePicker, Switch, TextField, Toast, Tabs, AlertModal, Pagination, ContextMenu } from '@/components'
 import { Loader, LockIcon, UserIcon } from '@/icons'
 import { Locales } from '@/utils'
 import { useLocale, useTheme } from '@/hooks'
-import DatePicker from '@/components/forms/DatePicker/DatePicker'
 
 interface HomeProps {
   url?: string
 }
 
 const HomePage: React.FC<HomeProps> = ({ url }) => {
-  const { changeLocale, getString } = useLocale()
-
   const [pseudo, setPseudo] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -21,6 +20,7 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
   const [date, setDate] = useState<Date>(new Date())
 
   const { changeDarkMode, isDarkModeActive } = useTheme()
+  const { changeLocale, getString } = useLocale()
 
   const onPseudoChange = (event: any) => {
     setPseudo(event.target.value)
@@ -126,28 +126,7 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
             }
           ]}
         />
-
-        Hello World
-
-        <div style={{ display: 'flex', gap: 5 }}>
-
-          <Combobox
-            icon={<UserIcon />}
-            onChange={onSelectChange}
-            label="Sélection"
-            options={options}
-            isAlphabeticallySorted
-          />
-
-          <Button
-            variant='primary'
-            icon={<Loader color='white' />}
-            onClick={() => changeLocale(Locales.EN)}
-          >
-            english
-          </Button>
-        </div>
-
+        
         <Switch
           value={isDarkModeActive}
           tooltip={"BORDEL DE MERde"}
@@ -155,26 +134,22 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
           label='Dark Mode ACTIVE'
         />
 
-        <div style={{ display: 'flex', gap: 5 }}>
-          <TextField
-            label='Pseudo'
-            icon={<UserIcon />}
-            value={pseudo}
-            onChange={onPseudoChange}
-            onClear={() => setPseudo('')}
-            limit={20}
-          />
-          <Button
-            variant='primary'
-            icon={<Loader color='white' />}
-            onClick={() => changeLocale(Locales.FR)}
-          >
-            french
-          </Button>
-        </div>
+        <Combobox
+          icon={<UserIcon />}
+          onChange={onSelectChange}
+          label="Sélection"
+          options={options}
+          isAlphabeticallySorted
+        />
 
-
-        <p>{getString('actions.cancel')}</p>
+        <TextField
+          label='Pseudo'
+          icon={<UserIcon />}
+          value={pseudo}
+          onChange={onPseudoChange}
+          onClear={() => setPseudo('')}
+          limit={20}
+        />
 
         <TextField
           placeholder='Je fais un test pas très utile mais on sait jamais je pense que ça va bug'
@@ -185,6 +160,25 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
           isPassword
           error='ERROR ERROR ERRO dmkfnlodfgn^dsù;gf,ls gnsdfplk jdms njslk gjsdkl sj glks jlksf jR'
         />
+
+        <Button
+          variant='primary'
+          icon={<Loader color='white' />}
+          onClick={() => changeLocale(Locales.FR)}
+        >
+          french
+        </Button>
+
+        <Button
+          variant='primary'
+          icon={<Loader color='white' />}
+          onClick={() => changeLocale(Locales.EN)}
+        >
+          english
+        </Button>
+
+
+        <p>{getString('actions.cancel')}</p>
 
         <div style={{ display: 'flex', gap: 5 }}>
           <Button

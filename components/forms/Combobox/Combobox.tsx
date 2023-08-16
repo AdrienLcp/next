@@ -1,6 +1,8 @@
 import styles from './ComboboxStyles.module.sass'
 import type { IComboboxOption, IComboboxProps } from './ComboboxTypes'
+
 import { useMemo, useRef, useState } from 'react'
+
 import { SearchIcon, ArrowIcon, CheckIcon } from '@/icons'
 import { TextField } from '@/components'
 import { useLocale } from '@/hooks'

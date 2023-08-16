@@ -1,5 +1,6 @@
 import styles from './CloseButtonStyles.module.sass'
 import type { ICloseButtonProps } from './CloseButtonTypes'
+
 import { Button, Tooltip } from '@/components'
 import { CrossIcon } from '@/icons'
 import { useLocale } from '@/hooks'

@@ -1,6 +1,8 @@
 import styles from './TabsStyles.module.sass'
 import type { ITabsProps } from './TabsTypes'
+
 import { useState } from 'react'
+
 import { Button } from '@/components'
 
 const Tabs: React.FC<ITabsProps> = ({

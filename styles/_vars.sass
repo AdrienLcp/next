@@ -1,5 +1,5 @@
 :root
-  // Hue color
+  // Hues
   --purple-hue: 250
   --blue-hue: 230
   --pink-hue: 340
@@ -94,7 +94,6 @@
 
   --base-width: clamp(260px, 95%, 400px)
   --wide-width: clamp(300px, 95%, 600px)
-  --elem-width: clamp(260px, 90%, 300px)
   --base-spacing: 0.8em
   --wide-padding: var(--base-spacing) calc(var(--base-spacing) * 1.5)
   --small-padding: calc(var(--base-spacing) / 1.5) var(--base-spacing)
@@ -105,33 +104,36 @@
   --inner-shadow: inset 0 0.5rem 1.5rem hsla(var(--hue-selected), 10%, 10%, 0.1)
 
   // Radius
-  --large-radius: 1.5em
-  --base-radius: 0.6em
-  --small-radius: 0.4em
+  --large-radius: 12px
+  --base-radius: 6px
+  --small-radius: 3px
 
   // Opacity
   --base-opacity: hsla(var(--hue-selected), 10%, 10%, 0.1)
 
-// Mobile  
-@media (max-width: 480px)
+@media (max-width: 767px)
   :root
-    --elem-width: 260px
+    --base-width: clamp(260px, 80vw, 400px)
+    --wide-width: clamp(300px, 80vw, 600px)
+
+// Mobile  
+@media (min-width: 480px)
+  :root
 
 // Small device
-@media (min-width: 481px) and (max-width: 767px)
+@media (481px <= width <= 767px)
   :root
-    --elem-width: 260px
 
 // Tablet
-@media (min-width: 768px) and (max-width: 991px)
+@media (768px <= width <= 991px)
   :root
 
 // Laptop
-@media (min-width: 992px) and (max-width: 1199px)
+@media (992px <= width <= 1199px)
   :root
 
 // Desktop
-@media (min-width: 1200px) and (max-width: 1919px)
+@media (1200px <= width <= 1919px)
   :root
 
 // Large

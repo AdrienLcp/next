@@ -1,6 +1,8 @@
 import styles from './ModalStyles.module.sass'
 import type { IModalProps } from './ModalTypes'
+
 import { createPortal } from 'react-dom'
+
 import { CloseButton } from '@/components'
 
 const Modal: React.FC<IModalProps> = ({

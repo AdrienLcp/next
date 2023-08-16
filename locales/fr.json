@@ -22,6 +22,7 @@
     "showPassword": "Montrer le mot de passe"
   },
   "errors": {
+    "noResults": "Aucun résultat",
     "api": {
       "common": {
         "internal": "Le server a rencontré un problème. Réessayez plus tard ou contactez-nous."

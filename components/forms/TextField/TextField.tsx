@@ -1,6 +1,8 @@
 import styles from './TextFieldStyles.module.sass'
 import type { ITextFieldProps } from './TextFieldTypes'
+
 import { useMemo, useRef, useState } from 'react'
+
 import { CrossIcon, EyeIcon } from '@/icons'
 import { Button, Tooltip } from '@/components'
 import { useLocale } from '@/hooks'
@@ -139,7 +141,7 @@ const TextField: React.FC<ITextFieldProps> = ({
                 isDisabled={isDisabled}
                 aria-label={getString('actions.clear.label')}
                 tabIndex={-1}
-                onClick={handleClearInput}
+                onClick={onClear}
               >
                 <CrossIcon size='1.2em' color='var(--text-light)' />
               </Button>

@@ -1,9 +1,11 @@
-import { useCallback } from 'react'
 import styles from './ButtonStyles.module.sass'
 import type { IButtonProps } from './ButtonTypes'
+
+import { forwardRef, useCallback } from 'react'
+
 import { Loader } from '@/icons'
 
-const Button: React.FC<IButtonProps> = ({
+const Button = forwardRef<HTMLButtonElement, IButtonProps>(({
   children = null,
   icon = null,
   iconSide = 'left',
@@ -12,7 +14,7 @@ const Button: React.FC<IButtonProps> = ({
   isDisabled = false,
   className = '',
   ...rest
-}) => {
+}, ref) => {
   const getLoaderColor = useCallback(() => {
     switch (variant) {
       case 'primary':
@@ -40,6 +42,7 @@ const Button: React.FC<IButtonProps> = ({
         ${isDisabled && styles.disabled}
         ${className}
       `}
+      ref={ref}
       disabled={isDisabled || isLoading}
       type='button'
       {...rest}
@@ -49,6 +52,8 @@ const Button: React.FC<IButtonProps> = ({
       {children}
     </button>
   )
-}
+})
+
+Button.displayName = "Button"
 
 export default Button

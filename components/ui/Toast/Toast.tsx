@@ -1,30 +1,26 @@
 import styles from './ToastStyles.module.sass'
 import type { IToastProps } from './ToastTypes'
-import { useEffect, useMemo, useState } from 'react'
+
+import { useMemo, useState } from 'react'
+
 import { CloseButton } from '@/components'
 import { CheckIcon, ErrorIcon, InfoIcon, WarningIcon } from '@/icons'
+import { useTimeout } from '@/hooks'
 
 const Toast: React.FC<IToastProps> = ({
-  message = '',
   variant = 'warning',
+  message = '',
   className = ''
 }) => {
+  const [closeToast] = useTimeout(() => setIsDisplayed(false))
+
   const [isDisplayed, setIsDisplayed] = useState<boolean>(true)
   const [isHidden, setIsHidden] = useState<boolean>(false)
 
-  useEffect(() => {
-    let timeoutId: number
-
-    if (isHidden) {
-      timeoutId = window.setTimeout(() => {
-        setIsDisplayed(false)
-      }, 500)
-    }
-
-    return () => {
-      window.clearTimeout(timeoutId)
-    }
-  }, [isHidden])
+  const onClose = () => {
+    setIsHidden(true)
+    closeToast()
+  }
 
   const icon = useMemo(() => {
     const iconSize = '1.6em'
@@ -68,7 +64,8 @@ const Toast: React.FC<IToastProps> = ({
           <CloseButton
             size={'1em'}
             color={variant === 'info' ? 'var(--white-light)' : 'var(--black-lighter)'}
-            onClick={() => setIsHidden(true)}
+            onClick={onClose}
+            className={styles.button}
           />
         </div>
       )}

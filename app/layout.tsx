@@ -4,6 +4,7 @@ import '@/styles/reset.css'
 import type { Metadata } from 'next'
 import { ThemeContextProvider, LocaleContextProvider } from '@/contexts'
 import { Container } from '@/components'
+import Cursor from '@/components/ui/Cursor/Cursor'
 
 export const metadata: Metadata = {
   title: 'Admin',
