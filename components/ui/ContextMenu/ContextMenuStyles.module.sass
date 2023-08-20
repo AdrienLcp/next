@@ -2,7 +2,8 @@
   position: relative
 
 .button
-  border-color: var(--text-lighter)
+  border: 1px solid var(--text-lighter)
+  padding: calc(var(--base-spacing) / 1.5)
 
   &:hover
     border-color: var(--text)
@@ -25,8 +26,12 @@
 
 .action
   position: relative
-  padding-right: 1.8em
   width: 100%
+  padding: var(--wide-padding)
+  padding-right: 1.8em
+
+  &:focus
+    background-color: var(--neutral-lighter)
 
   &:hover
     background-color: var(--neutral-light)

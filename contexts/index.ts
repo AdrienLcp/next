@@ -1,6 +1,6 @@
-export { LocaleContext as LocaleContext } from './LocaleContext'
-export { LocaleContextProvider as LocaleContextProvider } from './LocaleContext'
-export { locales as locales } from './LocaleContext'
+export { LocaleContext } from './LocaleContext'
+export { LocaleContextProvider } from './LocaleContext'
+export { locales } from './LocaleContext'
 
-export { ThemeContext as ThemeContext } from './ThemeContext'
-export { ThemeContextProvider as ThemeContextProvider } from './ThemeContext'
+export { ThemeContext } from './ThemeContext'
+export { ThemeContextProvider } from './ThemeContext'

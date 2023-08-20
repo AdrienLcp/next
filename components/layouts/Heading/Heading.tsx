@@ -1,6 +1,6 @@
 import styles from './HeadingStyles.module.sass'
 
-const Heading: React.FC = () => {
+export const Heading: React.FC = () => {
 
   return (
     <div>
@@ -8,5 +8,3 @@ const Heading: React.FC = () => {
     </div>
   )
 }
-
-export default Heading

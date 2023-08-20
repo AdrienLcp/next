@@ -1,1 +1,1 @@
-export { default as fetchReducer } from './fetchReducer'
+export { fetchReducer } from './fetchReducer'

@@ -6,7 +6,7 @@ import { useMemo, useState } from 'react'
 import { TextField } from '@/components'
 import { CalendarIcon } from '@/icons'
 
-const DatePicker: React.FC<IDatePickerProps> = ({
+export const DatePicker: React.FC<IDatePickerProps> = ({
   onChange,
   label = '',
   placeholder = '',
@@ -60,5 +60,3 @@ const DatePicker: React.FC<IDatePickerProps> = ({
     </div>
   )
 }
-
-export default DatePicker

@@ -5,11 +5,11 @@ import { forwardRef, useCallback } from 'react'
 
 import { Loader } from '@/icons'
 
-const Button = forwardRef<HTMLButtonElement, IButtonProps>(({
+export const Button = forwardRef<HTMLButtonElement, IButtonProps>(({
   children = null,
   icon = null,
+  variant = null,
   iconSide = 'left',
-  variant = '',
   isLoading = false,
   isDisabled = false,
   className = '',
@@ -36,24 +36,27 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(({
     <button
       className={`
         ${styles.button}
-        ${styles[variant]}
         ${styles[iconSide]}
+        ${variant && styles[variant]}
         ${isLoading && styles.loading}
         ${isDisabled && styles.disabled}
         ${className}
       `}
       ref={ref}
       disabled={isDisabled || isLoading}
+      aria-disabled={isDisabled || isLoading}
+      aria-busy={isLoading}
       type='button'
       {...rest}
     >
-      {isLoading && icon ? <Loader color={getLoaderColor()} /> : icon}
+      {isLoading && icon
+        ? <Loader color={getLoaderColor()} aria-hidden='true' />
+        : icon
+      }
 
       {children}
     </button>
   )
 })
 
-Button.displayName = "Button"
-
-export default Button
+Button.displayName = 'Button'

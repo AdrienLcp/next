@@ -1,20 +1,28 @@
+import { useEffect, useRef } from 'react'
 import styles from './AlertModalStyles.module.sass'
 import type { IAlertModalProps } from './AlertModalTypes'
 
 import { Button, Modal } from '@/components'
 import { useLocale } from '@/hooks'
 
-const AlertModal: React.FC<IAlertModalProps> = ({
-  title,
+export const AlertModal: React.FC<IAlertModalProps> = ({
   text,
-  isOpen,
   onConfirm,
-  onClose
+  onClose,
+  isOpen,
+  ...rest
 }) => {
   const { getString } = useLocale()
+  const firstButtonRef = useRef<HTMLButtonElement | null>(null)
+
+  useEffect(() => {
+    if (isOpen && firstButtonRef.current) {
+      firstButtonRef.current.focus()
+    }
+  }, [isOpen])
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title={title}>
+    <Modal isOpen={isOpen} onClose={onClose} {...rest}>
       <div className={styles.content}>
         <p className={styles.text}>
           {text}
@@ -24,6 +32,7 @@ const AlertModal: React.FC<IAlertModalProps> = ({
           <Button
             onClick={onConfirm}
             variant='primary'
+            ref={firstButtonRef}
           >
             {getString('actions.confirm')}
           </Button>
@@ -39,5 +48,3 @@ const AlertModal: React.FC<IAlertModalProps> = ({
     </Modal>
   )
 }
-
-export default AlertModal

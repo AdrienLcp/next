@@ -7,17 +7,24 @@ import { CloseButton } from '@/components'
 import { CheckIcon, ErrorIcon, InfoIcon, WarningIcon } from '@/icons'
 import { useTimeout } from '@/hooks'
 
-const Toast: React.FC<IToastProps> = ({
+export const Toast: React.FC<IToastProps> = ({
   variant = 'warning',
   message = '',
   className = ''
 }) => {
-  const [closeToast] = useTimeout(() => setIsDisplayed(false))
+  const [closeToast] = useTimeout(() => onClose)
+
+  //! test deux messages de suite
 
   const [isDisplayed, setIsDisplayed] = useState<boolean>(true)
   const [isHidden, setIsHidden] = useState<boolean>(false)
 
   const onClose = () => {
+    setIsDisplayed(false)
+
+  }
+
+  const hideToast = () => {
     setIsHidden(true)
     closeToast()
   }
@@ -64,7 +71,7 @@ const Toast: React.FC<IToastProps> = ({
           <CloseButton
             size={'1em'}
             color={variant === 'info' ? 'var(--white-light)' : 'var(--black-lighter)'}
-            onClick={onClose}
+            onClick={hideToast}
             className={styles.button}
           />
         </div>
@@ -72,5 +79,3 @@ const Toast: React.FC<IToastProps> = ({
     </>
   )
 }
-
-export default Toast

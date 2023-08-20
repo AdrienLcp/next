@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useLocale } from '@/hooks'
 import { Navbar } from '@/components'
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   const { getString } = useLocale()
 
   return (
@@ -20,5 +20,3 @@ const Header: React.FC = () => {
     </header>
   )
 }
-
-export default Header

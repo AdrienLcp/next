@@ -6,8 +6,19 @@
       "limit": "character(s) remaining"
     },
     "combobox": {
+      "open": "Show options",
       "select": "Select",
       "filter": "Filter"
+    },
+    "pagination": {
+      "goTo": "Go to page"
+    },
+    "tabs": {
+      "goTo": "Open tab"
+    },
+    "contextMenu": {
+      "open": "Open contextual menu",
+      "choose": "Choose"
     }
   },
   "actions": {
@@ -35,7 +46,7 @@
       }
     }
   },
-  "formats": {
-    "date": "MM-DD-YYYY"
+  "states": {
+    "loading": "Loading..."
   }
 }

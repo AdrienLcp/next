@@ -31,27 +31,29 @@
     border: 1px solid var(--text-lighter)
 
 .option
+  opacity: 0.75
+
   &:nth-child(odd)
     background-color: var(--neutral-secondary)
 
 .button
   display: flex
   align-items: center
-  justify-content: space-between
   width: 100%
-  text-align: start
-  padding: var(--small-padding)
-  opacity: 0.75
+  padding: var(--wide-padding)
+
+  &:focus
+    opacity: 0.9
+    background-color: var(--neutral-lighter)
 
   &:hover
     opacity: 1
     background-color: var(--neutral-light)
 
 .content
+  width: 100%
   display: flex
-  align-items: center
-  gap: 0.5ch
-  font-size: 0.9em
+  justify-content: space-between
 
 .arrow
   @include posAbsolute(33%, 1rem, auto, auto)
@@ -65,6 +67,7 @@
   width: 100%
   padding: 0.8em 1em
   margin-left: 0.5ch
+  color: var(--text)
 
 .search
   transform: translateX(0.8rem)

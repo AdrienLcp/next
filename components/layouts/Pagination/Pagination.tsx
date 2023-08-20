@@ -3,10 +3,10 @@ import type { IPaginationProps } from './PaginationTypes'
 
 import { useMemo } from 'react'
 
-import { Button } from '@/components'
+import { Button, Tooltip } from '@/components'
 import { useLocale } from '@/hooks'
 
-const Pagination: React.FC<IPaginationProps> = ({
+export const Pagination: React.FC<IPaginationProps> = ({
   totalContentsCount,
   maxContentsCountPerPage = 10,
   currentPage = 1,
@@ -69,37 +69,21 @@ const Pagination: React.FC<IPaginationProps> = ({
   return (
     <section className={styles.pagination}>
       <ul className={styles.list}>
-        {/* <li key='pagination-list-item-previous-page'>
-          <Button
-            className={`${styles.button} ${styles.arrow}`}
-            isDisabled={currentPage === 1 || isDisabled}
-            onClick={() => onPageChange(currentPage - 1)}
-          >
-            <ArrowIcon size='2em' orientation='left' />
-          </Button>
-        </li> */}
-
         {displayedButtons.map(page => (
           <li key={page}>
-            <Button
-              className={`${styles.button} ${currentPage === page && styles.active}`}
-              onClick={() => currentPage !== page && onPageChange(page)}
-              isDisabled={isDisabled}
-            >
-              {page}
-            </Button>
+            <Tooltip text={`${getString('components.pagination.goTo')} ${page}`}>
+              <Button
+                variant='icon'
+                className={`${styles.button} ${currentPage === page && styles.active}`}
+                onClick={() => currentPage !== page && onPageChange(page)}
+                aria-label={`${getString('components.pagination.goTo')} ${page}`}
+                isDisabled={isDisabled}
+              >
+                {page}
+              </Button>
+            </Tooltip>
           </li>
         ))}
-
-        {/* <li key='pagination-list-item-next-page'>
-          <Button
-            className={`${styles.button} ${styles.arrow}`}
-            isDisabled={currentPage === pages.length || isDisabled}
-            onClick={() => onPageChange(currentPage + 1)}
-          >
-            <ArrowIcon size='2em' orientation='right' />
-          </Button>
-        </li> */}
       </ul>
 
       <p className={styles.text}>
@@ -108,5 +92,3 @@ const Pagination: React.FC<IPaginationProps> = ({
     </section>
   )
 }
-
-export default Pagination

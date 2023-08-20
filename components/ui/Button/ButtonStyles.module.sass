@@ -1,15 +1,15 @@
 @import '@/styles/mixins'
 
+@mixin commonButtonStyles
+  width: fit-content
+
 .button
   display: flex
   align-items: center
   justify-content: center
   gap: 1ch
-  padding: var(--base-spacing)
   font-size: 0.8em
-  width: fit-content
   opacity: 0.8
-  border: 1px solid transparent
   transition: transform .1s
 
   &.right
@@ -19,6 +19,7 @@
     border-radius: var(--base-radius)
 
   &.primary
+    @include commonButtonStyles
     padding: var(--wide-padding)
     background-color: var(--primary)
     border-color: var(--primary)
@@ -27,6 +28,7 @@
     border: 1px solid var(--primary)
     
   &.secondary
+    @include commonButtonStyles
     font-weight: 600
     padding: var(--wide-padding)
     border-color: var(--primary)
@@ -35,15 +37,20 @@
     border: 1px solid var(--primary)
 
   &.underline
+    @include commonButtonStyles
     text-decoration: underline
 
   &.danger
+    @include commonButtonStyles
 
   &.warning
+    @include commonButtonStyles
 
   &.success
+    @include commonButtonStyles
 
   &.info
+    @include commonButtonStyles
 
   &:hover
     opacity: 1

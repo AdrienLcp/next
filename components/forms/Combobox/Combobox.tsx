@@ -1,14 +1,14 @@
 import styles from './ComboboxStyles.module.sass'
 import type { IComboboxOption, IComboboxProps } from './ComboboxTypes'
 
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { SearchIcon, ArrowIcon, CheckIcon } from '@/icons'
-import { TextField } from '@/components'
+import { Button, TextField } from '@/components'
 import { useLocale } from '@/hooks'
 import { sortByAlphabeticalOrder  } from '@/utils'
 
-const Combobox: React.FC<IComboboxProps> = ({
+export const Combobox: React.FC<IComboboxProps> = ({
   options = [],
   label = '',
   placeholder = '',
@@ -21,14 +21,26 @@ const Combobox: React.FC<IComboboxProps> = ({
   const { getString } = useLocale()
 
   const listRef = useRef<HTMLUListElement | null>(null)
+  const filterRef = useRef<HTMLInputElement | null>(null)
 
   const [isFocused, setIsFocused] = useState<boolean>(false)
   const [optionsFilterText, setOptionsFilterText] = useState<string>('')
   const [selectedOption, setSelectedOption] = useState<IComboboxOption | null>(defaultValue)
 
+  useEffect(() => {
+    if (isFocused) {
+      if (filterRef.current) {
+        filterRef.current.focus()
+      }
+      if (listRef.current) {
+        listRef.current.scrollTop = 0
+      }
+    }
+  }, [isFocused])
+
   const sortedOptions = useMemo(() => {
     if (isAlphabeticallySorted) {
-      return sortByAlphabeticalOrder (options, 'value')
+      return sortByAlphabeticalOrder(options, 'value')
     }
 
     return options
@@ -68,6 +80,12 @@ const Combobox: React.FC<IComboboxProps> = ({
 
   return (
     <div
+      role='combobox'
+      aria-expanded={isFocused}
+      aria-owns='combobox-list'
+      aria-haspopup='listbox'
+      aria-activedescendant={selectedOption?.key || ''}
+      aria-controls={options.map(option => option.key).join(',')}
       className={styles.combobox}
       tabIndex={0}
       onBlur={handleBlur}
@@ -80,6 +98,7 @@ const Combobox: React.FC<IComboboxProps> = ({
         onClear={reset}
         icon={icon}
         inputClassName={styles.input}
+        aria-label={!isFocused ? getString('components.combobox.open') : ''}
         onChange={() => {}}
       />
 
@@ -92,19 +111,21 @@ const Combobox: React.FC<IComboboxProps> = ({
       )}
       
       <ul
+        role='listbox'
+        id='combobox-list'
         ref={listRef}
         className={`${styles.list} ${isFocused && options.length && styles.open}`}
       >
         <li
           key='select-filter-field'
           className={`${styles.option} ${styles.button} ${styles.filterField}`}
-          onClick={() => setIsFocused(true)}
         >
           <SearchIcon color='var(--text-lighter)' className={styles.search} />
 
           <input
             className={styles.filter}
             type='search'
+            ref={filterRef}
             placeholder={`${getString('components.combobox.filter')}...`}
             value={optionsFilterText}
             onChange={(e) => setOptionsFilterText(e.target.value)}
@@ -112,27 +133,30 @@ const Combobox: React.FC<IComboboxProps> = ({
         </li>
 
         {filteredOptions.map((option) => (
-          <li key={option.key} className={styles.option}>
-            <button
+          <li
+            role='option'
+            id={option.key}
+            aria-selected={option === selectedOption}
+            key={option.key}
+            className={styles.option}
+          >
+            <Button
               className={styles.button}
-              type='button'
+              icon={icon}
               onClick={() => handleSelectOption(option)}
               aria-label={`${getString('components.combobox.select')} ${option.value}`}
             >
               <div className={styles.content}>
-                {option.icon}
-                {option.value}
-              </div>
+                <span>{option.value}</span>
 
-              {option === selectedOption && (
-                <CheckIcon color='var(--success)' />
-              )}
-            </button>
+                {option === selectedOption && (
+                  <CheckIcon color='var(--success)' />
+                )}                
+              </div>
+            </Button>
           </li>
         ))}
       </ul>
     </div>
   )
 }
-
-export default Combobox

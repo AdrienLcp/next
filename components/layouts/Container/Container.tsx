@@ -5,9 +5,9 @@ import { Urbanist } from 'next/font/google'
 import { useLocale } from '@/hooks'
 import { Footer, Header } from '@/components'
 
-const font = Urbanist({ subsets: ['latin'] })
+export const font = Urbanist({ subsets: ['latin'] })
 
-const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
+export const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { selectedLocale } = useLocale()
 
   return (
@@ -26,5 +26,3 @@ const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
     </html>
   )
 }
-
-export default Container

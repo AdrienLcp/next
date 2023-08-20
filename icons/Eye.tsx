@@ -1,6 +1,6 @@
 import type { IEyeIconProps } from '@/types'
 
-const EyeIcon: React.FC<IEyeIconProps> = ({
+export const EyeIcon: React.FC<IEyeIconProps> = ({
   color = 'var(--text)',
   size = '1em',
   isCrossed = false,
@@ -12,6 +12,9 @@ const EyeIcon: React.FC<IEyeIconProps> = ({
       width={size}
       height={size}
       viewBox='0 0 24 24'
+      aria-hidden='true'
+      role='presentation'
+      focusable='false'
       {...rest}
     >
       <path
@@ -25,5 +28,3 @@ const EyeIcon: React.FC<IEyeIconProps> = ({
     </svg>
   )
 }
-
-export default EyeIcon

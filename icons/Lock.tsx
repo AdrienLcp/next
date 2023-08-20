@@ -1,6 +1,6 @@
 import type { IIconProps } from '@/types'
 
-const LockIcon: React.FC<IIconProps> = ({
+export const LockIcon: React.FC<IIconProps> = ({
   size = '1em',
   color = 'var(--text)'
 }) => {
@@ -10,6 +10,9 @@ const LockIcon: React.FC<IIconProps> = ({
       width={size}
       height={size}
       viewBox='0 0 24 24'
+      aria-hidden='true'
+      role='presentation'
+      focusable='false'
     >
       <path
         fill={color}
@@ -18,5 +21,3 @@ const LockIcon: React.FC<IIconProps> = ({
     </svg>
   )
 }
-
-export default LockIcon

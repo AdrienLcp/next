@@ -1,7 +1,7 @@
 import type { IArrowIconProps } from '@/types'
 import { useMemo } from 'react'
 
-const ArrowIcon: React.FC<IArrowIconProps> = ({
+export const ArrowIcon: React.FC<IArrowIconProps> = ({
   size = '1em',
   color = 'var(--text)',
   orientation = 'down',
@@ -27,6 +27,9 @@ const ArrowIcon: React.FC<IArrowIconProps> = ({
       width={size}
       height={size}
       viewBox='0 0 24 24'
+      aria-hidden='true'
+      role='presentation'
+      focusable='false'
       style={{ transition: 'transform 250ms', transform: `rotate(${rotationValue}deg)` }}
       {...rest}
     >
@@ -37,5 +40,3 @@ const ArrowIcon: React.FC<IArrowIconProps> = ({
     </svg>
   )
 }
-
-export default ArrowIcon

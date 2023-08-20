@@ -6,8 +6,19 @@
       "limit": "caractère(s) restant(s)"
     },
     "combobox": {
+      "open": "Voir les options",
       "select": "Sélectionner",
       "filter": "Filtrer"
+    },
+    "pagination": {
+      "goTo": "Aller à la page"
+    },
+    "tabs": {
+      "goTo": "Ouvrir l'onglet"
+    },
+    "contextMenu": {
+      "open": "Ouvrir le menu contextuel",
+      "choose": "Choisir"
     }
   },
   "actions": {
@@ -35,7 +46,7 @@
       }
     }
   },
-  "formats": {
-    "date": "DD-MM-YYYY"
+  "states": {
+    "loading": "Chargement..."
   }
 }

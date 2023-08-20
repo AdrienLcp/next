@@ -11,7 +11,7 @@ export interface IButtonProps extends OmittedButtonProps {
    *       'warning' |
    *       'success' |
    *       'info'
-   * @default null
+   * @defaultValue null
    */
   variant?: ButtonVariant
 
@@ -23,7 +23,7 @@ export interface IButtonProps extends OmittedButtonProps {
   /**
    * Icon side in the button (left or right)
    * @type 'left' | 'right'
-   * @default 'left'
+   * @defaultValue 'left'
    */
   iconSide?: 'left' | 'right'
   
@@ -33,13 +33,13 @@ export interface IButtonProps extends OmittedButtonProps {
    * Show Loader when true
    * 
    * Replace icon by loader when true
-   * @default false
+   * @defaultValue false
    */
   isLoading?: boolean
   
   /**
    * Disabled State
-   * @default false
+   * @defaultValue false
    */
   isDisabled?: boolean
   

@@ -1,7 +1,7 @@
 import type { Action, IUseApiState } from '@/types'
 import { Task } from '@/utils'
 
-const fetchReducer = <T>(state: IUseApiState<T>, action: Action<T>): IUseApiState<T> => {
+export const fetchReducer = <T>(state: IUseApiState<T>, action: Action<T>): IUseApiState<T> => {
   switch (action.type) {
 
     case Task.Success:
@@ -28,5 +28,3 @@ const fetchReducer = <T>(state: IUseApiState<T>, action: Action<T>): IUseApiStat
       return state
   }
 }
-
-export default fetchReducer

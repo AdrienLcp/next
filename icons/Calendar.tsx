@@ -1,6 +1,6 @@
 import type { IIconProps } from '@/types'
 
-const CalendarIcon: React.FC<IIconProps> = ({
+export const CalendarIcon: React.FC<IIconProps> = ({
   size = '1em',
   color = 'var(--text)',
    ...rest
@@ -11,6 +11,9 @@ const CalendarIcon: React.FC<IIconProps> = ({
       height={size}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden='true'
+      role='presentation'
+      focusable='false'
       {...rest}
     >
       <path
@@ -20,5 +23,3 @@ const CalendarIcon: React.FC<IIconProps> = ({
     </svg>
   )
 }
-
-export default CalendarIcon

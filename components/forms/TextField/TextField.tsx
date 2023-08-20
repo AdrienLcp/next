@@ -7,7 +7,7 @@ import { CrossIcon, EyeIcon } from '@/icons'
 import { Button, Tooltip } from '@/components'
 import { useLocale } from '@/hooks'
 
-const TextField: React.FC<ITextFieldProps> = ({
+export const TextField: React.FC<ITextFieldProps> = ({
   value = '',
   label = '',
   error = '',
@@ -77,9 +77,10 @@ const TextField: React.FC<ITextFieldProps> = ({
           value={value}
           ref={inputRef}
           required={isRequired}
-          title={''}
           disabled={isDisabled}
+          id={`input-${label}-id`}
           type={currentType}
+          aria-describedby={error && `input-${label}-error`}
           {...rest}
         />
 
@@ -91,6 +92,7 @@ const TextField: React.FC<ITextFieldProps> = ({
             ${icon && styles.labelWithIcon}
             ${labelClassName}
           `}
+          htmlFor={`input-${label}-id`}
         >
           {label}
         </label>
@@ -151,12 +153,10 @@ const TextField: React.FC<ITextFieldProps> = ({
       )}
 
       {error && (
-        <Tooltip text={error} className={styles.tooltip}>
-          <span className={styles.error}>{error}</span>
+        <Tooltip text={error} tooltipClassName={styles.tooltip}>
+          <span id={`input-${label}-error`} className={styles.error}>{error}</span>
         </Tooltip>
       )}
     </div>
   )
 }
-
-export default TextField

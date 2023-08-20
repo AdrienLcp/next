@@ -4,10 +4,10 @@
 .wrapper
   @include fullScreen
   @include flexCenter
+  @include animate(fade-in, 200ms, ease-out)
 
 .behind
   @include fullScreen
-  @include animate(fade-in, 200ms, ease-out)
   background-color: var(--large-opacity)
   backdrop-filter: blur(3px)
   transition: opacity 200ms

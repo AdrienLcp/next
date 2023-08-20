@@ -1,6 +1,6 @@
 import type { IIconProps } from '@/types'
 
-const SearchIcon: React.FC<IIconProps> = ({
+export const SearchIcon: React.FC<IIconProps> = ({
   size = '1em',
   color = 'var(--text)',
   ...rest
@@ -11,6 +11,9 @@ const SearchIcon: React.FC<IIconProps> = ({
       width={size}
       height={size}
       viewBox='0 0 24 24'
+      aria-hidden='true'
+      role='presentation'
+      focusable='false'
       {...rest}
     >
       <path
@@ -20,5 +23,3 @@ const SearchIcon: React.FC<IIconProps> = ({
     </svg>
   )
 }
-
-export default SearchIcon

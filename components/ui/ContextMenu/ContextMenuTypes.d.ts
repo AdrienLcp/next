@@ -4,6 +4,7 @@ export interface IContextMenuProps {
 
 export interface IContextMenuAction {
   onClick: () => void
-  label?: string
   icon?: JSX.Element
+  label?: string
+  ariaLabel?: string
 }

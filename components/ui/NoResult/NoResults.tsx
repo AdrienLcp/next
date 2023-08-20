@@ -2,7 +2,7 @@ import styles from './NoResultsStyles.module.sass'
 
 import { useLocale } from '@/hooks'
 
-const NoResults: React.FC = () => {
+export const NoResults: React.FC = () => {
   const { getString } = useLocale()
 
   return (
@@ -11,5 +11,3 @@ const NoResults: React.FC = () => {
     </p>
   )
 }
-
-export default NoResults

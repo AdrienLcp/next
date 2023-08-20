@@ -1,6 +1,6 @@
 import type { IIconProps } from '@/types'
 
-const WarningIcon: React.FC<IIconProps> = ({
+export const WarningIcon: React.FC<IIconProps> = ({
   size = '1em',
   color = 'var(--text)',
   ...rest
@@ -11,6 +11,9 @@ const WarningIcon: React.FC<IIconProps> = ({
       width={size}
       height={size}
       viewBox='0 0 1024 1024'
+      aria-hidden='true'
+      role='presentation'
+      focusable='false'
       {...rest}
     >
       <path
@@ -20,5 +23,3 @@ const WarningIcon: React.FC<IIconProps> = ({
     </svg>
   )
 }
-
-export default WarningIcon

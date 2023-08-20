@@ -1,6 +1,6 @@
 import type { IIconProps } from '@/types'
 
-const Spinner: React.FC<IIconProps> = ({
+export const Loader: React.FC<IIconProps> = ({
   color = 'var(--primary)',
   size = '1em',
   ...rest
@@ -11,6 +11,9 @@ const Spinner: React.FC<IIconProps> = ({
       width={size}
       height={size}
       viewBox='0 0 24 24'
+      aria-hidden='true'
+      role='presentation'
+      focusable='false'
       {...rest}
     >
       <circle cx='12' cy='12' r='0' fill={color}>
@@ -59,5 +62,3 @@ const Spinner: React.FC<IIconProps> = ({
     </svg>
   )
 }
-
-export default Spinner

@@ -1,6 +1,6 @@
 import type { IIconProps } from '@/types'
 
-const ErrorIcon: React.FC<IIconProps> = ({
+export const ErrorIcon: React.FC<IIconProps> = ({
   size = '1em',
   color = 'var(--text)',
   ...rest
@@ -11,6 +11,9 @@ const ErrorIcon: React.FC<IIconProps> = ({
       width={size}
       height={size}
       viewBox='0 0 16 16'
+      aria-hidden='true'
+      role='presentation'
+      focusable='false'
       {...rest}
     >
       <g
@@ -26,5 +29,3 @@ const ErrorIcon: React.FC<IIconProps> = ({
     </svg>
   )
 }
-
-export default ErrorIcon

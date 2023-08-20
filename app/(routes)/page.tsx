@@ -1,4 +1,5 @@
 'use client'
+
 import type { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
 
 import { useState } from 'react'
@@ -21,14 +22,6 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
 
   const { changeDarkMode, isDarkModeActive } = useTheme()
   const { changeLocale, getString } = useLocale()
-
-  const onPseudoChange = (event: any) => {
-    setPseudo(event.target.value)
-  }
-
-  const onPasswordChange = (event: any) => {
-    setPassword(event.target.value)
-  }
 
   const handleSubmit = (event: any) => {
     event.preventDefault()
@@ -146,7 +139,7 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
           label='Pseudo'
           icon={<UserIcon />}
           value={pseudo}
-          onChange={onPseudoChange}
+          onChange={(event) => setPseudo(event.target.value)}
           onClear={() => setPseudo('')}
           limit={20}
         />
@@ -156,7 +149,7 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
           value={password}
           icon={<LockIcon />}
           label='Mot de passe'
-          onChange={onPasswordChange}
+          onChange={(event) => setPassword(event.target.value)}
           isPassword
           error='ERROR ERROR ERRO dmkfnlodfgn^dsù;gf,ls gnsdfplk jdms njslk gjsdkl sj glks jlksf jR'
         />

@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom'
 
 import { CloseButton } from '@/components'
 
-const Modal: React.FC<IModalProps> = ({
+export const Modal: React.FC<IModalProps> = ({
   children,
   onClose,
   isOpen = false,
@@ -49,5 +49,3 @@ const Modal: React.FC<IModalProps> = ({
     </>
   )
 }
-
-export default Modal

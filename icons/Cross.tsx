@@ -1,6 +1,6 @@
 import type { IIconProps } from '@/types'
 
-const CrossIcon: React.FC<IIconProps> = ({
+export const CrossIcon: React.FC<IIconProps> = ({
   color = 'var(--text)',
   size = '1em',
   ...rest
@@ -8,9 +8,12 @@ const CrossIcon: React.FC<IIconProps> = ({
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 16 16'
       width={size}
       height={size}
-      viewBox='0 0 16 16'
+      aria-hidden='true'
+      role='presentation'
+      focusable='false'
       {...rest}
     >
       <path
@@ -24,5 +27,3 @@ const CrossIcon: React.FC<IIconProps> = ({
     </svg>
   )
 }
-
-export default CrossIcon

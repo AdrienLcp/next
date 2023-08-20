@@ -5,7 +5,7 @@ import { Button, Tooltip } from '@/components'
 import { CrossIcon } from '@/icons'
 import { useLocale } from '@/hooks'
 
-const CloseButton: React.FC<ICloseButtonProps> = ({
+export const CloseButton: React.FC<ICloseButtonProps> = ({
   onClick,
   size = '1.3em',
   color = 'var(--text)',
@@ -30,5 +30,3 @@ const CloseButton: React.FC<ICloseButtonProps> = ({
     </Tooltip>
   )
 }
-
-export default CloseButton

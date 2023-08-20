@@ -3,7 +3,7 @@ import type { ISwitchProps } from './SwitchTypes'
 
 import { Tooltip } from '@/components'
 
-const Switch: React.FC<ISwitchProps> = ({
+export const Switch: React.FC<ISwitchProps> = ({
   value = false,
   onChange,
   label = '',
@@ -40,5 +40,3 @@ const Switch: React.FC<ISwitchProps> = ({
     </div>
   )
 }
-
-export default Switch

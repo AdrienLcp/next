@@ -1,11 +1,11 @@
 import styles from './NavBarStyles.module.sass'
-import routes from './routes'
+import { routes } from './routes'
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
 
-const NavBar: React.FC = () => {
+export const Navbar: React.FC = () => {
   const pathname = usePathname()
 
   return (
@@ -29,5 +29,3 @@ const NavBar: React.FC = () => {
     </nav>
   )
 }
-
-export default NavBar

@@ -2,7 +2,7 @@ export interface IIconProps extends React.SVGProps<SVGSVGElement> {
   /**
    * Size of icon
    * 
-   * @default '1em'
+   * @defaultValue '1em'
    */
   size?: string
 
@@ -10,7 +10,7 @@ export interface IIconProps extends React.SVGProps<SVGSVGElement> {
    * Color of icon
    * App text color by default
    * 
-   * @default 'var(--text)'
+   * @defaultValue 'var(--text)'
    */
   color?: string
 }
@@ -19,7 +19,7 @@ export interface IEyeIconProps extends IIconProps {
   /**
    * Crossed eye state
    * 
-   * @default false
+   * @defaultValue false
    */
   isCrossed?: boolean
 }
@@ -28,7 +28,7 @@ export interface IArrowIconProps extends IIconProps {
   /**
    * Arrow orientation
    * 
-   * @default 'down'
+   * @defaultValue 'down'
    */
   orientation?: 'left' | 'right' | 'up' | 'down'
 }
