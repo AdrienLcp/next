@@ -1,150 +1,17 @@
-@import '@/styles/mixins'
-
-.field
+.container
   position: relative
-  cursor: default
-  width: 100%
 
-.buttonWrapper
-  @include posAbsolute(22%, 0.6em, auto, auto)
-
-.button
-  box-shadow: none
-  border-radius: 50%
-  padding: 0.3em
-
-  &:hover
-    background-color: var(--neutral-light)
-
-.icon
-  @include posAbsolute(0, auto, auto, 0.9em)
-  transform: translate(0, 60%)
-
-.label
-  @include posAbsolute(0, auto, auto, 0.6em)
-  transform: translate(0, 85%)
+.message
+  position: absolute
+  bottom: 0
+  opacity: 0
   z-index: -1
-  color: var(--text-lighter)
-  background-color: var(--neutral)
-  padding: 0 0.4em
-  font-weight: 500
-  font-size: 0.9em
-  transition: transform 250ms ease-out, font-size 250ms ease-out
+  visibility: hidden
+  color: var(--red-foreground)
+  font-weight: 600
+  transition: transform var(--transition-200), opacity var(--transition-100) 100ms
 
-.labelWithIcon
-  transform: translate(1.5em, 85%)
-
-.limit
-  @include posAbsolute(auto, 0.5em, -1em, auto)
-  font-size: 0.6em
-  color: var(--text-light)
-  opacity: 0
-  transition: transform 250ms, opacity 250ms
-
-.tooltip
-  top: calc(100% + 1.5rem)
-
-.error
-  @include posAbsolute(auto, auto, -1.5em, 50%)
-  @include textEllipsis
-  cursor: default
-  transform: translate(-50%, 0)
-  font-weight: 500
-  padding: 0.5em 1em
-  font-size: 0.6em
-  color: var(--error)
-  opacity: 0
-  animation: slide-in 300ms ease-out forwards
-
-.input
-  padding: calc(var(--base-spacing) * 1.1) 2.8rem calc(var(--base-spacing) * 0.9) var(--base-spacing)
-  border-radius: var(--base-radius)
-  cursor: pointer
-  background-color: transparent
-  color: var(--text)
-  border: 1px solid var(--text-lighter)
-  width: 100%
-
-  &::placeholder
-    font-size: 0.9em
-    color: transparent
-    
-  &::-webkit-input-placeholder
-    font-size: 0.9em
-    color: transparent
-    
-  &::-moz-placeholder
-    font-size: 0.9em
-    color: transparent
-  
-  &:-ms-input-placeholder
-    font-size: 0.9em
-    color: transparent
-
-  &:-moz-placeholder
-    font-size: 0.9em
-    color: transparent
-
-  &.inputWithIcon
-  padding: calc(var(--base-spacing) * 1.1) 2.8rem calc(var(--base-spacing) * 0.9) calc(var(--base-spacing) + 1.8em)
-
-  &:hover
-    border-color: var(--text)
-
-  &:focus,
-  &:valid
-    animation-delay: 200ms
-
-    & ~ .label
-      animation-delay: 200ms
-      cursor: default
-      z-index: 1
-      color: var(--text)
-      font-size: 0.8em
-      transform: translate(0.5em, -55%)
-
-    &::placeholder
-      color: var(--text-lighter)
-
-    &::-webkit-input-placeholder
-      color: var(--text-lighter)
-
-    &::-moz-placeholder
-      color: var(--text-lighter)
-    
-    &:-ms-input-placeholder
-      color: var(--text-lighter)
-
-    &:-moz-placeholder
-      color: var(--text-lighter)
-    
-
-  &:focus
-    border-color: var(--primary)
-    cursor: text
-
-    & ~ .label
-      animation-delay: 200ms
-      color: var(--primary)
-
-    & ~ .limit
-      animation-delay: 200ms
-      opacity: 1
-      transform: translateY(0.4em)
-
-  &:disabled
-    @include disabled
-
-    &:hover
-      border-color: var(--text-lighter)
-    
-    &.valid ~ .label
-      cursor: default
-      z-index: 1
-      color: var(--text)
-      transform: translate(0.4em, -65%)
-
-@keyframes slide-in
-  to
+  &.visible
+    transform: translateY(1em)
     opacity: 1
-    transform: translate(-50%, 0.4em)
+    visibility: visible

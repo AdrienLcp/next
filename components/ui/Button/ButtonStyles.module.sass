@@ -1,7 +1,13 @@
 @import '@/styles/mixins'
 
 @mixin commonButtonStyles
-  width: fit-content
+  width: 100%
+  font-weight: 600
+  border-radius: var(--radius)
+
+  &:hover,
+  &:focus-visible
+    opacity: 0.8
 
 .button
   display: flex
@@ -9,54 +15,40 @@
   justify-content: center
   gap: 1ch
   font-size: 0.8em
-  opacity: 0.8
-  transition: transform .1s
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
 
   &.right
     flex-direction: row-reverse
 
   &.icon
-    border-radius: var(--base-radius)
+    &:hover
+      background-color: hsl(var(--secondary))
 
-  &.primary
+  &.contained
     @include commonButtonStyles
     padding: var(--wide-padding)
-    background-color: var(--primary)
-    border-color: var(--primary)
-    color: var(--white)
-    border-radius: var(--base-radius)
-    border: 1px solid var(--primary)
+    background-color: hsl(var(--primary))
+    color: hsl(var(--primary-foreground))
+    border: var(--stroke) solid hsl(var(--primary))
     
-  &.secondary
+  &.outlined
     @include commonButtonStyles
     font-weight: 600
     padding: var(--wide-padding)
-    border-color: var(--primary)
-    color: var(--primary)
-    border-radius: var(--base-radius)
-    border: 1px solid var(--primary)
+    color: hsl(var(--primary))
+    border: var(--stroke) solid hsl(var(--primary))
 
   &.underline
     @include commonButtonStyles
     text-decoration: underline
 
-  &.danger
-    @include commonButtonStyles
-
-  &.warning
-    @include commonButtonStyles
-
-  &.success
-    @include commonButtonStyles
-
-  &.info
-    @include commonButtonStyles
-
-  &:hover
-    opacity: 1
+  // &:focus
+  //   opacity: 0.8
 
   &:active
-    transform: scale(0.96)
+    transform: scale(0.99)
 
   &:disabled
     @include disabled
@@ -65,6 +57,10 @@
 
   &.disabled
 
-@media (max-width: 768px)
+@media (min-width: 768px)
   .button
-    width: 100%
+    &.contained,
+    &.outlined,
+    &.underline
+      max-width: 200px
+      width: fit-content

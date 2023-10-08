@@ -16,24 +16,40 @@ export const Combobox: React.FC<IComboboxProps> = ({
   defaultValue = null,
   icon = null,
   isAlphabeticallySorted = false,
-  onChange
+  hasFilter = false,
+  isClearable = false,
+  onChange,
+  inputClassName = '',
+  scrollToKeyOnOpen = '',
+  areOptionsDismissedOnSelect = true
 }) => {
   const { getString } = useLocale()
 
   const listRef = useRef<HTMLUListElement | null>(null)
   const filterRef = useRef<HTMLInputElement | null>(null)
+  const optionToFocusRef = useRef<HTMLButtonElement | null>(null)
+  const optionToScrollRef = useRef<HTMLButtonElement | null>(null)
 
   const [isFocused, setIsFocused] = useState<boolean>(false)
   const [optionsFilterText, setOptionsFilterText] = useState<string>('')
-  const [selectedOption, setSelectedOption] = useState<IComboboxOption | null>(defaultValue)
+  const [selectedOption, setSelectedOption] = useState<IComboboxOption | null>(value || defaultValue)
 
   useEffect(() => {
     if (isFocused) {
       if (filterRef.current) {
         filterRef.current.focus()
       }
+      
       if (listRef.current) {
         listRef.current.scrollTop = 0
+      }
+
+      if (optionToFocusRef.current) {
+        optionToFocusRef.current.focus()
+      }
+
+      if (optionToScrollRef.current) {
+        // optionToScrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
     }
   }, [isFocused])
@@ -61,20 +77,22 @@ export const Combobox: React.FC<IComboboxProps> = ({
       onChange(option)
     }
 
-    setIsFocused(true)
+    if (areOptionsDismissedOnSelect) {
+      setIsFocused(false)
+    }
   }
 
-  const reset = () => {
-    setSelectedOption(null)
-    onChange(null)
-    setOptionsFilterText('')
+  const handleResetCombobox = () => {
+    if (isClearable) {
+      setSelectedOption(null)
+      onChange(null)
+      setOptionsFilterText('')      
+    }
   }
 
-  const handleBlur = (event: React.FocusEvent) => {
-    if (listRef && listRef.current) {
-      if (!listRef?.current.contains(event.relatedTarget)) {
-        setIsFocused(false)
-      }      
+  const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+    if (listRef.current && !listRef.current.contains(event.relatedTarget)) {
+      setIsFocused(false)
     }
   }
 
@@ -85,7 +103,7 @@ export const Combobox: React.FC<IComboboxProps> = ({
       aria-owns='combobox-list'
       aria-haspopup='listbox'
       aria-activedescendant={selectedOption?.key || ''}
-      aria-controls={options.map(option => option.key).join(',')}
+      aria-controls={filteredOptions.map(option => option.key).join(',')}
       className={styles.combobox}
       tabIndex={0}
       onBlur={handleBlur}
@@ -95,20 +113,23 @@ export const Combobox: React.FC<IComboboxProps> = ({
         label={label}
         onFocus={() => setIsFocused(true)}
         placeholder={placeholder}
-        onClear={reset}
-        icon={icon}
-        inputClassName={styles.input}
+        onClear={isClearable ? handleResetCombobox : undefined}
+        icon={icon} 
+        className={`${styles.input} ${inputClassName}`}
         aria-label={!isFocused ? getString('components.combobox.open') : ''}
         onChange={() => {}}
       />
 
-      {!selectedOption && !value && (
+      {/* //! Pourquoi ça apparait pas cette merde */}
+      {/* isClearable && non plus */}
+      {/* {!selectedOption && value && ( */}
         <ArrowIcon
           className={styles.arrow}
           color='var(--text-lighter)'
           orientation={isFocused ? 'up' : 'down'}
         />
-      )}
+      {/* )} */}
+      {/* //! Pourquoi ça apparait pas cette merde */}
       
       <ul
         role='listbox'
@@ -116,46 +137,72 @@ export const Combobox: React.FC<IComboboxProps> = ({
         ref={listRef}
         className={`${styles.list} ${isFocused && options.length && styles.open}`}
       >
-        <li
-          key='select-filter-field'
-          className={`${styles.option} ${styles.button} ${styles.filterField}`}
-        >
-          <SearchIcon color='var(--text-lighter)' className={styles.search} />
-
-          <input
-            className={styles.filter}
-            type='search'
-            ref={filterRef}
-            placeholder={`${getString('components.combobox.filter')}...`}
-            value={optionsFilterText}
-            onChange={(e) => setOptionsFilterText(e.target.value)}
-          />
-        </li>
-
-        {filteredOptions.map((option) => (
+        {hasFilter && (
           <li
-            role='option'
-            id={option.key}
-            aria-selected={option === selectedOption}
-            key={option.key}
-            className={styles.option}
+            key='select-filter-field'
+            className={`${styles.option} ${styles.button} ${styles.filterField}`}
           >
-            <Button
-              className={styles.button}
-              icon={icon}
-              onClick={() => handleSelectOption(option)}
-              aria-label={`${getString('components.combobox.select')} ${option.value}`}
-            >
-              <div className={styles.content}>
-                <span>{option.value}</span>
+            <SearchIcon color='var(--text-lighter)' className={styles.search} />
 
-                {option === selectedOption && (
-                  <CheckIcon color='var(--success)' />
-                )}                
-              </div>
-            </Button>
+            <input
+              className={styles.filter}
+              type='search'
+              ref={filterRef}
+              placeholder={`${getString('components.combobox.filter')}...`}
+              value={optionsFilterText}
+              onChange={(e) => setOptionsFilterText(e.target.value)}
+            />
           </li>
-        ))}
+        )}
+
+        {filteredOptions.map((option) => {
+          const isSelected = option === selectedOption || option.key === value?.key || option.key === defaultValue?.key
+          let ref: React.MutableRefObject<HTMLButtonElement | null>
+
+          if (scrollToKeyOnOpen === option.key) {
+            ref = optionToFocusRef
+          } else {
+            const optionKey = parseInt(option.key)
+            const keyToScroll = parseInt(scrollToKeyOnOpen)
+
+            if (!isNaN(optionKey) && !isNaN(keyToScroll) && keyToScroll - 3 === optionKey) {
+              ref = optionToScrollRef
+            }
+          }
+
+          return (
+            <li
+              role='option'
+              id={option.key}
+              aria-selected={isSelected}
+              aria-current={isSelected}
+              key={option.key}
+              className={styles.option}
+            >
+              <Button
+                className={styles.button}
+                ref={
+                  scrollToKeyOnOpen === option.key
+                    ? optionToFocusRef
+                    : !isNaN(parseInt(option.key))
+                      && !isNaN(parseInt(scrollToKeyOnOpen))
+                      && parseInt(scrollToKeyOnOpen) - 2 === parseInt(option.key)
+                        ? optionToScrollRef
+                        : null
+                }
+                icon={icon}
+                onClick={() => handleSelectOption(option)}
+                aria-label={`${getString('components.combobox.select')} ${option.value}`}
+              >
+                <div className={styles.content}>
+                  <span>{option.value}</span>
+
+                  {isSelected && <CheckIcon color='var(--success)' />}
+                </div>
+              </Button>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )

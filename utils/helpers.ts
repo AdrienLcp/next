@@ -1,13 +1,5 @@
-import type { IApiError, LocaleName } from '@/types'
-import { Locales, CreateUserError, ServerError } from '@/utils'
-
-export const isLocaleName = (value: any): value is LocaleName => {
-  if (value && typeof value === 'string') {
-    return value === Locales.EN
-        || value === Locales.FR
-  }
-  return false
-}
+import type { IApiError } from '@/types'
+import { CreateUserError, ServerError } from '@/utils'
 
 export const isApiError = (value: any): value is IApiError => {
   if (value) {
@@ -19,4 +11,8 @@ export const isApiError = (value: any): value is IApiError => {
 
 export const sortByAlphabeticalOrder = <T>(array: T[], prop: keyof T): T[] => {
   return array.sort((a, b) => String(a[prop]).localeCompare(String(b[prop])))
+}
+
+export const getRandomNumber = (max: number = 100, min: number = 0) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min
 }

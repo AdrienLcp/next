@@ -2,8 +2,9 @@
   
 .button
   padding: calc(var(--base-spacing) / 5)
-  border: 1px solid var(--close-button-border-color)
+  border: var(--stroke) solid var(--close-button-border-color)
   opacity: 0.7
 
-  &:hover
+  &:hover,
+  &:focus-visible
     opacity: 1

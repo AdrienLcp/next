@@ -2,7 +2,7 @@ export interface IComboboxProps {
   /**
    * Label
    */
-  label: string
+  label?: string
 
   /**
    * Array of
@@ -21,7 +21,7 @@ export interface IComboboxProps {
    *   icon?: JSX.Element
    * }
    */
-  value?: IComboboxOption
+  value?: IComboboxOption | null
 
   /**
    * {
@@ -31,6 +31,13 @@ export interface IComboboxProps {
    * }
    */
   defaultValue?: IComboboxOption
+
+  /**
+   * Display a filter input on top of the options if true
+   * 
+   * @default false
+   */
+  hasFilter?: boolean
 
   /**
    * Icon
@@ -53,6 +60,30 @@ export interface IComboboxProps {
    * onChange function
    */
   onChange: (option: IComboboxOption | null) => void
+
+  /**
+   * Choose an option key to focus & scroll to when user open the combobox 
+   */
+  scrollToKeyOnOpen?: string
+
+  /**
+   * Input className
+   */
+  inputClassName?: string
+
+  /**
+   * Display clear button to reset values to null if true
+   * 
+   * @default false
+   */
+  isClearable?: boolean
+
+  /**
+   * Dismiss options on select
+   * 
+   * @default true
+   */
+  areOptionsDismissedOnSelect?: boolean
 }
 
 export interface IComboboxOption {

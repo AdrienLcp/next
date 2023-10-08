@@ -147,24 +147,22 @@ a {
   color: inherit;
 }
 
-label,
-button {
+label {
   cursor: pointer;
 }
 
-input,
-button {
+input {
   outline: 0;
 }
 
 /* personnal add */
 button {
-  border: none;
-  background-color: transparent;
-  color: inherit;
-  padding: 0;
-  font-family: inherit;
-  font-size: inherit;
+  all: unset;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: auto;
 }
 
 input {
@@ -182,7 +180,6 @@ a {
   text-decoration: none;
 }
 
-/* hide input icons */
 input[type='search']::-webkit-search-cancel-button {
   display: none;
 }

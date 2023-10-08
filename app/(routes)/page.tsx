@@ -2,12 +2,13 @@
 
 import type { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
-import { Button, Combobox, DatePicker, Switch, TextField, Toast, Tabs, AlertModal, Pagination, ContextMenu } from '@/components'
+import { Button, Combobox, Switch, TextField, Toast, Tabs, AlertModal, Pagination, ContextMenu, DatePicker, DatePickerReact, Input } from '@/components'
 import { Loader, LockIcon, UserIcon } from '@/icons'
-import { Locales } from '@/utils'
-import { useLocale, useTheme } from '@/hooks'
+import { Hue, Locale, Theme, getRandomNumber } from '@/utils'
+import { useDocVisibility, useLocale, useStatus, useTheme, useToasts } from '@/hooks'
+import { Form } from '@/components/forms/Form/Form'
 
 interface HomeProps {
   url?: string
@@ -18,10 +19,14 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
   const [password, setPassword] = useState<string>('')
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [page, setPage] = useState<number>(1)
-  const [date, setDate] = useState<Date>(new Date())
 
-  const { changeDarkMode, isDarkModeActive } = useTheme()
+  const [startDate, setStartDate] = useState<Date | null>(null)
+  const [endDate, setEndDate] = useState<Date | null>(null)
+
+  const { isDarkModeActive, changeHue, changeTheme } = useTheme()
   const { changeLocale, getString } = useLocale()
+  const { pushToast } = useToasts()
+  const { setStatus } = useStatus()
 
   const handleSubmit = (event: any) => {
     event.preventDefault()
@@ -84,7 +89,7 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
   const onSelectChange = (option: IComboboxOption | null) => {
     console.log(option)
   }
-
+  
   return (
     <main>
       <form
@@ -99,132 +104,87 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
         }}
         onSubmit={handleSubmit}
       >
-        <DatePicker
-          onChange={(newDate) => setDate(newDate)}
-          label='date test'
-          value={date}
+        <TextField
+          label='input'
+          icon={<UserIcon />}
+          onChange={() => {}}
+        />
+        <Input
+          label='input'
         />
 
-        <Tabs
-          tabs={[
-            {
-              label: 'Tab 1',
-              icon: <>icon1</>,
-              content: <>CONTENT 1</>
-            },
-            {
-              label: 'Tab 2',
-              icon: <>icon2</>,
-              content: <>CONTENT 2</>
-            }
-          ]}
+        <Form
+          
         />
         
-        <Switch
-          value={isDarkModeActive}
-          tooltip={"BORDEL DE MERde"}
-          onChange={(value) => changeDarkMode(value)}
-          label='Dark Mode ACTIVE'
-        />
-
-        <Combobox
-          icon={<UserIcon />}
-          onChange={onSelectChange}
-          label="Sélection"
-          options={options}
-          isAlphabeticallySorted
-        />
-
-        <TextField
-          label='Pseudo'
-          icon={<UserIcon />}
-          value={pseudo}
-          onChange={(event) => setPseudo(event.target.value)}
-          onClear={() => setPseudo('')}
-          limit={20}
-        />
-
-        <TextField
-          placeholder='Je fais un test pas très utile mais on sait jamais je pense que ça va bug'
-          value={password}
-          icon={<LockIcon />}
-          label='Mot de passe'
-          onChange={(event) => setPassword(event.target.value)}
-          isPassword
-          error='ERROR ERROR ERRO dmkfnlodfgn^dsù;gf,ls gnsdfplk jdms njslk gjsdkl sj glks jlksf jR'
-        />
-
+        {/* //! refaire TextField, ComboBox et DatePicker avec le nouveau Input */}
+        
         <Button
-          variant='primary'
-          icon={<Loader color='white' />}
-          onClick={() => changeLocale(Locales.FR)}
+          variant='contained'
+          onClick={() => changeTheme(Theme.System)}
         >
-          french
+          SYSTEM
+        </Button>
+        
+        <Button
+          variant='contained'
+          onClick={() => changeTheme(Theme.Dark)}
+        >
+          DARK
         </Button>
 
         <Button
-          variant='primary'
-          icon={<Loader color='white' />}
-          onClick={() => changeLocale(Locales.EN)}
+          variant='contained'
+          onClick={() => changeTheme(Theme.Light)}
         >
-          english
+          LIGHT
+        </Button>
+
+        <Button
+          variant='outlined'
+          onClick={() => changeHue(Hue.Neutral)}
+        >
+          NEUTRAL
+        </Button>
+        <Button
+          variant='outlined'
+          onClick={() => changeHue(Hue.Blue)}
+        >
+          BLUE
+        </Button>
+        <Button
+          variant='outlined'
+          onClick={() => changeHue(Hue.Purple)}
+        >
+          PURPLE
+        </Button>
+        <Button
+          variant='outlined'
+          onClick={() => changeHue(Hue.Red)}
+        >
+          RED
+        </Button>
+        <Button
+          variant='outlined'
+          onClick={() => changeHue(Hue.Green)}
+        >
+          GREEN
+        </Button>
+        <Button
+          variant='outlined'
+          onClick={() => changeHue(Hue.Yellow)}
+        >
+          YELLOW
+        </Button>
+        <Button
+          variant='outlined'
+          onClick={() => changeHue(Hue.Pink)}
+        >
+          PINK
         </Button>
 
 
-        <p>{getString('actions.cancel')}</p>
-
-        <div style={{ display: 'flex', gap: 5 }}>
-          <Button
-            onClick={() => setIsOpen(true)}
-            variant='secondary'
-          >
-            OPEN
-          </Button>
-          <Button
-            onClick={() => setIsOpen(true)}
-            variant='primary'
-          >
-            MODAL
-          </Button>
-        </div>
-
-        <ContextMenu
-          actions={[
-            {
-              onClick: () => console.log('action 1'),
-              label: 'Action 1',
-              icon: <UserIcon />
-            },
-            {
-              onClick: () => console.log('action 2'),
-              label: 'Action 2',
-              icon: <UserIcon />
-            },
-            {
-              onClick: () => console.log('action 3'),
-              label: 'Action 3',
-              icon: <UserIcon />
-            }
-          ]}
-        />
-
-        <Pagination
-          totalContentsCount={10}
-          maxContentsCountPerPage={3}
-          onPageChange={(newPage) => setPage(newPage)}
-          currentPage={page}
-        />
       </form>
-
-      <AlertModal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        onConfirm={() => {}}
-        text={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi fugiat labore inventore? Eius modi consequatur adipisci quo voluptate consequuntur excepturi, hic porro veritatis incidunt minima quisquam ad officia nostrum deserunt laudantium"}
-        title={"Voulez vous vraiment supprimer ce portrait ?"}
-      />
-
-      <Toast message={"User created"}/>
     </main>
   )
 }

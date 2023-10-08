@@ -14,7 +14,7 @@
   inset: 0
   background-color: var(--neutral-lighter)
   border-radius: var(--switch-base-size)
-  transition: transform .4s ease-out
+  transition: transform var(--transition-400) ease-out
 
   &:before
     position: absolute
@@ -25,7 +25,7 @@
     bottom: calc(var(--switch-base-size) / 6.5)
     border-radius: var(--switch-base-size)
     background-color: var(--white)
-    transition: transform .4s ease-out
+    transition: transform var(--transition-400) ease-out
 
 .input
   visibility: hidden

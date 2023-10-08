@@ -2,27 +2,34 @@
   position: relative
 
 .button
-  border: 1px solid var(--text-lighter)
+  border: var(--stroke) solid hsl(var(--muted-foreground))
   padding: calc(var(--base-spacing) / 1.5)
 
-  &:hover
-    border-color: var(--text)
+  &:hover,
+  &:focus-visible
+    border-color: hsl(var(--foreground))
 
 .menu
   position: absolute
   top: calc(100% + 2px)
   left: 0
-  border-radius: var(--small-radius)
-  background-color: var(--neutral)
+  border-radius: var(--radius)
+  background-color: hsl(var(--background))
   z-index: 1
   max-height: 0
   overflow: hidden
-  border: 1px solid transparent
-  transition: max-height 200ms
+  border: var(--stroke) solid transparent
+  transition: max-height var(--transition-200)
+
+  &:hover .action:focus-visible
+    background-color: hsl(var(--background))
+
+    &:hover
+      background-color: hsl(var(--secondary))
 
   &.open
     max-height: 20vh
-    border-color: var(--text-lighter)
+    border-color: hsl(var(--muted-foreground))
 
 .action
   position: relative
@@ -31,10 +38,11 @@
   padding-right: 1.8em
 
   &:focus
-    background-color: var(--neutral-lighter)
+    background-color: hsl(var(--secondary))
 
-  &:hover
-    background-color: var(--neutral-light)
+  &:hover,
+  &:focus-visible
+    background-color: hsl(var(--secondary))
   
   &::after
     content: ''
@@ -43,4 +51,4 @@
     transform: translateY(0.5px)
     width: 80%
     height: 0.5px
-    background-color: var(--text-lighter)
+    background-color: hsl(var(--muted-foreground))

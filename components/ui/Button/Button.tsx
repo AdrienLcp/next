@@ -17,18 +17,14 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(({
 }, ref) => {
   const getLoaderColor = useCallback(() => {
     switch (variant) {
-      case 'primary':
-      case 'danger':
-      case 'success':
-      case 'warning':
-      case 'info':
-        return 'var(--white)'
+      case 'contained':
+        return 'hsl(var(--primary-foreground))'
 
       case 'icon':
-      case 'secondary':
+      case 'outlined':
       case 'underline':
       default:
-        return 'var(--primary)'
+        return 'hsl(var(--primary))'
     }
   }, [variant])
 

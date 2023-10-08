@@ -1,0 +1,64 @@
+.list
+  position: fixed
+  top: 0
+  right: 0
+  display: flex
+  flex-direction: column
+  gap: var(--base-spacing)
+  padding: var(--base-spacing)
+
+.item
+  animation: slide-in 300ms ease-out forwards
+
+.toast
+  border-radius: var(--base-radius)
+  background: var(--neutral-light)
+  padding: var(--base-spacing)
+  width: clamp(200px, 50vw, 400px)
+  opacity: 0.95
+  transition: transform 300ms, opacity 300ms, visibility 300ms
+
+  &.success
+    background-color: var(--success)
+
+  &.warning
+    background-color: var(--warning)
+
+  &.error
+    background-color: var(--error)
+
+  &.deleted
+    transform: translateY(-20px)
+    opacity: 0
+    visibility: hidden
+
+.heading
+  display: flex
+  align-items: center
+  justify-content: space-between
+  margin-bottom: var(--base-spacing)
+
+.header
+  display: flex
+  align-items: center
+  gap: 0.6ch
+
+.title
+  padding-right: var(--base-spacing)
+  width: clamp(50px, 80vw, 300px)
+  white-space: nowrap
+  text-overflow: ellipsis
+  overflow: hidden
+
+.content
+  font-size: 0.9em
+  line-height: 130%
+
+@keyframes slide-in
+  from
+    opacity: 0
+    transform: translateY(-20%)
+
+  to
+    opacity: 1
+    transform: translateY(0)

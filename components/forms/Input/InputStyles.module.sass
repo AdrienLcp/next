@@ -1,0 +1,117 @@
+.container
+  position: relative
+  height: fit-content
+  width: 100%
+
+.foreground
+  position: absolute
+  inset: 0
+  z-index: -1
+  display: flex
+  align-items: center
+  padding: var(--base-spacing)
+  border: var(--stroke) solid hsl(var(--border))
+  border-radius: var(--radius)
+
+.label
+  color: hsl(var(--muted-foreground))
+  font-size: 1.4rem
+  font-weight: 500
+  padding: 0 0.7ch
+  transition: transform var(--transition-200)
+  background-color: hsl(var(--background))
+
+  &.hasIcon
+    transform: tanslate(1.3rem, 0)
+
+.input
+  padding: var(--wide-padding)
+  background: transparent
+  cursor: pointer
+  font-size: 1.5rem
+  width: 100%
+
+  &::placeholder
+    font-size: 0.8em
+    color: transparent
+  &::-webkit-input-placeholder
+    font-size: 0.8em
+    color: transparent
+  &::--moz-placeholder
+    font-size: 0.8em
+    color: transparent
+  &::-ms-input-placeholder
+    font-size: 0.8em
+    color: transparent
+  &::-moz-placeholder
+    font-size: 0.8em
+    color: transparent
+
+  &.withoutCaret
+    caret-color: transparent
+
+  &.inputWithLeftContent
+    padding: var(--base-spacing) var(--base-spacing) var(--base-spacing) calc(var(--base-spacing) + 2.2rem)
+
+  &.inputWithRightContent
+    padding: var(--base-spacing) calc(var(--base-spacing) + 2.5rem) var(--base-spacing) var(--base-spacing)
+
+  &.inputWithLeftAndRightContent
+    padding: var(--base-spacing) calc(var(--base-spacing) + 2.5rem) var(--base-spacing) calc(var(--base-spacing) + 2.2rem)
+
+  &:hover,
+  &:focus-visible
+    & ~ .foreground
+      border-color: hsl(var(--foreground))
+
+      & .label
+        cursor: default
+        color: hsl(var(--foreground))
+
+  &:disabled
+    pointer-events: none
+    color: transparent
+    
+    & ~ .foreground,
+    & ~ .right
+      opacity: 0.5
+
+    &::selection
+      color: transparent
+      background-color: transparent
+
+  &:focus ~ .foreground
+    border-color: hsl(var(--primary))
+
+    & .label
+      color: hsl(var(--primary))
+
+  &:focus,
+  &:valid
+    cursor: text
+
+    & ~ .foreground .label
+      transform: translate(-0.5rem, -175%) scale(0.8)
+
+      &.labelWithLeftContent
+        transform: translate(-2.1rem, -175%) scale(0.8)
+
+    &::placeholder
+      color: hsl(var(--muted-foreground))
+    &::-webkit-input-placeholder
+      color: hsl(var(--muted-foreground))
+    &::--moz-placeholder
+      color: hsl(var(--muted-foreground))
+    &::-ms-input-placeholder
+      color: hsl(var(--muted-foreground))
+    &::-moz-placeholder
+      color: hsl(var(--muted-foreground))
+
+.left
+  transform: translateY(5%)
+
+.right
+  position: absolute
+  right: 1.4rem
+  top: 50%
+  transform: translateY(-45%)

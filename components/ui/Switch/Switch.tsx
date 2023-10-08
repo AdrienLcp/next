@@ -10,33 +10,27 @@ export const Switch: React.FC<ISwitchProps> = ({
   tooltip = '',
   size = '1.2em',
   ...rest
-}) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.checked)
-  }
+}) => (
+  <div
+    className={styles.container}
+    style={{ '--switch-base-size': size } as React.CSSProperties}
+  >
+    <Tooltip text={tooltip}>
+      <label className={styles.switch}>
+        <input
+          type='checkbox'
+          checked={value}
+          onChange={(event) => onChange(event.target.checked)}
+          className={styles.input}
+          {...rest}
+        />
 
-  return (
-    <div
-      className={styles.container}
-      style={{ '--switch-base-size': size } as React.CSSProperties}
-    >
-      <Tooltip text={tooltip}>
-        <label className={styles.switch}>
-          <input
-            type='checkbox'
-            checked={value}
-            onChange={handleChange}
-            className={styles.input}
-            {...rest}
-          />
+        <span className={styles.slider} />
 
-          <span className={styles.slider} />
-
-          {label && (
-            <span className={styles.label}>{label}</span>            
-          )}
-        </label>
-      </Tooltip>
-    </div>
-  )
-}
+        {label && (
+          <span className={styles.label}>{label}</span>            
+        )}
+      </label>
+    </Tooltip>
+  </div>
+)

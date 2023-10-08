@@ -1,14 +1,17 @@
+import { NextPage } from 'next'
 import Home from './page'
 
-const HomeLayout: React.FC = () => {
+interface Props {
+  params: {
+    userId: string
+  }
+}
+
+const HomeLayout: NextPage<Props> = async ({ params }) => {
 
   const url = process.env.BASE_URL
 
-  return (
-    <div>
-      <Home url={url} />
-    </div>
-  )
+  return <Home url={url} />
 }
 
 export default HomeLayout

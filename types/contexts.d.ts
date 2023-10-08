@@ -1,16 +1,16 @@
 import { en, fr } from '@/locales'
+import { Hue, Theme } from '@/utils'
 
 // ================================================== //
 
-// =========== //  Dark mode context  // =========== //
-
-export type Hue = 'purple' | 'blue' | 'pink' | 'red' | 'orange'
+// =========== //  Theme context  // =========== //
 
 export interface IThemeContext {
   isDarkModeActive: boolean
-  changeDarkMode: (isNowDarkModeActive: boolean) => void
-  hue: Hue
+  selectedHue: Hue
+  selectedTheme: Theme
   changeHue: (newHue: Hue) => void
+  changeTheme: (newTheme: Theme) => void
 }
 
 // ================================================== //
@@ -27,7 +27,7 @@ export type DotNestedKeys<T> = (T extends object ?
 
 type LocaleMap = typeof locales
 export type LocaleName = keyof LocaleMap
-export type I18NStringPaths = DotNestedKeys<typeof locales['en']>
+export type I18NStringPaths = DotNestedKeys<typeof en>
 
 export interface ILocaleContext {
   locales: typeof locales
@@ -35,3 +35,48 @@ export interface ILocaleContext {
   changeLocale: (newLocale: LocaleName) => void
   getString: (key: I18NStringPaths, options?: { [key: string]: unknown }) => string
 }
+
+// ================================================== //
+
+// ============= //  Status context  // ============= //
+
+
+type StatusType = 'default' | 'error' | 'warning' | 'success'
+
+export interface IStatus {
+  type: StatusType
+  title?: string
+  text: string
+}
+
+export interface IStatusContext {
+  status: IStatus | null
+  setStatus: React.Dispatch<React.SetStateAction<IStatus | null>>
+}
+
+// ================================================== //
+
+// ============= //  Toasts context  // ============= //
+
+type ToastType = 'default' | 'error' | 'warning' | 'success'
+
+export interface IToast {
+  type?: ToastType
+  title?: string
+  content: string
+  duration?: number
+  icon?: JSX.Element
+}
+
+export interface IToastBuilt extends IToast {
+  type: ToastType
+  id: string
+}
+
+export interface IToastsContext {
+  toasts: IToastBuilt[]
+  pushToast: (newToast: IToast) => void
+  deleteToast: (toastId: string) => void
+}
+
+export type PushToast = (toast: IToast) => void

@@ -1,0 +1,40 @@
+:root
+  // Success / infos
+  --green-foreground: #1c7342
+  --green-background: #d8f8e6
+
+  // Warnings
+  --orange-foreground: #d87732
+  --orange-background: #f8e5d8
+
+  // Errors
+  --red-foreground: #c5303f
+  --red-background: #f8d8db
+
+  --gold: #f2b90d
+
+  --main-title-size: clamp(3rem, 5vw, 7rem)
+  --base-title-size: clamp(2rem, 3vw, 4rem)
+  --base-subtitle-size: clamp(1.8rem, 2vw, 2.4rem)
+
+  --large-text-size: clamp(1.5rem, 1.5vw, 2rem)
+  --base-text-size: clamp(1.2rem, 1vw, 1.7rem)
+  --small-text-size: clamp(0.8rem, 1vw, 1.2rem)
+
+  --base-spacing: 1.4rem
+
+  --base-width: clamp(260px, 95%, 400px)
+  --wide-width: clamp(300px, 95%, 600px)
+  --input-width: 260px
+
+  --wide-padding: var(--base-spacing) calc(var(--base-spacing) * 1.5)
+  --small-padding: calc(var(--base-spacing) / 1.5) var(--base-spacing)
+
+  --stroke: 0.1rem
+  --radius: 0.5rem
+  --shadow: 0 0 1.5rem hsla(var(--primary), 0.1)
+
+@media (min-width: 767px)
+  :root
+    --base-width: clamp(260px, 80vw, 400px)
+    --wide-width: clamp(300px, 80vw, 600px)

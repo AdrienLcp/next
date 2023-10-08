@@ -3,10 +3,12 @@
 .container
   position: relative
   
-  &:hover .tooltip
-    transition-delay: 0.6s
-    visibility: visible
-    opacity: 1
+  &:hover,
+  &:focus-visible
+    & .tooltip
+      transition-delay: 0.6s
+      visibility: visible
+      opacity: 1
 
 .tooltip
   @include posAbsolute(calc(100% + 0.7rem), auto, auto, 50%)
@@ -24,7 +26,7 @@
   text-align: center
   border-radius: var(--small-radius)
   box-shadow: var(--base-shadow)
-  transition: opacity 250ms
+  transition: opacity var(--transition-250)
 
   &::before
     content: ''

@@ -34,7 +34,9 @@
   cursor: default
   opacity: 0.5
 
-  &:hover
+  &:hover,
+  &:focus,
+  &:focus-visible
     opacity: 0.5
   
   &:active
@@ -45,20 +47,46 @@
   width: 0
   height: 0
 
+@mixin visibleForScreenReader
+  position: absolute
+  width: 1px
+  height: 1px
+  padding: 0
+  margin: -1px
+  overflow: hidden
+  border: 0
+  clip: rect(0, 0, 0, 0)
+
+  &:focus-visible
+    top: 0
+    left: 0
+    border-radius: var(--radius)
+    border: var(--stroke) solid black
+    background-color: white
+    color: black
+    margin: 0
+    padding: var(--base-spacing)
+    clip: unset
+    text-decoration: none
+    width: auto
+    height: auto
+    z-index: 2
+
+
 @mixin success
   background-color: var(--success-bg)
   color: var(--success)
-  border: 1px solid var(--success-border)
+  border: var(--stroke-width) solid var(--success-border)
 
 @mixin warning
   background-color: var(--warning-bg)
   color: var(--warning)
-  border: 1px solid var(--warning-border)
+  border: var(--stroke-width) solid var(--warning-border)
 
 @mixin error
   background-color: var(--error-bg)
   color: var(--error)
-  border: 1px solid var(--error-border)
+  border: var(--stroke-width) solid var(--error-border)
 
 @mixin textEllipsis
   width: 100%

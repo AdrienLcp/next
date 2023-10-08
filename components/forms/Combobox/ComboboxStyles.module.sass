@@ -23,18 +23,12 @@
   background-color: var(--neutral)
   max-height: 0
   transition-delay: 200ms
-  transition: max-height 150ms ease-out
+  transition: max-height var(--transition-150) ease-out
 
   &.open
     max-height: 200px
     transition-delay: 0
-    border: 1px solid var(--text-lighter)
-
-.option
-  opacity: 0.75
-
-  &:nth-child(odd)
-    background-color: var(--neutral-secondary)
+    border: var(--stroke-width) solid var(--text-lighter)
 
 .button
   display: flex
@@ -42,13 +36,14 @@
   width: 100%
   padding: var(--wide-padding)
 
+  &:hover,
+  &:focus-visible
+    opacity: 1
+    background-color: var(--neutral-light)
+
   &:focus
     opacity: 0.9
     background-color: var(--neutral-lighter)
-
-  &:hover
-    opacity: 1
-    background-color: var(--neutral-light)
 
 .content
   width: 100%

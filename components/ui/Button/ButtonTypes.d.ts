@@ -1,17 +1,12 @@
-type OmittedButtonProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'className'>
+type ButtonProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'>
 
-export interface IButtonProps extends OmittedButtonProps {
+type ButtonVariant = 'icon' | 'contained' | 'outlined' | 'underline'
+
+export interface IButtonProps extends ButtonProps {
   /**
    * Button variant
-   * @type 'icon' |
-   *       'primary' |
-   *       'secondary' |
-   *       'underline' |
-   *       'danger' |
-   *       'warning' |
-   *       'success' |
-   *       'info'
-   * @defaultValue null
+   * @type 'icon' | 'contained' | 'outlined' | 'underline'
+   * @default null
    */
   variant?: ButtonVariant
 
@@ -23,7 +18,7 @@ export interface IButtonProps extends OmittedButtonProps {
   /**
    * Icon side in the button (left or right)
    * @type 'left' | 'right'
-   * @defaultValue 'left'
+   * @default 'left'
    */
   iconSide?: 'left' | 'right'
   
@@ -33,13 +28,13 @@ export interface IButtonProps extends OmittedButtonProps {
    * Show Loader when true
    * 
    * Replace icon by loader when true
-   * @defaultValue false
+   * @default false
    */
   isLoading?: boolean
   
   /**
    * Disabled State
-   * @defaultValue false
+   * @default false
    */
   isDisabled?: boolean
   
@@ -48,13 +43,3 @@ export interface IButtonProps extends OmittedButtonProps {
    */
   className?: string
 }
-
-type ButtonVariant =
-  'icon' |
-  'primary' |
-  'secondary' |
-  'underline' |
-  'danger' |
-  'warning' |
-  'success' |
-  'info'

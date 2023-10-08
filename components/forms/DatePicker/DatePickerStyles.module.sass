@@ -1,0 +1,50 @@
+.container
+  position: relative
+  
+.popover
+  position: absolute
+  top: calc(100% + 2px)
+  z-index: 1
+  width: 120%
+  overflow: hidden
+  height: 0
+  transition: height var(--transition-100)
+  
+  &.focused
+    transition: height var(--transition-500)
+    height: 1000px
+
+.calendar
+  border: var(--stroke-width) solid var(--text-lighter)
+  border-radius: var(--base-radius)
+  padding: var(--small-padding)
+  background-color: var(--neutral)
+
+.header
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1ch
+
+.monthCombobox
+  flex: 1.5
+  
+.yearCombobox
+  flex: 1
+
+.days
+  margin-top: 1ch
+  display: grid
+  grid-template-rows: 1.15fr repeat(5, 1fr)
+  grid-template-columns: repeat(7, 1fr)
+  place-items: center
+
+.day
+  border: 1px solid transparent
+  width: 3.8ch
+  height: 3.8ch
+  border-radius: var(--small-radius)
+
+  &:hover,
+  &:focus-visible
+    border: 1px solid var(--text-lighter)

@@ -2,8 +2,8 @@ import { createContext, useEffect, useState } from 'react'
 
 import type { ILocaleContext, LocaleName, DotNestedKeys } from '@/types'
 import { Polyglot } from '@/i18n'
-import { LocalStorage, isLocaleName } from '@/utils'
-import { Locales } from '@/utils'
+import { LocalStorage } from '@/utils'
+import { Locale } from '@/utils'
 import { en, fr } from '@/locales'
 
 export const locales = { en, fr }
@@ -11,18 +11,18 @@ export const locales = { en, fr }
 export const LocaleContext = createContext<ILocaleContext | null>(null)
 
 export const LocaleContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const [selectedLocale, setSelectedLocale] = useState<LocaleName>(Locales.FR)
+  const [selectedLocale, setSelectedLocale] = useState<LocaleName>(Locale.FR)
 
   useEffect(() => {
-    const favoriteLocale = window.localStorage.getItem(LocalStorage.Locale)
+    const favoriteLocale = window.localStorage.getItem(LocalStorage.Locale) as Locale
 
-    if (favoriteLocale && isLocaleName(favoriteLocale)) {
+    if (favoriteLocale && Object.values(Locale).includes(favoriteLocale)) {
       changeLocale(favoriteLocale)
     } else {
       const navigatorLanguage = window.navigator.language
-      const formattedLocale = navigatorLanguage.substring(0, 2)
+      const formattedLocale = navigatorLanguage.substring(0, 2) as Locale
 
-      if (isLocaleName(formattedLocale)) {
+      if (Object.values(Locale).includes(favoriteLocale)) {
         changeLocale(formattedLocale)
       }
     }

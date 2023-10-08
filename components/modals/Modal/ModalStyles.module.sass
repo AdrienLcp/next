@@ -4,13 +4,13 @@
 .wrapper
   @include fullScreen
   @include flexCenter
-  @include animate(fade-in, 200ms, ease-out)
+  @include animate(fade-in, var(--transition-200), ease-out)
 
 .behind
   @include fullScreen
   background-color: var(--large-opacity)
   backdrop-filter: blur(3px)
-  transition: opacity 200ms
+  transition: opacity var(--transition-200)
 
 .container
   position: relative

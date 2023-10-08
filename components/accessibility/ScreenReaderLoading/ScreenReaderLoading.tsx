@@ -1,7 +1,7 @@
-import styles from './SrLoadingStyles.module.sass'
+import styles from './ScreenReaderLoadingStyles.module.sass'
 import { useLocale } from '@/hooks'
 
-export const SrLoading: React.FC = () => {
+export const ScreenReaderLoading: React.FC = () => {
   const { getString } = useLocale()
 
   return (

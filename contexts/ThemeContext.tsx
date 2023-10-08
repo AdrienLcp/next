@@ -1,68 +1,89 @@
-import { Hue, type IThemeContext } from '@/types'
-import { LocalStorage } from '@/utils'
 import { createContext, useCallback, useEffect, useState } from 'react'
+
+import type { IThemeContext } from '@/types'
+import { Hue, LocalStorage, Theme } from '@/utils'
+
+const matcher = window.matchMedia('(prefers-color-scheme: dark)')
 
 export const ThemeContext = createContext<IThemeContext | null>(null)
 
 export const ThemeContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [isDarkModeActive, setIsDarkModeActive] = useState<boolean>(false)
-  const [hue, setHue] = useState<Hue>('purple')
+  const [selectedTheme, setSelectedTheme] = useState<Theme>(Theme.System)
+  const [selectedHue, setSelectedHue] = useState<Hue>(Hue.Neutral)
 
-  const getFavoriteHue = () => {
-    const favoriteHueFromLocalStorage = window.localStorage.getItem(LocalStorage.Hue)
+  const isHue = (hue: Hue) => Object.values(Hue).includes(hue)
+  const isTheme = (theme: Theme) => Object.values(Theme).includes(theme)
 
-    if (favoriteHueFromLocalStorage) {
-      setHue(JSON.parse(favoriteHueFromLocalStorage))
+  const changeHue = useCallback((newHue: Hue) => {
+    if (isHue(newHue)) {
+      setSelectedHue(newHue)
+      window.localStorage.setItem(LocalStorage.Hue, newHue)
     }
-  }
+  }, [])
 
-  const changeHue = (newHue: Hue) => {
-    setHue(newHue)
-    window.localStorage.setItem(LocalStorage.Hue, newHue)
-  }
-
-  const changeDarkMode = (newValue: boolean) => {
-    setIsDarkModeActive(newValue)
-
-    window.localStorage.setItem(LocalStorage.DarkMode, JSON.stringify(newValue))
-
-    if (newValue) {
-      document.body.classList.add('dark')
-    } else {
-      document.body.classList.remove('dark')
+  const changeTheme = useCallback((newTheme: Theme) => {
+    if (!isTheme(newTheme)) {
+      return
     }
-  }
 
-  const handleChangeDarkMode = useCallback((event: MediaQueryListEvent) => {
-    changeDarkMode(event.matches)
+    setSelectedTheme(newTheme)
+    window.localStorage.setItem(LocalStorage.Theme, JSON.stringify(newTheme))
+
+    switch (newTheme) {
+      case Theme.Dark:
+        setIsDarkModeActive(true)
+        break
+      case Theme.Light:
+        setIsDarkModeActive(false)
+        break
+      case Theme.System:
+      default:
+        setIsDarkModeActive(matcher.matches)
+        break
+    }
   }, [])
 
   useEffect(() => {
-    getFavoriteHue()
-    
-    const favoriteMode = window.localStorage.getItem(LocalStorage.DarkMode)
-    const matcher = window.matchMedia('(prefers-color-scheme: dark)')
+    const favoriteThemeFromLocalStorage = window.localStorage.getItem(LocalStorage.Theme)
+    const favoriteHueFromLocalStorage = window.localStorage.getItem(LocalStorage.Hue)
 
-    if (favoriteMode) {
-      changeDarkMode(JSON.parse(favoriteMode))
-    } else {
-      changeDarkMode(matcher.matches)
-      window.localStorage.setItem(LocalStorage.DarkMode, JSON.stringify(matcher.matches))
+    if (favoriteThemeFromLocalStorage) {
+      const favoriteTheme = JSON.parse(favoriteThemeFromLocalStorage) as Theme
+      changeTheme(favoriteTheme)
     }
 
-    matcher.addEventListener('change', handleChangeDarkMode)
+    if (favoriteHueFromLocalStorage) {
+      const favoriteHue = JSON.parse(favoriteHueFromLocalStorage) as Hue
+      changeHue(favoriteHue)
+    }
+  }, [changeHue, changeTheme])
+
+  useEffect(() => {
+    const handlePrefersColorSchemeChange = (event: MediaQueryListEvent) => {
+      if (selectedTheme === Theme.System) {
+        setIsDarkModeActive(event.matches)
+      }
+    }
+
+    if (selectedTheme === Theme.System) {
+      matcher.addEventListener('change', handlePrefersColorSchemeChange)
+    } else {
+      matcher.removeEventListener('change', handlePrefersColorSchemeChange)
+    }
 
     return () => {
-      matcher.removeEventListener('change', handleChangeDarkMode)
+      matcher.removeEventListener('change', handlePrefersColorSchemeChange)
     }
-  }, [handleChangeDarkMode])
+  }, [selectedTheme])
 
   return (
     <ThemeContext.Provider
       value={{
         isDarkModeActive,
-        changeDarkMode,
-        hue,
+        selectedTheme,
+        selectedHue,
+        changeTheme,
         changeHue
       }}
     >

@@ -1,6 +1,6 @@
 @import '@/styles/mixins'
 
-.toast
+.status
   @include posFixed(20px, auto, auto, 50%)
   transform: translate(-50%, -400%)
   box-shadow: var(--base-shadow)
@@ -12,6 +12,8 @@
   align-items: center
   justify-content: space-between
   gap: 2ch
+  animation: slide-in 30s forwards
+  //! cette animation c'est d'la merde
 
   &.success
     @include success
@@ -22,22 +24,20 @@
   &.error
     @include error
 
-  &.info
+  &.default
     background-color: var(--green)
     color: var(--white)
 
-  &.displayed
-    animation: slide-in 30s forwards
-
   &.hidden
     animation: slide-out 500ms forwards
+    //! cette animation c'est d'la merde
 
 .content
   display: flex
   align-items: center
   gap: 1ch
 
-.message
+.text
   text-align: center
 
 @keyframes slide-in

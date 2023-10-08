@@ -3,7 +3,7 @@
   overflow-y: auto
   margin: 0 auto
   border-radius: var(--small-radius)
-  border: 1px solid var(--text-lighter)
+  border: var(--stroke-width) solid var(--text-lighter)
   background-color: var(--neutral-secondary)
 
 .heading
@@ -11,7 +11,7 @@
   flex-direction: row
   align-items: center
   justify-content: space-evenly
-  border-bottom: 1px solid var(--text-lighter)
+  border-bottom: var(--stroke-width) solid var(--text-lighter)
   width: 100%
 
 .button
@@ -38,7 +38,8 @@
     &::after
       display: none
 
-  &:hover
+  &:hover,
+  &:focus-visible
     background-color: var(--neutral-light) 
 
   &:active
@@ -48,7 +49,8 @@
     background-color: var(--neutral-secondary)
     cursor: default
 
-    &:hover
+    &:hover,
+    &:focus-visible
       opacity: 1
 
 .content

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react'
+
 import type { Cache, IUseApiState } from '@/types'
-import { ServerError, Task, isApiError } from '@/utils'
+import { isApiError, ServerError, Task } from '@/utils'
 import { fetchReducer } from '@/reducers'
 
 export const useApi = <T = unknown>(url?: string, init?: RequestInit): IUseApiState<T> => {

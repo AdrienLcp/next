@@ -1,81 +1,55 @@
+@import '@/styles/themes'
+@import '@/styles/transitions'
 @import '@/styles/vars'
 
-html,
-body,
-:root
-  height: 100%
+*
+  color: inherit
+
+*::-webkit-scrollbar
+  background-color: hsla(var(--primary), 0.1)
+  border-radius: var(--radius)
+  width: 0.5rem
+
+  &-thumb
+    background-color: hsla(var(--primary), 0.2)
+    border-radius: var(--radius)
+
+    &:hover,
+    &:focus-visible
+      background-color: hsla(var(--primary), 0.5)
 
 html
   scroll-behavior: smooth
   font-size: 62.5%
 
-*::-webkit-scrollbar
-  background-color: rgba(10, 10, 10, 0.1)
-  width: 0.5rem
-  border-radius: var(--base-radius)
-
-  &-thumb
-    background-color: rgba(10, 10, 10, 0.2)
-    border-radius: var(--base-radius)
-
-    &:hover
-      background-color: rgba(10, 10, 10, 0.5)
-
 body
-  --neutral: var(--white)
-  --neutral-secondary: var(--white-secondary)
-  --neutral-light: var(--white-light)
-  --neutral-lighter: var(--white-lighter)
-
-  --accent: var(--black)
-  --accent-secondary: var(--black-secondary)
-  --accent-light: var(--black-light)
-  --accent-lighter: var(--black-lighter)
-
-  --text: hsla(var(--hue-selected), 15%, 10%, 0.8)
-  --text-secondary: hsla(var(--hue-selected), 15%, 87%, 0.8)
-  --text-light: hsla(var(--hue-selected), 15%, 10%, 0.6)
-  --text-lighter: hsla(var(--hue-selected), 15%, 10%, 0.4)
-
-  --card-shadow: 0 0 1.5rem hsla(var(--hue-selected), 10%, 10%, 0.1)
-  --base-shadow: 0 0 1rem hsla(var(--hue-selected), 10%, 10%, 0.15)
-  --inner-shadow: inset 0 0.5rem 1.5rem hsla(var(--hue-selected), 10%, 10%, 0.1)
-
-  &.dark
-    --neutral: var(--black)
-    --neutral-secondary: var(--black-secondary)
-    --neutral-light: var(--black-light)
-    --neutral-lighter: var(--black-lighter)
-
-    --accent: var(--white)
-    --accent-secondary: var(--white-secondary)
-    --accent-light: var(--white-light)
-    --accent-lighter: var(--white-lighter)
-
-    --text: hsla(var(--hue-selected), 15%, 90%, 0.8)
-    --text-secondary: hsla(var(--hue-selected), 15%, 87%, 0.8)
-    --text-light: hsla(var(--hue-selected), 15%, 90%, 0.6)
-    --text-lighter: hsla(var(--hue-selected), 15%, 90%, 0.4)
-
-    --card-shadow: 0 0 1.5rem hsla(var(--hue-selected), 10%, 90%, 0.1)
-    --base-shadow: 0 0 1rem hsla(var(--hue-selected), 10%, 90%, 0.15)
-    --inner-shadow: inset 0 0.5rem 1.5rem hsla(var(--hue-selected), 10%, 90%, 0.1)
-
-    & *::-webkit-scrollbar
-      background-color: rgba(240, 405, 240, 0.1)
-      width: 0.5rem
-      border-radius: var(--base-radius)
-
-      &-thumb
-        background-color: rgba(240, 240, 240, 0.2)
-        border-radius: var(--base-radius)
-
-        &:hover
-          background-color: rgba(240, 240, 240, 0.5)
-
-  color: var(--text)
-  background-color: var(--neutral)
-
+  background-color: hsl(var(--background))
+  color: hsl(var(--foreground))
+  min-height: 100vh
+  font-size: 1.4rem
+  overflow: auto
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  
   ::selection
-    background-color: var(--primary)
-    color: var(--white)
+    background-color: hsl(var(--foreground))
+    color: hsl(var(--background))
+
+// Mobile  
+@media (width <= 480px)
+
+// Small device
+@media (481px <= width <= 767px)
+
+// Tablet
+@media (768px <= width <= 991px)
+
+// Laptop
+@media (992px <= width <= 1199px)
+
+// Desktop
+@media (1200px <= width <= 1919px)
+
+// Large
+@media (width >= 1920px)
+

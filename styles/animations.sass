@@ -1,4 +1,4 @@
-@mixin animate ($animation: fade-in, $transition: 200ms, $ease: ease-out, $delay: 0ms)
+@mixin animate ($animation: fade-in, $transition: var(--transition-200), $ease: ease-out, $delay: 0ms)
   animation: $animation $transition $delay $ease
 
 @keyframes fade-in

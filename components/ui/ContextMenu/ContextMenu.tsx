@@ -21,6 +21,7 @@ export const ContextMenu: React.FC<IContextMenuProps> = ({ actions }) => {
       if (firstActionRef.current) {
         firstActionRef.current.focus()
       }
+      
       if (listRef.current) {
         listRef.current.scrollTop = 0
       }

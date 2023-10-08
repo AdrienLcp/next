@@ -1,44 +1,41 @@
 export interface IDatePickerProps {
-    /**
-   * onChange function
-   */
-  onChange: (newDate: Date) => void
-
-  /**
-   * Value
-   */
   value?: Date
-
-  /**
-   * Label
-   */
-  label: string
-
-  /**
-   * Placeholder
-   */
+  onChange: (date: Date) => void
+  label?: string
   placeholder?: string
 
-  /**
-   * Icon
-   * 
-   * @default DateIcon
-   */
-  icon?: JSX.Element
 
-  /**
-   * Min date
-   */
-  min?: Date
-
-  /**
-   * Max date
-   */
-  max?: Date
+  // TODO
+  max?: string
+  min?: string
 }
 
-export interface IDate {
-  day: [number, number] | null
-  month: [number, number] | null
-  year: [number, number, number, number] | null
+export interface IMonth {
+  id: number
+  name: MonthName
+  dayCount: number
+  leapYearDayCount?: number
 }
+
+export type MonthName = 
+  'january' |
+  'february' |
+  'march' |
+  'april' |
+  'may' |
+  'june' |
+  'july' |
+  'august' |
+  'september' |
+  'october' |
+  'november' |
+  'december'
+
+export type WeekDay =
+  'monday' |
+  'tuesday' |
+  'wednesday' |
+  'thursday' |
+  'friday' |
+  'saturday' |
+  'sunday'

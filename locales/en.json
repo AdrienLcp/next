@@ -1,24 +1,62 @@
 {
   "appName": "Shop",
   "components": {
-    "textField": {
-      "max": "characters max",
-      "limit": "character(s) remaining"
+    "contextMenu": {
+      "open": "Open contextual menu",
+      "choose": "Choose"
     },
     "combobox": {
       "open": "Show options",
       "select": "Select",
       "filter": "Filter"
     },
-    "pagination": {
-      "goTo": "Go to page"
+    "date": {
+      "placeholder": "Select a date",
+      "months": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December"
+      },
+      "days": {
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+      }
+    },
+    "imagesSlider": {
+      "skipLabel": "Skipe images slider controls",
+      "ariaLabel": "Images slider",
+      "defaultImageAlt": "Image from slider",
+      "nextLabel": "View next image",
+      "previousLabel": "View previous image",
+      "viewImage": "View image"
+    },
+    "skip": {
+      "label": "Skip this section"
     },
     "tabs": {
       "goTo": "Open tab"
     },
-    "contextMenu": {
-      "open": "Open contextual menu",
-      "choose": "Choose"
+    "textField": {
+      "max": "characters max",
+      "limit": "character(s) remaining",
+      "date": "Select date"
+    },
+    "pagination": {
+      "goTo": "Go to page"
     }
   },
   "actions": {
