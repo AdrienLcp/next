@@ -1,17 +1,11 @@
-.container
-  position: relative
+.button
+  width: 100%
+  height: 100%
+  border-radius: inherit
+  overflow: hidden
 
-.message
-  position: absolute
-  bottom: 0
-  opacity: 0
-  z-index: -1
-  visibility: hidden
-  color: var(--red-foreground)
-  font-weight: 600
-  transition: transform var(--transition-200), opacity var(--transition-100) 100ms
+  &:hover
+    background-color: hsl(var(--border))
 
-  &.visible
-    transform: translateY(1em)
-    opacity: 1
-    visibility: visible
+    & svg path
+      stroke: hsl(var(--foreground))

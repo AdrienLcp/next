@@ -1,5 +1,7 @@
 export * from './useApi'
+export * from './useBreakpoint'
 export * from './useContexts'
 export * from './useDebounce'
 export * from './useDocVisibility'
+export * from './useLocalStorage'
 export * from './useTimeout'

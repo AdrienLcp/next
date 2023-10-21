@@ -31,7 +31,7 @@
   height: 100vh
 
 @mixin disabled
-  cursor: default
+  cursor: not-allowed
   opacity: 0.5
 
   &:hover,
@@ -61,11 +61,11 @@
     top: 0
     left: 0
     border-radius: var(--radius)
-    border: var(--stroke) solid black
+    border: var(--thickness) solid black
     background-color: white
     color: black
     margin: 0
-    padding: var(--base-spacing)
+    padding: var(--spacing)
     clip: unset
     text-decoration: none
     width: auto
@@ -76,20 +76,19 @@
 @mixin success
   background-color: var(--success-bg)
   color: var(--success)
-  border: var(--stroke-width) solid var(--success-border)
+  border: var(--thickness) solid var(--success-border)
 
 @mixin warning
   background-color: var(--warning-bg)
   color: var(--warning)
-  border: var(--stroke-width) solid var(--warning-border)
+  border: var(--thickness) solid var(--warning-border)
 
 @mixin error
   background-color: var(--error-bg)
   color: var(--error)
-  border: var(--stroke-width) solid var(--error-border)
+  border: var(--thickness) solid var(--error-border)
 
 @mixin textEllipsis
-  width: 100%
   white-space: nowrap
   overflow: hidden
   text-overflow: ellipsis

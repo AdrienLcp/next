@@ -31,14 +31,17 @@
     padding: var(--wide-padding)
     background-color: hsl(var(--primary))
     color: hsl(var(--primary-foreground))
-    border: var(--stroke) solid hsl(var(--primary))
+    border: var(--thickness) solid hsl(var(--primary))
     
   &.outlined
     @include commonButtonStyles
     font-weight: 600
     padding: var(--wide-padding)
     color: hsl(var(--primary))
-    border: var(--stroke) solid hsl(var(--primary))
+    border: var(--thickness) solid hsl(var(--primary))
+
+    &:focus-visible
+      background-color: hsla(var(--primary), 0.2)
 
   &.underline
     @include commonButtonStyles

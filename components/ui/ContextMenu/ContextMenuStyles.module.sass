@@ -2,8 +2,8 @@
   position: relative
 
 .button
-  border: var(--stroke) solid hsl(var(--muted-foreground))
-  padding: calc(var(--base-spacing) / 1.5)
+  border: var(--thickness) solid hsl(var(--muted-foreground))
+  padding: calc(var(--spacing) / 1.5)
 
   &:hover,
   &:focus-visible
@@ -18,7 +18,7 @@
   z-index: 1
   max-height: 0
   overflow: hidden
-  border: var(--stroke) solid transparent
+  border: var(--thickness) solid transparent
   transition: max-height var(--transition-200)
 
   &:hover .action:focus-visible

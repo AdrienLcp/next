@@ -4,11 +4,10 @@ import type { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
 
 import { useRef, useState } from 'react'
 
-import { Button, Combobox, Switch, TextField, Toast, Tabs, AlertModal, Pagination, ContextMenu, DatePicker, DatePickerReact, Input } from '@/components'
+import { Button, Combobox, Form, Switch, TextField, Toast, Tabs, AlertModal, Pagination, ContextMenu, DatePicker, DatePickerReact, Input } from '@/components'
 import { Loader, LockIcon, UserIcon } from '@/icons'
 import { Hue, Locale, Theme, getRandomNumber } from '@/utils'
-import { useDocVisibility, useLocale, useStatus, useTheme, useToasts } from '@/hooks'
-import { Form } from '@/components/forms/Form/Form'
+import { useDocVisibility, useLocale, useTheme, useToasts } from '@/hooks'
 
 interface HomeProps {
   url?: string
@@ -17,6 +16,7 @@ interface HomeProps {
 const HomePage: React.FC<HomeProps> = ({ url }) => {
   const [pseudo, setPseudo] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [error, setError] = useState<string>('')
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [page, setPage] = useState<number>(1)
 
@@ -25,8 +25,6 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
 
   const { isDarkModeActive, changeHue, changeTheme } = useTheme()
   const { changeLocale, getString } = useLocale()
-  const { pushToast } = useToasts()
-  const { setStatus } = useStatus()
 
   const handleSubmit = (event: any) => {
     event.preventDefault()
@@ -89,10 +87,19 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
   const onSelectChange = (option: IComboboxOption | null) => {
     console.log(option)
   }
+
+  const handleChange = (value: string) => {
+    setPseudo(value)
+    if (value.length > 5) {
+      setError('HOP HOP HOP CEST TROP LONG LA')
+    } else {
+      setError('')
+    }
+  }
   
   return (
     <main>
-      <form
+      <Form
         style={{
           display: 'flex',
           flexDirection: 'column',
@@ -104,20 +111,25 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
         }}
         onSubmit={handleSubmit}
       >
+        {/* //! refaire TextField, ComboBox et DatePicker avec le nouveau Input */}
+
         <TextField
-          label='input'
-          icon={<UserIcon />}
-          onChange={() => {}}
-        />
-        <Input
-          label='input'
+          label='LEFT & RIGHT ce texte est long'
+          icon={<UserIcon color='hsl(var(--muted-foreground))' />}
+          value={pseudo}
+          onChange={handleChange}
+          onClear={() => {}}
+          limit={50}
+          tooltip={{ text: 'Le pseudo ne doit contenir entre 40 et 100 caractères, et ne pas contenir de caractère spécial.'}}
         />
 
-        <Form
-          
+        <TextField
+          label='RIGHT'
+          value={pseudo}
+          onChange={handleChange}
+          onClear={() => {}}
+          limit={50}
         />
-        
-        {/* //! refaire TextField, ComboBox et DatePicker avec le nouveau Input */}
         
         <Button
           variant='contained'
@@ -183,8 +195,7 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
           PINK
         </Button>
 
-
-      </form>
+      </Form>
     </main>
   )
 }

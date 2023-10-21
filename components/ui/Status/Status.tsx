@@ -1,59 +1,56 @@
+import type { IStatusProps } from '@/components/ui/Status/StatusTypes'
 import styles from './StatusStyles.module.sass'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 
 import { CheckIcon, ErrorIcon, InfoIcon, WarningIcon } from '@/icons'
-import { useStatus, useTimeout } from '@/hooks'
 import { CloseButton } from '@/components'
 
-export const Status: React.FC = () => {
-  const [isHidden, setIsHidden] = useState<boolean>(false)
-  const { status, setStatus } = useStatus()
+export const Status: React.FC<IStatusProps> = ({
+  status,
+  setStatus
+}) => {
+  const foregroundColor = useMemo(() => {
+    if (!status) return 'var(--foreground)'
 
-  const [closeToast] = useTimeout(() => resetStatus())
-  
-  // useEffect(() => {
-  //   setStatus(null)
-  // }, [window.location.href])
-
-  const hideStatus = () => {
-    setIsHidden(true)
-    closeToast()
-  }
-
-  const resetStatus = () => {
-    setStatus(null)
-    setIsHidden(false)
-  }
-
-  //! deux de suite ça marche pas wtf
+    switch (status.type) {
+      case 'success':
+        return 'var(--green-foreground)'
+      case 'warning':
+        return 'var(--orange-foreground)'
+      case 'error':
+        return 'var(--red-foreground)'
+      case 'default':
+      default:
+        return 'var(--foreground)'
+    }
+  }, [status])
 
   const icon = useMemo(() => {
     if (!status) return null
 
-    const iconSize = '1.6em'
+    const iconProps = {
+      size: '1.6em',
+      color: foregroundColor
+    }
 
     switch (status.type) {
       case 'success':
-        return <CheckIcon size={iconSize} color={'var(--success)'} />
+        return <CheckIcon {...iconProps} />
       case 'warning':
-        return <WarningIcon size={iconSize} color={'var(--warning)'} />
+        return <WarningIcon {...iconProps} />
       case 'error':
-        return <ErrorIcon size={iconSize} color={'var(--error)'} />
+        return <ErrorIcon {...iconProps} />
       case 'default':
       default:
-        return <InfoIcon size={iconSize} color={'var(--white)'} />
+        return <InfoIcon {...iconProps} />
     }
-  }, [status])
+  }, [status, foregroundColor])
 
   if (!status) return null
 
   return (
-    <div className={`
-      ${styles.status}
-      ${isHidden && styles.hidden}
-      ${styles[status.type]}
-    `}>
+    <div className={`${styles.status} ${styles[status.type]}`}>
       <div className={styles.content}>
         {icon}
 
@@ -63,9 +60,9 @@ export const Status: React.FC = () => {
       </div>
 
       <CloseButton
-        size={'1em'}
-        color={status.type === 'default' ? 'var(--white-light)' : 'var(--black-lighter)'}
-        onClick={hideStatus}
+        size='1em'
+        color={foregroundColor}
+        onClick={() => setStatus(null)}
         className={styles.button}
       />
     </div>

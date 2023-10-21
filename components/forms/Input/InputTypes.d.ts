@@ -8,9 +8,30 @@ export interface IInputProps extends InputProps {
   label?: string
 
   /**
+   * Unique ID
+   */
+  id?: string
+
+  /**
    * Display content on left side of the input
    */
   icon?: React.ReactNode
+
+  /**
+   * Display tooltip on right or left
+   */
+  tooltip?: IInputTooltip
+
+  /**
+   * Display message under input
+   */
+  message?: string
+
+  /**
+   * Add styles to input if not null & display error message under input
+   * Override "message" prop if not null
+   */
+  hasError?: boolean
 
   /**
    * Display content on right side of the input
@@ -18,15 +39,9 @@ export interface IInputProps extends InputProps {
   rightContent?: React.ReactNode
 
   /**
-   * Z-index for right content
-   * @default 0
+   * Z index for right when displayed
    */
-  rightContentZIndex?: number,
-
-  /**
-   * Unique ID
-   */
-  id?: string
+  rightContentZIndex?: number
 
   /**
    * Input type
@@ -51,4 +66,9 @@ export interface IInputProps extends InputProps {
    * @default false
    */
   isCaretHidden?: boolean
+}
+
+export interface IInputTooltip {
+  side?: 'right' | 'left'
+  text: string
 }

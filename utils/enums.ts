@@ -1,3 +1,17 @@
+export enum Device {
+  Mobile = 'Mobile',
+  SmallDevice = 'Small device',
+  Tablet = 'Tablet',
+  Laptop = 'Laptopt',
+  Desktop = 'Desktop',
+  Large = 'Large'
+}
+
+export enum Env {
+  Dev,
+  Prod
+}
+
 export enum Hue {
   // Values need to match with CSS class names in themes.sass file
   Neutral = 'Neutral',

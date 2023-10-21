@@ -3,18 +3,6 @@ import { Hue, Theme } from '@/utils'
 
 // ================================================== //
 
-// =========== //  Theme context  // =========== //
-
-export interface IThemeContext {
-  isDarkModeActive: boolean
-  selectedHue: Hue
-  selectedTheme: Theme
-  changeHue: (newHue: Hue) => void
-  changeTheme: (newTheme: Theme) => void
-}
-
-// ================================================== //
-
 // ============= //  Locale context  // ============= //
 
 const locales = { en, fr }
@@ -33,25 +21,7 @@ export interface ILocaleContext {
   locales: typeof locales
   selectedLocale: LocaleName
   changeLocale: (newLocale: LocaleName) => void
-  getString: (key: I18NStringPaths, options?: { [key: string]: unknown }) => string
-}
-
-// ================================================== //
-
-// ============= //  Status context  // ============= //
-
-
-type StatusType = 'default' | 'error' | 'warning' | 'success'
-
-export interface IStatus {
-  type: StatusType
-  title?: string
-  text: string
-}
-
-export interface IStatusContext {
-  status: IStatus | null
-  setStatus: React.Dispatch<React.SetStateAction<IStatus | null>>
+  getString: (key: I18NStringPaths, options?: { [key: string]: string }) => string
 }
 
 // ================================================== //
@@ -80,3 +50,15 @@ export interface IToastsContext {
 }
 
 export type PushToast = (toast: IToast) => void
+
+// ================================================== //
+
+// =========== //  Theme context  // =========== //
+
+export interface IThemeContext {
+  isDarkModeActive: boolean
+  selectedHue: Hue
+  selectedTheme: Theme
+  changeHue: (newHue: Hue) => void
+  changeTheme: (newTheme: Theme) => void
+}

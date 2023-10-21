@@ -1,6 +1,5 @@
 import {
   LocaleContextProvider,
-  StatusContextProvider,
   ThemeContextProvider,
   ToastsContextProvider
 } from '@/contexts'
@@ -8,11 +7,9 @@ import {
 export const Providers: React.FC<React.PropsWithChildren> = ({ children }) => (
   <LocaleContextProvider>
     <ThemeContextProvider>
-      <StatusContextProvider>
-        <ToastsContextProvider>
-          {children}
-        </ToastsContextProvider>
-      </StatusContextProvider>
+      <ToastsContextProvider>
+        {children}
+      </ToastsContextProvider>
     </ThemeContextProvider>
   </LocaleContextProvider>
 )

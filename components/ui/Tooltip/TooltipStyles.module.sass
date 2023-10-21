@@ -11,29 +11,29 @@
       opacity: 1
 
 .tooltip
-  @include posAbsolute(calc(100% + 0.7rem), auto, auto, 50%)
+  @include posAbsolute(calc(100% + calc(var(--spacing) / 2)), auto, auto, 50%)
   z-index: 50
   visibility: hidden
   opacity: 0
   transform: translateX(-50%)
-  color: var(--neutral-light)
-  background-color: var(--accent-lighter)
-  padding: 1em
-  width: max-content
-  max-width: 20rem
+  color: hsl(var(--muted-foreground))
+  background-color: hsl(var(--muted))
+  padding: var(--wide-padding)
+  width: var(--base-width)
   font-weight: 500
-  font-size: 0.7rem
+  font-size: 0.9em
   text-align: center
-  border-radius: var(--small-radius)
-  box-shadow: var(--base-shadow)
+  border-radius: var(--radius)
+  box-shadow: var(--shadow)
+  pointer-events: none
   transition: opacity var(--transition-250)
 
   &::before
     content: ''
     @include posAbsolute(-0.3rem, auto, auto, 50%)
-    width: 0.6rem
-    height: 0.6rem
-    background-color: var(--accent-lighter)
+    width: calc(var(--spacing) / 2)
+    height: calc(var(--spacing) / 2)
+    background-color: hsl(var(--muted))
     z-index: -1
     transform: translateX(-50%) rotate(45deg)
 

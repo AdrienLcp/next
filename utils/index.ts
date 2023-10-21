@@ -1,4 +1,5 @@
 export * from './actions'
 export * from './api'
+export * from './breakpoints'
 export * from './enums'
 export * from './helpers'

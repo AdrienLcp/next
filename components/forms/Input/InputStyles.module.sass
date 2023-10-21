@@ -1,3 +1,5 @@
+@import '@/styles/mixins'
+
 .container
   position: relative
   height: fit-content
@@ -9,25 +11,58 @@
   z-index: -1
   display: flex
   align-items: center
-  padding: var(--base-spacing)
-  border: var(--stroke) solid hsl(var(--border))
+  padding: var(--spacing)
+  border: var(--thickness) solid hsl(var(--border))
   border-radius: var(--radius)
 
+  &.error
+    border-color: var(--red-foreground)
+
+.message
+  @include textEllipsis
+  color: hsl(var(--muted-foreground))
+  position: absolute
+  top: calc(100% - 0.7em)
+  right: var(--radius)
+  opacity: 0
+  visibility: hidden
+  font-size: 0.7em
+  z-index: -1
+  transform-origin: top
+  transition: transform var(--transition-200), opacity var(--transition-200)
+
 .label
+  @include textEllipsis
   color: hsl(var(--muted-foreground))
   font-size: 1.4rem
   font-weight: 500
   padding: 0 0.7ch
+  transform-origin: left
   transition: transform var(--transition-200)
   background-color: hsl(var(--background))
 
   &.hasIcon
     transform: tanslate(1.3rem, 0)
 
+.left
+  transform: translateY(4%)
+
+.right-content
+  position: absolute
+  top: var(--thickness)
+  right: var(--thickness)
+  height: calc(100% - calc(var(--thickness) * 2))
+  width: clamp(3rem, 22%, 5rem)
+  border-radius: 0 calc(var(--radius) - var(--thickness)) calc(var(--radius) - var(--thickness)) 0
+  display: flex
+  align-items: center
+  justify-content: center
+  z-index: -1
+  overflow: hidden
+
 .input
   padding: var(--wide-padding)
-  background: transparent
-  cursor: pointer
+  background-color: transparent
   font-size: 1.5rem
   width: 100%
 
@@ -47,17 +82,19 @@
     font-size: 0.8em
     color: transparent
 
-  &.withoutCaret
+  &.without-caret
     caret-color: transparent
 
-  &.inputWithLeftContent
-    padding: var(--base-spacing) var(--base-spacing) var(--base-spacing) calc(var(--base-spacing) + 2.2rem)
+  &.input-with-left-content
+    padding: var(--spacing) var(--spacing) var(--spacing) calc(var(--spacing) + 2.2rem)
 
-  &.inputWithRightContent
-    padding: var(--base-spacing) calc(var(--base-spacing) + 2.5rem) var(--base-spacing) var(--base-spacing)
+  &.input-with-right-content
+    padding: var(--spacing) calc(var(--spacing) + 2.5rem) var(--spacing) var(--spacing)
+    width: 94%
 
-  &.inputWithLeftAndRightContent
-    padding: var(--base-spacing) calc(var(--base-spacing) + 2.5rem) var(--base-spacing) calc(var(--base-spacing) + 2.2rem)
+  &.input-with-left-and-right-content
+    padding: var(--spacing) var(--spacing) var(--spacing) calc(var(--spacing) + 2.2rem)
+    width: 84%
 
   &:hover,
   &:focus-visible
@@ -73,28 +110,40 @@
     color: transparent
     
     & ~ .foreground,
-    & ~ .right
+    & ~ .right-content
       opacity: 0.5
 
     &::selection
       color: transparent
       background-color: transparent
 
-  &:focus ~ .foreground
-    border-color: hsl(var(--primary))
+  &:focus
+    & ~ .message
+      visibility: visible
+      opacity: 1
+      transform: translateY(1em)
+    
+    & ~ .foreground
+      border-color: hsl(var(--primary))
 
-    & .label
-      color: hsl(var(--primary))
+      & .label
+        color: hsl(var(--primary))
+
+  &:hover,
+  &:focus
+    & ~ .foreground .left svg path
+      fill: hsl(var(--foreground))
 
   &:focus,
   &:valid
-    cursor: text
+    & ~ .right-content
+      z-index: var(--focused-z-index)
 
     & ~ .foreground .label
-      transform: translate(-0.5rem, -175%) scale(0.8)
+      transform: translate(-0.3rem, -165%) scale(0.8)
 
-      &.labelWithLeftContent
-        transform: translate(-2.1rem, -175%) scale(0.8)
+      &.label-with-left-content
+        transform: translate(-1.75rem, -165%) scale(0.8)
 
     &::placeholder
       color: hsl(var(--muted-foreground))
@@ -107,11 +156,20 @@
     &::-moz-placeholder
       color: hsl(var(--muted-foreground))
 
-.left
-  transform: translateY(5%)
-
-.right
+.tooltip
   position: absolute
-  right: 1.4rem
-  top: 50%
-  transform: translateY(-45%)
+  top: 0
+  height: 100%
+  display: flex
+  align-items: center
+  justify-content: center
+  cursor: help
+
+  &.left
+    right: calc(100% + calc(var(--spacing) / 2))
+
+  &.right
+    left: calc(100% + calc(var(--spacing) / 2))
+
+  &:hover svg path
+    fill: hsl(var(--foreground))
