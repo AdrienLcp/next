@@ -8,22 +8,14 @@ export interface IModalProps extends React.PropsWithChildren {
   
   /**
    * On close function
+   * Modal is blocking if onClose is not defined
    */
-  onClose: () => void
+  onClose?: () => void
 
   /**
    * Modal heading title
    */
   title?: string
-
-  /**
-   * Blocking value
-   * User can't close modal by clicking background & close button isn't diplayed if true
-   * Don't forget to set a condition somewhere to close modal
-   * 
-   * @default false
-   */
-  isBlocking?: boolean
 
   /**
    * Add personnalized styles to modal

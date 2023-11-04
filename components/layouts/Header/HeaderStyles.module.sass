@@ -1,16 +1,13 @@
-@import '@/styles/mixins'
-  
 .header
-  @include posFixed(0, auto, auto, 0)
   width: 100vw
 
 .title
   font-size: 2em
-  font-weight: 600
+  font-weight: 700
   padding: 0.5em
-  color: var(--text-light)
+  color: hsl(var(--foreground))
   text-transform: uppercase
 
   &:hover,
   &:focus-visible
-    color: var(--text)
+    color: hsl(var(--primary))

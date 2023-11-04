@@ -13,33 +13,29 @@ export const LocaleContext = createContext<ILocaleContext | null>(null)
 export const LocaleContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [selectedLocale, setSelectedLocale] = useState<LocaleName>(Locale.FR)
 
-  const isLocale = (locale: Locale) => Object.values(Locale).includes(locale)
+  const isLocale = useCallback((locale: string) => Object.keys(locales).includes(locale), [])
 
-  const changeLocale = (newLocale: LocaleName) => {
-    if (Object.keys(locales).includes(newLocale)) {
+  const changeLocale = useCallback((newLocale: LocaleName) => {
+    if (isLocale(newLocale)) {
       setSelectedLocale(newLocale)
-      window.localStorage.setItem(LocalStorage.Locale, JSON.stringify(newLocale))
+      window.localStorage.setItem(LocalStorage.Locale, newLocale)
     }
-  }
+  }, [setSelectedLocale, isLocale])
 
   const handleNavigatorLanguageChange = useCallback(() => {
     const navigatorLanguage = window.navigator.language
-    const formattedLocale = navigatorLanguage.substring(0, 2) as Locale
+    const formattedLocale = navigatorLanguage.substring(0, 2)
 
     if (isLocale(formattedLocale)) {
-      changeLocale(formattedLocale)
+      setSelectedLocale(formattedLocale as LocaleName)
     }
-  }, [])
+  }, [setSelectedLocale, isLocale])
 
   useEffect(() => {
-    const favoriteLocaleFromLocaleStorage = window.localStorage.getItem(LocalStorage.Locale)
+    const favoriteLocale = window.localStorage.getItem(LocalStorage.Locale)
 
-    if (favoriteLocaleFromLocaleStorage) {
-      const favoriteLocale = JSON.parse(favoriteLocaleFromLocaleStorage) as Locale
-
-      if (isLocale(favoriteLocale)) {
-        changeLocale(favoriteLocale)
-      }
+    if (favoriteLocale) {
+      changeLocale(favoriteLocale as LocaleName)
     } else {
       handleNavigatorLanguageChange()
     }
@@ -49,7 +45,7 @@ export const LocaleContextProvider: React.FC<React.PropsWithChildren> = ({ child
     return () => {
       window.removeEventListener('languagechange', handleNavigatorLanguageChange)
     }
-  }, [handleNavigatorLanguageChange])
+  }, [changeLocale, handleNavigatorLanguageChange])
 
   const currentLocale = locales[selectedLocale]
   

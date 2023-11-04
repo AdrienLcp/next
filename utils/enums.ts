@@ -1,10 +1,10 @@
 export enum Device {
-  Mobile = 'Mobile',
-  SmallDevice = 'Small device',
-  Tablet = 'Tablet',
-  Laptop = 'Laptopt',
-  Desktop = 'Desktop',
-  Large = 'Large'
+  Mobile,
+  SmallDevice,
+  Tablet,
+  Laptop,
+  Desktop,
+  Large
 }
 
 export enum Env {
@@ -14,14 +14,14 @@ export enum Env {
 
 export enum Hue {
   // Values need to match with CSS class names in themes.sass file
-  Neutral = 'Neutral',
-  Blue = 'Blue',
-  Green = 'Green',
-  Orange = 'Orange',
-  Pink = 'Pink',
-  Purple = 'Purple',
-  Red = 'Red',
-  Yellow = 'Yellow'
+  Neutral = 'neutral',
+  Blue = 'blue',
+  Green = 'green',
+  Orange = 'orange',
+  Pink = 'pink',
+  Purple = 'purple',
+  Red = 'red',
+  Yellow = 'yellow'
 }
 
 export enum Locale {
@@ -30,13 +30,13 @@ export enum Locale {
 }
 
 export enum LocalStorage {
-  Hue = 'Hue',
-  Locale = 'Locale',
-  Theme = 'Theme'
+  Hue = 'hue',
+  Locale = 'locale',
+  Theme = 'theme'
 }
 
 export enum Theme {
-  Dark = 'Dark',
-  Light = 'Light',
-  System = 'System'
+  Dark = 'dark',
+  Light = 'light',
+  System = 'system'
 }

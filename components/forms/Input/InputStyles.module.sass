@@ -140,10 +140,10 @@
       z-index: var(--focused-z-index)
 
     & ~ .foreground .label
-      transform: translate(-0.3rem, -165%) scale(0.8)
+      transform: translate(-0.2rem, calc(var(--spacing) - var(--spacing) * 2.75)) scale(0.8)
 
       &.label-with-left-content
-        transform: translate(-1.75rem, -165%) scale(0.8)
+        transform: translate(-1.75rem, calc(var(--spacing) - var(--spacing) * 2.75)) scale(0.8)
 
     &::placeholder
       color: hsl(var(--muted-foreground))

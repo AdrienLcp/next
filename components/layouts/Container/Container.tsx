@@ -1,11 +1,8 @@
-import styles from './ContainerStyles.module.sass'
-
-import { Urbanist } from 'next/font/google'
-
-import { Footer, Header, Status, Toasts } from '@/components'
+import { Footer, Header, Toasts } from '@/components'
+import { bodyFont, headingFont } from '@/utils'
 import { useLocale, useTheme } from '@/hooks'
 
-export const font = Urbanist({ subsets: ['latin'] })
+import styles from './ContainerStyles.module.sass'
 
 export const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { isDarkModeActive, selectedHue } = useTheme()
@@ -14,7 +11,8 @@ export const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <html lang={selectedLocale}>
       <body className={`
-        ${font.className}
+        ${headingFont.variable}
+        ${bodyFont.variable}
         ${isDarkModeActive && 'dark'}
         theme-${selectedHue}
       `}>
@@ -22,8 +20,6 @@ export const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
         {/* // Flex 1 etc */}
 
         <Header />
-
-        <Status />
         
         <main className={styles.main}>
           {children}

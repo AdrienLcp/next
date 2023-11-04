@@ -10,7 +10,7 @@ export const Header: React.FC = () => {
 
   return (
     <header className={styles.header}>
-      <Link href={'/'}>
+      <Link href='/'>
         <h1 className={styles.title}>
           {getString('appName')}
         </h1>

@@ -25,11 +25,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
   }, [value, limit])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!onChange || value === undefined || isDisabled) {
-      return
-    }
-
-    if (limit > 0 && event.target.value.length === limit + 1) {
+    if (!onChange || value === undefined || isDisabled || (limit > 0 && event.target.value.length === limit + 1)) {
       return
     }
 
