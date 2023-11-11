@@ -1,32 +1,32 @@
 import { useEffect, useState } from 'react'
+import { BREAKPOINTS } from '@/utils'
 
-import type { IBreakpoint } from '@/types'
-import { BREAKPOINTS, getBreakpoint } from '@/utils'
+type Breakpoint = typeof BREAKPOINTS[number]
 
-export const useBreakpoint = (customBreakpoints?: IBreakpoint[], mode?: 'extends' | 'replace') => {
-  const breakpoints = mode === 'extends' && customBreakpoints
-    ? [...BREAKPOINTS, ...customBreakpoints]
-    : customBreakpoints ?? BREAKPOINTS
+export const useBreakpoint = () => {
+  const [breakpoint, setBreakpoint] = useState<Breakpoint>(BREAKPOINTS[0])
 
-  const [breakpoint, setBreakpoint] = useState<IBreakpoint>(breakpoints[0])
-
-   useEffect(() => {
+  useEffect(() => {
     const resizeHandler = () => {
-      const currentWindowWidth = document.documentElement.clientWidth || window.innerWidth
-      const currentBreakpoint = getBreakpoint(currentWindowWidth)
+      const width = window.innerWidth
 
-      if (currentBreakpoint) {
-        setBreakpoint(currentBreakpoint)
+      if (width < breakpoint.min || (breakpoint.max && width > breakpoint.max)) {
+        const currentBreakpoint = BREAKPOINTS.find(bp => width >= bp.min && (bp.max === undefined || width <= bp.max))
+
+        if (currentBreakpoint) {
+          setBreakpoint(currentBreakpoint)
+        }
       }
     }
-
+    
     resizeHandler()
+
     window.addEventListener('resize', resizeHandler)
 
     return () => {
       window.removeEventListener('resize', resizeHandler)
     }
-   }, [])
+  }, [breakpoint])
 
-  return breakpoint
+  return { breakpoint }
 }

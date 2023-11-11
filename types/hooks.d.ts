@@ -1,5 +1,4 @@
 import type { IApiError } from '@/types'
-import { Task } from '@/utils'
 
 // ================================================== //
 
@@ -14,6 +13,6 @@ export interface IUseApiState<T> {
 export type Cache<T> = { [url: string]: T }
 
 export type Action<T> =
-  | { type: Task.Loading }
-  | { type: Task.Success; payload: T }
-  | { type: Task.Error; payload: string }
+  | { type: 'loading' }
+  | { type: 'success'; payload: T }
+  | { type: 'error'; payload: string }

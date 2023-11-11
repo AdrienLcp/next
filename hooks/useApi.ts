@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react'
 
 import type { Cache, IUseApiState } from '@/types'
-import { isApiError, ServerError, Task } from '@/utils'
+import { getLocalStorageItem, isApiError, ServerError } from '@/utils'
 import { fetchReducer } from '@/reducers'
 
 export const useApi = <T = unknown>(url?: string, init?: RequestInit): IUseApiState<T> => {
@@ -10,7 +10,7 @@ export const useApi = <T = unknown>(url?: string, init?: RequestInit): IUseApiSt
       
   const baseUrl = process.env.BASE_URL || ''
   const apiKey = process.env.API_KEY || ''
-  const token = window.localStorage.getItem('token') || ''
+  const token = getLocalStorageItem<string>('token') || ''
 
   const initialState: IUseApiState<T> = {
     data: undefined,
@@ -21,7 +21,7 @@ export const useApi = <T = unknown>(url?: string, init?: RequestInit): IUseApiSt
 
   const fetchData = useCallback(async (url: string, controller: AbortController) => {
     try {
-      dispatch({ type: Task.Loading })
+      dispatch({ type: 'loading' })
 
       const signal = controller.signal
       const headers = init?.headers || {}
@@ -44,13 +44,13 @@ export const useApi = <T = unknown>(url?: string, init?: RequestInit): IUseApiSt
         cache.current[url] = data
         if (cancelRequest.current) return
         
-        dispatch({ type: Task.Success, payload: data })
+        dispatch({ type: 'success', payload: data })
       }
     } catch (error) {
       console.error(error)
 
       dispatch({
-        type: Task.Error,
+        type: 'error',
         payload: isApiError(error) ? error.message : ServerError.InternalServerError
       })
     }
@@ -64,7 +64,7 @@ export const useApi = <T = unknown>(url?: string, init?: RequestInit): IUseApiSt
     cancelRequest.current = false
 
     if (cache.current[url]) {
-      dispatch({ type: Task.Success, payload: cache.current[url] })
+      dispatch({ type: 'success', payload: cache.current[url] })
       return
     }
 

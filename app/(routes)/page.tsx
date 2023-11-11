@@ -7,7 +7,7 @@ import { useRef, useState } from 'react'
 import { Button, Combobox, Form, Switch, TextField, Toast, Tabs, AlertModal, Pagination, ContextMenu, DatePicker, Input } from '@/components'
 import { Loader, LockIcon, UserIcon } from '@/icons'
 import { getRandomNumber, sortByOrder } from '@/utils'
-import { useDocVisibility, useLocale, useTheme, useToasts } from '@/hooks'
+import { useBreakpoint, useDocVisibility, useLocale, useTheme, useToasts } from '@/hooks'
 
 interface HomeProps {
   url?: string
@@ -25,6 +25,7 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
 
   const { isDarkModeActive, changeHue, changeTheme } = useTheme()
   const { changeLocale, getString } = useLocale()
+  const { breakpoint } = useBreakpoint()
 
   const handleSubmit = (event: any) => {
     event.preventDefault()
@@ -98,6 +99,8 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
       setError('')
     }
   }
+
+  console.log(breakpoint)
   
   return (
     <main>

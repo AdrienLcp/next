@@ -5,6 +5,21 @@ export const classNames = (...classes: (string | undefined | null | false)[]): s
   return classes.filter(Boolean).join(' ')
 }
 
+export const copyToClipboard = async (text: string) => {
+  if (!navigator?.clipboard) {
+    console.warn('Clipboard not supported')
+    return false
+  }
+
+  try {
+    await navigator.clipboard.writeText(text)
+    return true
+  } catch (error) {
+    console.warn(`Failed to copy "${text}"`, error)
+    return false
+  }
+}
+
 export const getErrorMessage = (error: unknown): string => {
   if (error instanceof Error) {
     return error.message
@@ -27,6 +42,15 @@ export const isApiError = (value: any): value is IApiError => {
         || Object.values(CreateUserError).includes(value.message)
   }
   return false
+}
+
+export const parseJSON = <T>(value: string | null, key: string): T | undefined => {
+  try {
+    return value === 'undefined' ? undefined : JSON.parse(value ?? '')
+  } catch {
+    console.warn(`Parsing error for key "${key}"`, { value })
+    return undefined
+  }
 }
 
 export const sortByOrder = <T>(array: T[], prop: keyof T, type: 'asc' | 'desc' = 'asc'): T[] => {

@@ -1,8 +1,7 @@
 import { createContext, useCallback, useEffect, useState } from 'react'
 
 import type { IThemeContext, Hue, Theme } from '@/types'
-import { useLocalStorage } from '@/hooks'
-import { HUES, THEMES } from '@/utils'
+import { HUES, THEMES, getLocalStorageItem, setLocalStorageItem } from '@/utils'
 
 export const ThemeContext = createContext<IThemeContext | null>(null)
 
@@ -11,14 +10,12 @@ export const ThemeContextProvider: React.FC<React.PropsWithChildren> = ({ childr
   const [selectedTheme, setSelectedTheme] = useState<Theme>('system')
   const [selectedHue, setSelectedHue] = useState<Hue>('neutral')
 
-  const { getLocalStorageItem, setLocalStorageItem } = useLocalStorage()
-
   const changeHue = useCallback((newHue: Hue) => {
     if (HUES.includes(newHue)) {
       setSelectedHue(newHue)
       setLocalStorageItem('hue', newHue)
     }
-  }, [setLocalStorageItem])
+  }, [])
 
   const changeTheme = useCallback((newTheme: Theme) => {
     if (THEMES.includes(newTheme)) {
@@ -39,7 +36,7 @@ export const ThemeContextProvider: React.FC<React.PropsWithChildren> = ({ childr
           break
       }
     }
-  }, [setLocalStorageItem])
+  }, [])
 
   useEffect(() => {
     const favoriteTheme = getLocalStorageItem<Theme>('theme')
@@ -52,7 +49,7 @@ export const ThemeContextProvider: React.FC<React.PropsWithChildren> = ({ childr
     if (favoriteHue) {
       changeHue(favoriteHue)
     }
-  }, [changeTheme, changeHue, getLocalStorageItem])
+  }, [changeTheme, changeHue])
 
   useEffect(() => {
     const matcher = window.matchMedia('(prefers-color-scheme: dark)')

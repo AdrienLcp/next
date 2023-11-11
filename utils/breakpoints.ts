@@ -1,45 +1,31 @@
-import type { IBreakpoint } from '@/types'
-
-// This objet needs to match CSS breakpoints in globals.sass file
-export const BREAKPOINTS: IBreakpoint[] = [
+export const BREAKPOINTS = [
   {
-    size: 'xs',
+    screen: 'mobile',
     min: 0,
-    max: 480,
-    screen: 'mobile'
+    max: 480
   },
   {
-    size: 's',
+    screen: 'small',
     min: 481,
-    max: 767,
-    screen: 'small'
+    max: 767
   },
   {
-    size: 'md',
+    screen: 'tablet',
     min: 768,
-    max: 991,
-    screen: 'tablet'
+    max: 991
   },
   {
-    size: 'lg',
+    screen: 'laptop',
     min: 992,
-    max: 1199,
-    screen: 'laptop'
+    max: 1199
   },
   {
-    size: 'xl',
+    screen: 'desktop',
     min: 1200,
-    max: 1919,
-    screen: 'desktop'
+    max: 1919
   },
   {
-    size: 'xxl',
-    min: 1920,
-    max: 100_000_000,
-    screen: 'large'
+    screen: 'large',
+    min: 1920
   }
 ]
-
-export const getBreakpoint = (windowWidth: number) => {
-  return BREAKPOINTS.find(bp => bp.min >= windowWidth && bp.max <= windowWidth)
-}

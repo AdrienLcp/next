@@ -1,7 +1,7 @@
 import { createContext, useCallback, useEffect, useState } from 'react'
 
 import type { ILocaleContext, LocaleName, DotNestedKeys } from '@/types'
-import { useLocalStorage } from '@/hooks'
+import { getLocalStorageItem, setLocalStorageItem } from '@/utils'
 import { en, fr } from '@/locales'
 import { Polyglot } from '@/i18n'
 
@@ -11,7 +11,6 @@ export const LocaleContext = createContext<ILocaleContext | null>(null)
 
 export const LocaleContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [selectedLocale, setSelectedLocale] = useState<LocaleName>('fr')
-  const { getLocalStorageItem, setLocalStorageItem } = useLocalStorage()
 
   const isLocale = useCallback((locale: string) => Object.keys(locales).includes(locale), [])
 
@@ -20,7 +19,7 @@ export const LocaleContextProvider: React.FC<React.PropsWithChildren> = ({ child
       setSelectedLocale(newLocale)
       setLocalStorageItem('locale', newLocale)
     }
-  }, [isLocale, setLocalStorageItem])
+  }, [isLocale])
 
   const handleNavigatorLanguageChange = useCallback(() => {
     const navigatorLanguage = window.navigator.language
@@ -45,7 +44,7 @@ export const LocaleContextProvider: React.FC<React.PropsWithChildren> = ({ child
     return () => {
       window.removeEventListener('languagechange', handleNavigatorLanguageChange)
     }
-  }, [changeLocale, getLocalStorageItem, handleNavigatorLanguageChange])
+  }, [changeLocale, handleNavigatorLanguageChange])
 
   const currentLocale = locales[selectedLocale]
   

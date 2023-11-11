@@ -1,23 +1,21 @@
 import type { Action, IUseApiState } from '@/types'
-import { Task } from '@/utils'
 
 export const fetchReducer = <T>(state: IUseApiState<T>, action: Action<T>): IUseApiState<T> => {
   switch (action.type) {
-
-    case Task.Success:
+    case 'success':
       return {
         ...state,
         data: action.payload,
         isLoading: false
       }
 
-    case Task.Loading:
+    case 'loading':
       return {
         ...state,
         isLoading: true
       }
 
-    case Task.Error:
+    case 'error':
       return {
         ...state,
         error: action.payload,
