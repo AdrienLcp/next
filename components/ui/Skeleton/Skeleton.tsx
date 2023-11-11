@@ -11,7 +11,7 @@ export const Skeleton: React.FC<ISkeletonProps> = ({
   return (
     <div
       role='presentation'
-      aria-label={getString('components.skeleton.loading')}
+      aria-label={getString('states.loading')}
       className={styles.skeleton}
       style={{ width: `${width}px`, height: `${height}px` }}
     />

@@ -32,8 +32,6 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
     console.log(event)
   }
 
-  // throw new Error()
-
   const options = [
     {
       key: "Key 1",

@@ -1,6 +1,3 @@
-import type { IApiError } from '@/types'
-import { CreateUserError, ServerError } from '@/utils'
-
 export const classNames = (...classes: (string | undefined | null | false)[]): string => {
   return classes.filter(Boolean).join(' ')
 }
@@ -34,14 +31,6 @@ export const getErrorMessage = (error: unknown): string => {
 
 export const getRandomNumber = (max: number = 100, min: number = 0): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min
-}
-
-export const isApiError = (value: any): value is IApiError => {
-  if (value) {
-    return Object.values(ServerError).includes(value.message)
-        || Object.values(CreateUserError).includes(value.message)
-  }
-  return false
 }
 
 export const parseJSON = <T>(value: string | null, key: string): T | undefined => {

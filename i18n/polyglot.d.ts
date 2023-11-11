@@ -5,7 +5,7 @@ declare interface IPolyglotOptions {
 
 declare class Polyglot {
   constructor (options: IPolyglotOptions);
-  t(key:string, options?: { [key: string]: any }):string
+  t(key:string, options?: { [key: string]: string }): string
 }
 
 export = Polyglot

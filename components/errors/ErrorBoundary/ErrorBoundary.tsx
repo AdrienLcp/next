@@ -4,7 +4,7 @@ import { useLocale } from '@/hooks'
 import styles from './ErrorBoundaryStyles.module.sass'
 
 class ErrorBoundaryClass extends React.Component<IErrorBoundaryClassProps, IErrorBoundaryState> {
-  constructor(props: any) {
+  constructor(props: IErrorBoundaryClassProps) {
     super(props)
     this.state = { hasError: false }
   }

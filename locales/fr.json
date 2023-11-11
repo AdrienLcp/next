@@ -48,9 +48,6 @@
       "previousLabel": "Voir l'image précédente",
       "viewImage": "Voir l'image"
     },
-    "skeleton": {
-      "loading": "Chargement..."
-    },
     "skip": {
       "label": "Passer cette section"
     },
@@ -81,13 +78,15 @@
     "noResults": "Aucun résultat",
     "api": {
       "common": {
-        "internal": "Le server a rencontré un problème. Réessayez plus tard ou contactez-nous."
+        "internalServerError": "Le server a rencontré un problème. Réessayez plus tard ou contactez-nous.",
+        "badRequest": "La requête est incorrecte. Veuillez réessayer plus tard ou nous contacter."
       },
       "user": {
         "usernameRequired": "Le nom d'utilisateur est requis",
+        "passwordRequired": "Le mot de passe est requis",
         "usernameTaken": "Ce nom d'utilisateur est déjà pris",
-        "passwordError": "Le mot de passe doit contenir au moins 8 caractères dont 1 lettre minuscule, 1 lettre majuscule, 1 chiffre & un caractère spécial",
-        "passwordRequired": "Le mot de passe est requis"
+        "invalidPassword": "Le mot de passe doit contenir au moins 8 caractères dont 1 lettre minuscule, 1 lettre majuscule, 1 chiffre & un caractère spécial",
+        "invalidUsername": "Le nom d'utilisateur doit contenir entre 3 et 20 caractères"
       }
     }
   },

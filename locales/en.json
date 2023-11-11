@@ -48,9 +48,6 @@
       "previousLabel": "View previous image",
       "viewImage": "View image"
     },
-    "skeleton": {
-      "loading": "Loading..."
-    },
     "skip": {
       "label": "Skip this section"
     },
@@ -80,14 +77,16 @@
   "errors": {
     "noResults": "No results",
     "api": {
-      "common": {
-        "internal": "The server encountered a problem. Try again later or contact us."
+      "server": {
+        "internalServerError": "The server encountered a problem. Try again later or contact us",
+        "badRequest": "The request is invalid. Try again later or contact us"
       },
       "user": {
         "usernameRequired": "Username is required",
+        "passwordRequired": "Password is required",
         "usernameTaken": "This username is already taken",
-        "passwordError": "The password must contain at least 8 characters including 1 lowercase letter, 1 uppercase letter, 1 number & a special character",
-        "passwordRequired": "Password is required"
+        "invalidPassword": "The password must contain at least 8 characters including 1 lowercase letter, 1 uppercase letter, 1 number & a special character",
+        "invalidUsername": "Username must be between 3 and 20 characters long"
       }
     }
   },

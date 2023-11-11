@@ -1,4 +1,4 @@
-import { ServerError, CreateUserError, isPasswordValid, isUsernameValid } from '@/utils'
+import { API_ERROR_MESSAGES, ApiError, isPasswordValid, isUsernameValid } from '@/utils'
 
 type CreateUserRequest = {
   username: string
@@ -7,47 +7,50 @@ type CreateUserRequest = {
 
 type CreateUserResponse = {
   username: string
-  password: string
 }
+
+const { SERVER, USER } = API_ERROR_MESSAGES
 
 export const createUser = async (request: CreateUserRequest): Promise<CreateUserResponse> => {
   try {
     const { username, password } = request
 
-    //! check session user
-
     if (!username) {
-      throw new Error(CreateUserError.UsernameRequired)
+      throw new ApiError(USER.USERNAME_REQUIRED, 'errors.api.user.usernameRequired')
     }
 
     if (!password) {
-      throw new Error(CreateUserError.PasswordRequired)
+      throw new ApiError(USER.PASSWORD_REQUIRED, 'errors.api.user.passwordRequired')
     }
 
     if (typeof username !== 'string' || typeof password !== 'string') {
-      throw new Error(ServerError.BadRequest)
+      throw new ApiError(SERVER.BAD_REQUEST, 'errors.api.server.badRequest')
     }
 
     if (!isUsernameValid(username)) {
-      throw new Error(CreateUserError.InvalidUsername)
+      throw new ApiError(USER.INVALID_USERNAME, 'errors.api.user.invalidUsername')
     }
 
     if (!isPasswordValid(password)) {
-      throw new Error(CreateUserError.PasswordError)
+      throw new ApiError(USER.INVALID_PASSWORD, 'errors.api.user.invalidPassword')
     }
  
-    // TODO : await db.prisma.user.create()
+    // TODO : const user = await db.prisma.user.create({ data: { username, password } }})
 
-    // if user taken
-    // throw new Error(CreateUserError.UsernameTaken)
-    //
-
-    return {
-      username,
-      password
-    }
+    return { username }
   } catch (error) {
     console.error(error)
-    throw new Error(ServerError.InternalServerError)
+
+    // if (error instanceof Prisma.PrismaClientKnownRequestError) {
+    //   if (error.code === 'P2002') {
+    //     throw new ApiError(USER.USERNAME_TAKEN, 'errors.api.user.usernameTaken')
+    //   }
+    // }
+
+    // if (other error) {
+    //   throw new ApiError(USER.USERNAME_TAKEN, 'errors.api.user.usernameTaken')
+    // }
+
+    throw new ApiError(SERVER.INTERNAL_SERVER_ERROR, 'errors.api.server.internalServerError')
   }
 }

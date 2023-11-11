@@ -7,15 +7,15 @@ import { HUES, THEMES } from '@/utils'
 
 const locales = { en, fr }
 
-export type DotPrefix<T extends string> = T extends '' ? '' : `.${T}`
+type DotPrefix<T extends string> = T extends '' ? '' : `.${T}`
 
-export type DotNestedKeys<T> = (T extends object ?
+type DotNestedKeys<T> = (T extends object ?
     { [K in Exclude<keyof T, symbol>]: `${K}${DotPrefix<DotNestedKeys<T[K]>>}` }[Exclude<keyof T, symbol>]
     : '') extends infer D ? Extract<D, string> : never;
 
 type LocaleMap = typeof locales
 export type LocaleName = keyof LocaleMap
-export type I18NStringPaths = DotNestedKeys<typeof en>
+type I18NStringPaths = DotNestedKeys<typeof en>
 
 export interface ILocaleContext {
   locales: typeof locales
