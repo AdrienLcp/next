@@ -2,6 +2,7 @@ import type { ILinkProps } from './LinkTypes'
 import styles from './LinkStyles.module.sass'
 
 import { default as NextLink } from 'next/link'
+import { classNames } from '@/utils'
 
 const Link: React.FC<ILinkProps> = ({
   href = '',
@@ -11,7 +12,7 @@ const Link: React.FC<ILinkProps> = ({
   return (
     <NextLink
       href={href}
-      className={`${styles.link} ${className}`}
+      className={classNames(styles.link, className)}
     >
       {children}
     </NextLink>

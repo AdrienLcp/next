@@ -16,17 +16,17 @@
   border-radius: var(--radius)
 
   &.error
-    border-color: var(--red-foreground)
+    border-color: hsl(var(--red-foreground))
 
 .message
   @include textEllipsis
   color: hsl(var(--muted-foreground))
   position: absolute
-  top: calc(100% - 0.7em)
+  top: calc(100% - var(--font-size-xs))
   right: var(--radius)
   opacity: 0
   visibility: hidden
-  font-size: 0.7em
+  font-size: var(--font-size-xs)
   z-index: -1
   transform-origin: top
   transition: transform var(--transition-200), opacity var(--transition-200)
@@ -34,7 +34,6 @@
 .label
   @include textEllipsis
   color: hsl(var(--muted-foreground))
-  font-size: 1.4rem
   font-weight: 500
   padding: 0 0.7ch
   transform-origin: left
@@ -63,23 +62,22 @@
 .input
   padding: var(--wide-padding)
   background-color: transparent
-  font-size: 1.5rem
   width: 100%
 
   &::placeholder
-    font-size: 0.8em
+    font-size: var(--font-size-s)
     color: transparent
   &::-webkit-input-placeholder
-    font-size: 0.8em
+    font-size: var(--font-size-s)
     color: transparent
   &::--moz-placeholder
-    font-size: 0.8em
+    font-size: var(--font-size-s)
     color: transparent
   &::-ms-input-placeholder
-    font-size: 0.8em
+    font-size: var(--font-size-s)
     color: transparent
   &::-moz-placeholder
-    font-size: 0.8em
+    font-size: var(--font-size-s)
     color: transparent
 
   &.without-caret
@@ -140,10 +138,10 @@
       z-index: var(--focused-z-index)
 
     & ~ .foreground .label
-      transform: translate(-0.2rem, calc(var(--spacing) - var(--spacing) * 2.75)) scale(0.8)
+      transform: translate(-0.2rem, calc(var(--spacing) - var(--spacing) * 2.65)) scale(0.8)
 
       &.label-with-left-content
-        transform: translate(-1.75rem, calc(var(--spacing) - var(--spacing) * 2.75)) scale(0.8)
+        transform: translate(-1.75rem, calc(var(--spacing) - var(--spacing) * 2.65)) scale(0.8)
 
     &::placeholder
       color: hsl(var(--muted-foreground))

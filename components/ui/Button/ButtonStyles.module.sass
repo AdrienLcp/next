@@ -14,7 +14,6 @@
   align-items: center
   justify-content: center
   gap: 1ch
-  font-size: 0.8em
   white-space: nowrap
   overflow: hidden
   text-overflow: ellipsis
@@ -35,7 +34,6 @@
     
   &.outlined
     @include commonButtonStyles
-    font-weight: 600
     padding: var(--wide-padding)
     color: hsl(var(--primary))
     border: var(--thickness) solid hsl(var(--primary))
@@ -46,9 +44,6 @@
   &.underline
     @include commonButtonStyles
     text-decoration: underline
-
-  // &:focus
-  //   opacity: 0.8
 
   &:active
     transform: scale(0.99)

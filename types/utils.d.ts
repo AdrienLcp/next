@@ -1,8 +1,8 @@
-import { Device } from '@/utils'
+import { DEVICES } from '@/utils'
 
 export interface IBreakpoint {
   size: string
   min: number
   max: number
-  screen: Device
+  screen: typeof DEVICES[number]
 }

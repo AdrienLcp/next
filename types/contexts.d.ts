@@ -1,5 +1,5 @@
 import { en, fr } from '@/locales'
-import { Hue, Theme } from '@/utils'
+import { HUES, THEMES } from '@/utils'
 
 // ================================================== //
 
@@ -43,17 +43,20 @@ export interface IToastBuilt extends IToast {
   id: string
 }
 
+export type PushToast = (toast: IToast) => void
+
 export interface IToastsContext {
   toasts: IToastBuilt[]
-  pushToast: (newToast: IToast) => void
+  pushToast: PushToast
   deleteToast: (toastId: string) => void
 }
-
-export type PushToast = (toast: IToast) => void
 
 // ================================================== //
 
 // =========== //  Theme context  // =========== //
+
+export type Hue = typeof HUES[number]
+export type Theme = typeof THEMES[number]
 
 export interface IThemeContext {
   isDarkModeActive: boolean

@@ -5,6 +5,7 @@ import type { ITabsProps } from './TabsTypes'
 
 import { Button } from '@/components'
 import { useLocale } from '@/hooks'
+import { classNames } from '@/utils'
 
 export const Tabs: React.FC<ITabsProps> = ({
   tabs,
@@ -19,7 +20,7 @@ export const Tabs: React.FC<ITabsProps> = ({
         {tabs.map((tab, index) => (
           <Button
             key={index}
-            className={`${styles.button} ${selectedTab === index && styles.selected}`}
+            className={classNames(styles.button, selectedTab === index ? styles.selected : null)}
             aria-label={`${getString('components.tabs.goTo')} ${tab.label}`}
             onClick={() => setSelectedTad(index)}
             role='tab'

@@ -2,6 +2,7 @@ import type { IFormProps } from './FormTypes'
 import styles from './FormStyles.module.sass'
 
 import { Button } from '@/components'
+import { classNames } from '@/utils'
 
 export const Form: React.FC<IFormProps> = ({
   onSubmit,
@@ -16,7 +17,7 @@ export const Form: React.FC<IFormProps> = ({
 }) => (
   <form
     onSubmit={onSubmit}
-    className={`${styles.form} ${formClassName}`}
+    className={classNames(styles.form, formClassName)}
     {...rest}
   >
     {title && (
@@ -32,7 +33,7 @@ export const Form: React.FC<IFormProps> = ({
     )}
 
     <fieldset
-      className={`${styles.controls} ${fieldsClassName}`}
+      className={classNames(styles.controls, fieldsClassName)}
       disabled={isDisabled}
     >
       {children}

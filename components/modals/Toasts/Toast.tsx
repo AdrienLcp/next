@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { CheckIcon, ErrorIcon, InfoIcon, WarningIcon } from '@/icons'
 import { useTimeout, useToasts } from '@/hooks'
 import { CloseButton } from '@/components'
+import { classNames } from '@/utils'
 
 export const Toast: React.FC<IToastProps> = ({ toast }) => {
   const [isDeleted, setIsDeleted] = useState<boolean>(false)
@@ -41,7 +42,7 @@ export const Toast: React.FC<IToastProps> = ({ toast }) => {
   }, [toast])
 
   return (
-    <article className={`${styles.toast} ${styles[toast.type]} ${isDeleted && styles.deleted}`}>
+    <article className={classNames(styles.toast, styles[toast.type], isDeleted ? styles.deleted : null)}>
       <div className={styles.heading}>
         <header className={styles.header}>
           {icon}

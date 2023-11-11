@@ -7,6 +7,7 @@ import styles from './ImagesSliderStyles.module.sass'
 import { ArrowIcon, DotIcon } from '@/icons'
 import { Button, Skip } from '@/components'
 import { useLocale } from '@/hooks'
+import { classNames } from '@/utils'
 
 export const ImagesSlider: React.FC<IImagesSliderProps> = ({ images }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0)
@@ -38,7 +39,7 @@ export const ImagesSlider: React.FC<IImagesSliderProps> = ({ images }) => {
 
         <Button
           icon={<ArrowIcon orientation='left' size={'2rem'} />}
-          className={`*${styles.button} ${styles.left}`}
+          className={classNames(styles.button, styles.left)}
           aria-label={getString('components.imagesSlider.previousLabel')}
           onClick={handleShowPreviousImage}
         />

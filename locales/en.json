@@ -36,6 +36,10 @@
         "sunday": "Sunday"
       }
     },
+    "errorBoundary": {
+      "title": "An error has occurred",
+      "description": "An error has occurred in this section. Please try again later or contact us."
+    },
     "imagesSlider": {
       "skipLabel": "Skipe images slider controls",
       "ariaLabel": "Images slider",
@@ -43,6 +47,9 @@
       "nextLabel": "View next image",
       "previousLabel": "View previous image",
       "viewImage": "View image"
+    },
+    "skeleton": {
+      "loading": "Loading..."
     },
     "skip": {
       "label": "Skip this section"

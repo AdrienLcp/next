@@ -5,24 +5,25 @@ import { useMemo } from 'react'
 
 import { CheckIcon, ErrorIcon, InfoIcon, WarningIcon } from '@/icons'
 import { CloseButton } from '@/components'
+import { classNames } from '@/utils'
 
 export const Status: React.FC<IStatusProps> = ({
   status,
   setStatus
 }) => {
   const foregroundColor = useMemo(() => {
-    if (!status) return 'var(--foreground)'
+    if (!status) return 'hsl(var(--foreground))'
 
     switch (status.type) {
       case 'success':
-        return 'var(--green-foreground)'
+        return 'hsl(var(--green-foreground))'
       case 'warning':
-        return 'var(--orange-foreground)'
+        return 'hsl(var(--orange-foreground))'
       case 'error':
-        return 'var(--red-foreground)'
+        return 'hsl(var(--red-foreground))'
       case 'default':
       default:
-        return 'var(--foreground)'
+        return 'hsl(var(--foreground))'
     }
   }, [status])
 
@@ -50,7 +51,7 @@ export const Status: React.FC<IStatusProps> = ({
   if (!status) return null
 
   return (
-    <div className={`${styles.status} ${styles[status.type]}`}>
+    <div className={classNames(styles.status, styles[status.type])}>
       <div className={styles.content}>
         {icon}
 

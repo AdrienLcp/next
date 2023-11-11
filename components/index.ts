@@ -1,9 +1,10 @@
 export * from './accessibility/ScreenReaderLoading/ScreenReaderLoading'
 export * from './accessibility/Skip/Skip'
 
+export * from './errors/ErrorBoundary/ErrorBoundary'
+
 export * from './forms/Combobox/Combobox'
 export * from './forms/DatePicker/DatePicker'
-export { DatePicker as DatePickerReact } from './DatePicker/DatePicker'
 export * from './forms/Form/Form'
 export * from './forms/Input/Input'
 export * from './forms/TextField/TextField'

@@ -31,7 +31,7 @@ export const AlertModal: React.FC<IAlertModalProps> = ({
         <div className={styles.buttons}>
           <Button
             onClick={onConfirm}
-            variant='primary'
+            variant='contained'
             ref={firstButtonRef}
           >
             {getString('actions.confirm')}
@@ -39,7 +39,7 @@ export const AlertModal: React.FC<IAlertModalProps> = ({
           
           <Button
             onClick={onClose}
-            variant='secondary'
+            variant='outlined'
           >
             {getString('actions.cancel')}
           </Button>

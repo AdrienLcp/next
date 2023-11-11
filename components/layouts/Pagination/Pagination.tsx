@@ -5,6 +5,7 @@ import { useMemo } from 'react'
 
 import { Button, Tooltip } from '@/components'
 import { useLocale } from '@/hooks'
+import { classNames } from '@/utils'
 
 export const Pagination: React.FC<IPaginationProps> = ({
   totalContentsCount,
@@ -74,7 +75,7 @@ export const Pagination: React.FC<IPaginationProps> = ({
             <Tooltip text={`${getString('components.pagination.goTo')} ${page}`}>
               <Button
                 variant='icon'
-                className={`${styles.button} ${currentPage === page && styles.active}`}
+                className={classNames(styles.button, currentPage === page ? styles.active : null)}
                 onClick={() => currentPage !== page && onPageChange(page)}
                 aria-label={`${getString('components.pagination.goTo')} ${page}`}
                 isDisabled={isDisabled}

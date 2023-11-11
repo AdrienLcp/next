@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { SearchIcon, ArrowIcon, CheckIcon } from '@/icons'
 import { Button, TextField } from '@/components'
 import { useLocale } from '@/hooks'
-import { sortByAlphabeticalOrder  } from '@/utils'
+import { classNames, sortByOrder  } from '@/utils'
 
 export const Combobox: React.FC<IComboboxProps> = ({
   options = [],
@@ -56,7 +56,7 @@ export const Combobox: React.FC<IComboboxProps> = ({
 
   const sortedOptions = useMemo(() => {
     if (isAlphabeticallySorted) {
-      return sortByAlphabeticalOrder(options, 'value')
+      return sortByOrder(options, 'value')
     }
 
     return options
@@ -115,7 +115,7 @@ export const Combobox: React.FC<IComboboxProps> = ({
         placeholder={placeholder}
         onClear={isClearable ? handleResetCombobox : undefined}
         icon={icon} 
-        className={`${styles.input} ${inputClassName}`}
+        className={classNames(styles.input, inputClassName)}
         aria-label={!isFocused ? getString('components.combobox.open') : ''}
         onChange={() => {}}
       />
@@ -135,12 +135,19 @@ export const Combobox: React.FC<IComboboxProps> = ({
         role='listbox'
         id='combobox-list'
         ref={listRef}
-        className={`${styles.list} ${isFocused && options.length && styles.open}`}
+        className={classNames(
+          styles.list,
+          (isFocused && options.length > 0) ? styles.open : null
+        )}
       >
         {hasFilter && (
           <li
             key='select-filter-field'
-            className={`${styles.option} ${styles.button} ${styles.filterField}`}
+            className={classNames(
+              styles.option,
+              styles.button,
+              styles.filterField
+            )}
           >
             <SearchIcon color='var(--text-lighter)' className={styles.search} />
 

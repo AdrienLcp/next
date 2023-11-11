@@ -1,66 +1,69 @@
 import { createContext, useCallback, useEffect, useState } from 'react'
 
-import type { IThemeContext } from '@/types'
-import { Hue, LocalStorage, Theme } from '@/utils'
+import type { IThemeContext, Hue, Theme } from '@/types'
+import { useLocalStorage } from '@/hooks'
+import { HUES, THEMES } from '@/utils'
 
 export const ThemeContext = createContext<IThemeContext | null>(null)
 
 export const ThemeContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [isDarkModeActive, setIsDarkModeActive] = useState<boolean>(false)
-  const [selectedTheme, setSelectedTheme] = useState<Theme>(Theme.System)
-  const [selectedHue, setSelectedHue] = useState<Hue>(Hue.Neutral)
+  const [selectedTheme, setSelectedTheme] = useState<Theme>('system')
+  const [selectedHue, setSelectedHue] = useState<Hue>('neutral')
+
+  const { getLocalStorageItem, setLocalStorageItem } = useLocalStorage()
 
   const changeHue = useCallback((newHue: Hue) => {
-    if (Object.values(Hue).includes(newHue)) {
+    if (HUES.includes(newHue)) {
       setSelectedHue(newHue)
-      window.localStorage.setItem(LocalStorage.Hue, newHue)
+      setLocalStorageItem('hue', newHue)
     }
-  }, [setSelectedHue])
+  }, [setLocalStorageItem])
 
   const changeTheme = useCallback((newTheme: Theme) => {
-    if (Object.values(Theme).includes(newTheme)) {
+    if (THEMES.includes(newTheme)) {
       setSelectedTheme(newTheme)
-      window.localStorage.setItem(LocalStorage.Theme, newTheme)
+      setLocalStorageItem('theme', newTheme)
 
       switch (newTheme) {
-        case Theme.Dark:
+        case 'dark':
           setIsDarkModeActive(true)
           break
-        case Theme.Light:
+        case 'light':
           setIsDarkModeActive(false)
           break
-        case Theme.System:
+        case 'system':
         default:
           const matcher = window.matchMedia('(prefers-color-scheme: dark)')
           setIsDarkModeActive(matcher.matches)
           break
       }
     }
-  }, [setSelectedTheme, setIsDarkModeActive])
+  }, [setLocalStorageItem])
 
   useEffect(() => {
-    const favoriteTheme = window.localStorage.getItem(LocalStorage.Theme)
-    const favoriteHue = window.localStorage.getItem(LocalStorage.Hue)
+    const favoriteTheme = getLocalStorageItem<Theme>('theme')
+    const favoriteHue = getLocalStorageItem<Hue>('hue')
 
     if (favoriteTheme) {
-      changeTheme(favoriteTheme as Theme)
+      changeTheme(favoriteTheme)
     }
 
     if (favoriteHue) {
-      changeHue(favoriteHue as Hue)
+      changeHue(favoriteHue)
     }
-  }, [changeTheme, changeHue])
+  }, [changeTheme, changeHue, getLocalStorageItem])
 
   useEffect(() => {
     const matcher = window.matchMedia('(prefers-color-scheme: dark)')
 
     const handlePrefersColorSchemeChange = (event: MediaQueryListEvent) => {
-      if (selectedTheme === Theme.System) {
+      if (selectedTheme === 'system') {
         setIsDarkModeActive(event.matches)
       }
     }
 
-    if (selectedTheme === Theme.System) {
+    if (selectedTheme === 'system') {
       setIsDarkModeActive(matcher.matches)
       matcher.addEventListener('change', handlePrefersColorSchemeChange)
     } else {

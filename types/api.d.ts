@@ -5,5 +5,6 @@ export type ApiErrorMessage =
   CreateUserError
 
 export interface IApiError {
+  status: number
   message: ApiErrorMessage
 }

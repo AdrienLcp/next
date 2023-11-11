@@ -1,44 +1,38 @@
-import { SetStateAction, useCallback, useState } from 'react'
+import { LOCAL_STORAGE_KEYS } from '@/utils'
 
-export const useLocalStorage = <T>(key: string, initialValue: T): [T, React.Dispatch<SetStateAction<T>>] => {
-  const readValue = useCallback((): T => {
-    if (typeof window === 'undefined') {
-      return initialValue
-    }
+type LocalStorageKey = typeof LOCAL_STORAGE_KEYS[number]
 
-    try {
-      const item = window.localStorage.getItem(key)
-      return item ? (parseJSON(item) as T) : initialValue
-    } catch (error) {
-      console.warn(`Error reading localStorage key “${key}”:`, error)
-      return initialValue
-    }
-  }, [initialValue, key])
-  
-  const [storedValue, setStoredValue] = useState<T>(readValue)
+export const useLocalStorage = () => {
+  const getLocalStorageItem = <T>(key: LocalStorageKey): T | undefined => {
+    const value = window.localStorage.getItem(key)
+    return parseJSON<T>(value, key)
+  }
 
-  const setValue: React.Dispatch<React.SetStateAction<T>> = (value: React.SetStateAction<T>) => {
-    if (typeof window === 'undefined') {
-      console.warn(`Tried setting localStorage key “${key}” even though environment is not a client`)
-    }
-
-    try {
-      const newValue = value instanceof Function ? value(storedValue) : value
-      window.localStorage.setItem(key, JSON.stringify(newValue))
-      setStoredValue(newValue)
-    } catch (error) {
-      console.warn(`Error setting localStorage key “${key}”:`, error)
+  const setLocalStorageItem = (key: LocalStorageKey, value: unknown) => {
+    if (LOCAL_STORAGE_KEYS.includes(key)) {
+      window.localStorage.setItem(key, JSON.stringify(value))
     }
   }
 
-  return [storedValue, setValue]
+  const removeLocalStorageItem = (key: LocalStorageKey) => {
+    window.localStorage.removeItem(key)
+  }
+
+  const clearLocalStorage = () => window.localStorage.clear()
+
+  return {
+    getLocalStorageItem,
+    setLocalStorageItem,
+    removeLocalStorageItem,
+    clearLocalStorage
+  }
 }
 
-const parseJSON = <T>(value: string | null): T | undefined => {
+const parseJSON = <T>(value: string | null, key: string): T | undefined => {
   try {
     return value === 'undefined' ? undefined : JSON.parse(value ?? '')
   } catch {
-    console.warn('parsing error on', { value })
+    console.warn(`Parsing error for key "${key}"`, { value })
     return undefined
   }
 }

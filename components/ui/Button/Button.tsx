@@ -4,6 +4,7 @@ import type { IButtonProps } from './ButtonTypes'
 import { forwardRef, useCallback } from 'react'
 
 import { Loader } from '@/icons'
+import { classNames } from '@/utils'
 
 export const Button = forwardRef<HTMLButtonElement, IButtonProps>(({
   children = null,
@@ -30,14 +31,14 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(({
 
   return (
     <button
-      className={`
-        ${styles.button}
-        ${styles[iconSide]}
-        ${variant && styles[variant]}
-        ${isLoading && styles.loading}
-        ${isDisabled && styles.disabled}
-        ${className}
-      `}
+      className={classNames(
+        styles.button,
+        icon ? styles[iconSide] : null,
+        variant ? styles[variant] : null,
+        isLoading ? styles.loading : null,
+        isDisabled ? styles.disabled : null,
+        className
+      )}
       ref={ref}
       disabled={isDisabled || isLoading}
       aria-disabled={isDisabled || isLoading}

@@ -4,11 +4,12 @@ import type { ICloseButtonProps } from './CloseButtonTypes'
 import { Button, Tooltip } from '@/components'
 import { CrossIcon } from '@/icons'
 import { useLocale } from '@/hooks'
+import { classNames } from '@/utils'
 
 export const CloseButton: React.FC<ICloseButtonProps> = ({
   onClick,
   size = '1.3em',
-  color = 'var(--text)',
+  color = 'hsl(var(--foreground))',
   tooltip = '',
   className = ''
 }) => {
@@ -20,7 +21,7 @@ export const CloseButton: React.FC<ICloseButtonProps> = ({
         onClick={onClick}
         variant='icon'
         icon={<CrossIcon size={size} color={color} />}
-        className={`${styles.button} ${className}`}
+        className={classNames(styles.button, className)}
         aria-label={tooltip || getString('actions.close')}
         style={{ 
           '--close-button-base-size': size,

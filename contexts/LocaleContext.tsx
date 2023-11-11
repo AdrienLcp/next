@@ -1,26 +1,26 @@
 import { createContext, useCallback, useEffect, useState } from 'react'
 
 import type { ILocaleContext, LocaleName, DotNestedKeys } from '@/types'
-import { Polyglot } from '@/i18n'
-import { LocalStorage } from '@/utils'
-import { Locale } from '@/utils'
+import { useLocalStorage } from '@/hooks'
 import { en, fr } from '@/locales'
+import { Polyglot } from '@/i18n'
 
 export const locales = { en, fr }
 
 export const LocaleContext = createContext<ILocaleContext | null>(null)
 
 export const LocaleContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const [selectedLocale, setSelectedLocale] = useState<LocaleName>(Locale.FR)
+  const [selectedLocale, setSelectedLocale] = useState<LocaleName>('fr')
+  const { getLocalStorageItem, setLocalStorageItem } = useLocalStorage()
 
   const isLocale = useCallback((locale: string) => Object.keys(locales).includes(locale), [])
 
   const changeLocale = useCallback((newLocale: LocaleName) => {
     if (isLocale(newLocale)) {
       setSelectedLocale(newLocale)
-      window.localStorage.setItem(LocalStorage.Locale, newLocale)
+      setLocalStorageItem('locale', newLocale)
     }
-  }, [setSelectedLocale, isLocale])
+  }, [isLocale, setLocalStorageItem])
 
   const handleNavigatorLanguageChange = useCallback(() => {
     const navigatorLanguage = window.navigator.language
@@ -32,10 +32,10 @@ export const LocaleContextProvider: React.FC<React.PropsWithChildren> = ({ child
   }, [setSelectedLocale, isLocale])
 
   useEffect(() => {
-    const favoriteLocale = window.localStorage.getItem(LocalStorage.Locale)
+    const favoriteLocale = getLocalStorageItem<LocaleName>('locale')
 
     if (favoriteLocale) {
-      changeLocale(favoriteLocale as LocaleName)
+      changeLocale(favoriteLocale)
     } else {
       handleNavigatorLanguageChange()
     }
@@ -45,7 +45,7 @@ export const LocaleContextProvider: React.FC<React.PropsWithChildren> = ({ child
     return () => {
       window.removeEventListener('languagechange', handleNavigatorLanguageChange)
     }
-  }, [changeLocale, handleNavigatorLanguageChange])
+  }, [changeLocale, getLocalStorageItem, handleNavigatorLanguageChange])
 
   const currentLocale = locales[selectedLocale]
   

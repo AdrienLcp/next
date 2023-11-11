@@ -1,0 +1,30 @@
+.wrapper
+  position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+  background-color: hsla(var(--background), 0.1)
+
+.container
+  width: clamp(20rem, 100%, 50rem)
+  padding: calc(var(--spacing) * 2)
+  display: flex
+  flex-direction: column
+  gap: calc(var(--spacing) * 2)
+  background-color: hsl(var(--red-background))
+  border-radius: var(--radius)
+
+.title
+  font-size: var(--font-size-xl)
+  font-weight: 700
+  text-align: center
+  color: hsl(var(--red-foreground))
+
+.description
+  font-size: var(--font-size-m)
+  text-align: center
+  color: hsl(var(--black))

@@ -1,5 +1,5 @@
-import { Footer, Header, Toasts } from '@/components'
-import { bodyFont, headingFont } from '@/utils'
+import { ErrorBoundary, Footer, Header, Toasts } from '@/components'
+import { bodyFont, classNames, headingFont } from '@/utils'
 import { useLocale, useTheme } from '@/hooks'
 
 import styles from './ContainerStyles.module.sass'
@@ -9,26 +9,32 @@ export const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { selectedLocale } = useLocale()
 
   return (
-    <html lang={selectedLocale}>
-      <body className={`
-        ${headingFont.variable}
-        ${bodyFont.variable}
-        ${isDarkModeActive && 'dark'}
-        theme-${selectedHue}
-      `}>
+    <html
+      lang={selectedLocale}
+      style={{ colorScheme: isDarkModeActive ? 'dark' : 'light' }}
+      suppressHydrationWarning
+    >
+      <body className={classNames(
+        headingFont.variable,
+        bodyFont.variable,
+        `theme-${selectedHue}`,
+        isDarkModeActive ? 'dark' : null
+      )}>
+        <ErrorBoundary>
 
-        {/* // Flex 1 etc */}
+          {/* // Flex 1 etc */}
 
-        <Header />
-        
-        <main className={styles.main}>
-          {children}
-        </main>
+          <Header />
+          
+          <main className={styles.main}>
+            {children}
+          </main>
 
-        <Footer />
+          <Footer />
 
-        <Toasts />
+          <Toasts />
 
+        </ErrorBoundary>
       </body>
     </html>
   )

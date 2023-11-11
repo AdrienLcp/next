@@ -4,9 +4,9 @@ import type { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
 
 import { useRef, useState } from 'react'
 
-import { Button, Combobox, Form, Switch, TextField, Toast, Tabs, AlertModal, Pagination, ContextMenu, DatePicker, DatePickerReact, Input } from '@/components'
+import { Button, Combobox, Form, Switch, TextField, Toast, Tabs, AlertModal, Pagination, ContextMenu, DatePicker, Input } from '@/components'
 import { Loader, LockIcon, UserIcon } from '@/icons'
-import { Hue, Locale, Theme, getRandomNumber } from '@/utils'
+import { getRandomNumber, sortByOrder } from '@/utils'
 import { useDocVisibility, useLocale, useTheme, useToasts } from '@/hooks'
 
 interface HomeProps {
@@ -30,6 +30,8 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
     event.preventDefault()
     console.log(event)
   }
+
+  // throw new Error()
 
   const options = [
     {
@@ -111,7 +113,6 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
         }}
         onSubmit={handleSubmit}
       >
-        {/* //! refaire TextField, ComboBox et DatePicker avec le nouveau Input */}
 
         <TextField
           label='LEFT & RIGHT ce texte est long'
@@ -120,77 +121,82 @@ const HomePage: React.FC<HomeProps> = ({ url }) => {
           onChange={handleChange}
           onClear={() => {}}
           limit={50}
-          tooltip={{ text: 'Le pseudo ne doit contenir entre 40 et 100 caractères, et ne pas contenir de caractère spécial.'}}
+          tooltip={{ text: 'Le pseudo doit contenir entre 3 et 50 caractères, et ne pas contenir de caractère spécial.'}}
         />
 
-        <TextField
-          label='RIGHT'
-          value={pseudo}
-          onChange={handleChange}
-          onClear={() => {}}
-          limit={50}
-        />
+        <div style={{ boxShadow: 'var(--shadow)' }}>
+
+          <TextField
+            label='RIGHT'
+            value={pseudo}
+            onChange={handleChange}
+            onClear={() => {}}
+            limit={50}
+          />
+
+        </div>
+
         
         <Button
           variant='contained'
-          onClick={() => changeTheme(Theme.System)}
+          onClick={() => changeTheme('system')}
         >
           SYSTEM
         </Button>
 
         <Button
           variant='contained'
-          onClick={() => changeTheme(Theme.Dark)}
+          onClick={() => changeTheme('dark')}
         >
           DARK
         </Button>
 
         <Button
           variant='contained'
-          onClick={() => changeTheme(Theme.Light)}
+          onClick={() => changeTheme('light')}
         >
           LIGHT
         </Button>
 
         <Button
           variant='outlined'
-          onClick={() => changeHue(Hue.Neutral)}
+          onClick={() => changeHue('neutral')}
         >
           NEUTRAL
         </Button>
         <Button
           variant='outlined'
-          onClick={() => changeHue(Hue.Blue)}
+          onClick={() => changeHue('blue')}
         >
           BLUE
         </Button>
         <Button
           variant='outlined'
-          onClick={() => changeHue(Hue.Purple)}
+          onClick={() => changeHue('purple')}
         >
           PURPLE
         </Button>
         <Button
           variant='outlined'
-          onClick={() => changeHue(Hue.Red)}
+          onClick={() => changeHue('red')}
         >
           RED
         </Button>
         <Button
           variant='outlined'
-          onClick={() => changeHue(Hue.Green)}
+          onClick={() => changeHue('green')}
         >
           GREEN
         </Button>
         <Button
           variant='outlined'
-          onClick={() => changeHue(Hue.Yellow)}
+          onClick={() => changeHue('yellow')}
         >
           YELLOW
         </Button>
         <Button
           variant='outlined'
-          onClick={() => changeHue(Hue.Pink)}
+          onClick={() => changeHue('pink')}
         >
           PINK
         </Button>

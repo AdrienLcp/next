@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components'
 import { DotsIcon } from '@/icons'
 import { useLocale } from '@/hooks'
+import { classNames } from '@/utils'
 
 export const ContextMenu: React.FC<IContextMenuProps> = ({ actions }) => {
   const { getString } = useLocale()
@@ -45,7 +46,7 @@ export const ContextMenu: React.FC<IContextMenuProps> = ({ actions }) => {
       />
 
       <ul
-        className={`${styles.menu} ${isMenuOpen && styles.open}`}
+        className={classNames(styles.menu, isMenuOpen ? styles.open : null)}
         ref={listRef}
         role='menu'
       >

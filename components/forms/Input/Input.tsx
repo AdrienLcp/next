@@ -5,6 +5,7 @@ import styles from './InputStyles.module.sass'
 
 import { InfoIcon } from '@/icons'
 import { Tooltip } from '@/components'
+import { classNames } from '@/utils'
 
 export const Input = forwardRef<HTMLInputElement, IInputProps>(({
   label = '',
@@ -26,13 +27,13 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(({
   return (
     <div className={styles.container}>
       <input
-        className={`
-          ${styles.input}
-          ${icon && styles['input-with-left-content']}
-          ${rightContent && styles['input-with-right-content']}
-          ${icon && rightContent && styles['input-with-left-and-right-content']}
-          ${isCaretHidden && styles['without-caret']}
-        `}
+        className={classNames(
+          styles.input,
+          icon ? styles['input-with-left-content'] : null,
+          rightContent ? styles['input-with-right-content'] : null,
+          icon && rightContent ? styles['input-with-left-and-right-content'] : null,
+          isCaretHidden ? styles['without-caret'] : null,
+        )}
         ref={ref}
         id={id || inputId}
         type={type}
@@ -41,14 +42,14 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(({
         {...rest}
       />
 
-      <div className={`${styles.foreground} ${hasError && styles.error}`}>
+      <div className={classNames(styles.foreground, hasError ? styles.error : null)}>
         {icon && (
           <div className={styles.left}>{icon}</div>
         )}
 
         {label && (
           <label
-            className={`${styles.label} ${icon && styles['label-with-left-content']}`}
+            className={classNames(styles.label, icon ? styles['label-with-left-content'] : null)}
             htmlFor={id || inputId}
           >
             {label}
@@ -72,7 +73,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(({
       )}
       
       {tooltip && (
-        <span className={`${styles.tooltip} ${styles[tooltip.side || 'right']}`}>
+        <span className={classNames(styles.tooltip, styles[tooltip.side || 'right'])}>
           <Tooltip text={tooltip.text}>
             <InfoIcon color='hsl(var(--muted-foreground))' />
           </Tooltip>

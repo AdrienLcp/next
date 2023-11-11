@@ -1,3 +1,4 @@
+import { classNames } from '@/utils'
 import styles from './TooltipStyles.module.sass'
 import type { ITooltipProps } from './TooltipTypes'
 
@@ -8,11 +9,11 @@ export const Tooltip: React.FC<ITooltipProps> = ({
   tooltipClassName = ''
 }) => {
   return (
-    <div className={`${styles.container} ${containerClassName}`}>
+    <div className={classNames(styles.container, containerClassName)}>
       {children}
 
       {text &&
-        <span className={`${styles.tooltip} ${tooltipClassName}`}>
+        <span className={classNames(styles.tooltip, tooltipClassName)}>
           {text}
         </span>
       }

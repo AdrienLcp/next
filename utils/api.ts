@@ -1,13 +1,21 @@
-// Errors must have a correct path to locales .json
-// They are used in API to send the right error, and display it on the user locale
+export const PASSWORD_RULES = {
+  REGEX: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
+  MIN_LENGTH: 8
+} as const
 
-export enum ServerError {
-  InternalServerError = 'errors.api.common.internal'
+export const USERNAME_RULES = {
+  REGEX: /^\S+$/,
+  MIN_LENGTH: 3,
+  MAX_LENGTH: 20
+} as const
+
+export const isPasswordValid = (password: string) => {
+  return PASSWORD_RULES.REGEX.test(password)
+    && password.length >= PASSWORD_RULES.MIN_LENGTH
 }
 
-export enum CreateUserError {
-  UsernameRequired = 'errors.api.user.usernameRequired',
-  UsernameTaken = 'errors.api.user.usernameTaken',
-  PasswordError = 'errors.api.user.passwordError',
-  PasswordRequired = 'errors.api.user.passwordRequired'
+export const isUsernameValid = (username: string) => {
+  return USERNAME_RULES.REGEX.test(username)
+    && username.length >= USERNAME_RULES.MIN_LENGTH
+    && username.length <= USERNAME_RULES.MAX_LENGTH
 }

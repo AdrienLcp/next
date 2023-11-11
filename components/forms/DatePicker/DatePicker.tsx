@@ -7,6 +7,7 @@ import { useMemo, useRef, useState } from 'react'
 import { TextField, Button, Combobox } from '@/components'
 import { useLocale } from '@/hooks'
 import { CalendarIcon } from '@/icons'
+import { classNames } from '@/utils'
   
 const weekDays: WeekDay[] = [
   'monday',
@@ -157,7 +158,6 @@ export const DatePicker: React.FC<IDatePickerProps> = ({
       onBlur={handleBlur}
     >
       <TextField
-        isCaretHidden
         icon={<CalendarIcon />}
         value={value?.toLocaleDateString() || ''}
         onChange={() => {}}
@@ -167,7 +167,7 @@ export const DatePicker: React.FC<IDatePickerProps> = ({
       />
 
       <div 
-        className={`${styles.popover} ${isFocused && styles.focused}`}
+        className={classNames(styles.popover, isFocused ? styles.focused : null)}
         ref={containerRef}
       >
         <section className={styles.calendar}>

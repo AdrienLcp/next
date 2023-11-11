@@ -36,6 +36,10 @@
         "sunday": "Dimanche"
       }
     },
+    "errorBoundary": {
+      "title": "Oups, une erreur est survenue",
+      "description": "Nous avons rencontré un problème. Veuillez réessayer plus tard ou nous contacter."
+    },
     "imagesSlider": {
       "skipLabel": "Passer les boutons du carousel d'images",
       "ariaLabel": "Carousel d'images",
@@ -43,6 +47,9 @@
       "nextLabel": "Voir l'image suivante",
       "previousLabel": "Voir l'image précédente",
       "viewImage": "Voir l'image"
+    },
+    "skeleton": {
+      "loading": "Chargement..."
     },
     "skip": {
       "label": "Passer cette section"

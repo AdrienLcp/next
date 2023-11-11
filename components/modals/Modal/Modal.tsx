@@ -4,6 +4,7 @@ import type { IModalProps } from './ModalTypes'
 import { createPortal } from 'react-dom'
 
 import { CloseButton } from '@/components'
+import { classNames } from '@/utils'
 
 export const Modal: React.FC<IModalProps> = ({
   children,
@@ -22,7 +23,7 @@ export const Modal: React.FC<IModalProps> = ({
 
       <dialog
         open={true}
-        className={`${styles.container} ${modalClassName}`}
+        className={classNames(styles.container, modalClassName)}
         autoFocus
       >
         <header className={styles.header}>
