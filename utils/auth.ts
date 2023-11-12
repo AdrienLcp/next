@@ -1,6 +1,6 @@
-import { authConfig } from '@/pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth'
 import { signIn, signOut } from 'next-auth/react'
+import { authConfig } from '@/pages/api/auth/[...nextauth]'
 
 export const getAuthSession = async () => await getServerSession(authConfig)
 

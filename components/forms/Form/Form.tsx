@@ -5,7 +5,8 @@ import { Button } from '@/components'
 import { classNames } from '@/utils'
 
 export const Form: React.FC<IFormProps> = ({
-  onSubmit,
+  // onSubmit,
+  action,
   status = null,
   title = '',
   submitLabel = '',
@@ -16,7 +17,8 @@ export const Form: React.FC<IFormProps> = ({
   ...rest
 }) => (
   <form
-    onSubmit={onSubmit}
+    // onSubmit={onSubmit}
+    action={action}
     className={classNames(styles.form, formClassName)}
     {...rest}
   >

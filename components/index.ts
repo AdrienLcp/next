@@ -2,6 +2,7 @@ export * from './accessibility/ScreenReaderLoading/ScreenReaderLoading'
 export * from './accessibility/Skip/Skip'
 
 export * from './auth/LoginButton'
+export * from './auth/LogoutButton'
 
 export * from './errors/ErrorBoundary/ErrorBoundary'
 

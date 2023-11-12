@@ -1,9 +1,10 @@
+'use server'
+
 import { API_ERROR_MESSAGES, ApiError, getPrismaErrorTargetKeys, isPasswordValid, isPrismaError, isUsernameValid } from '@/utils'
 import { prisma } from '@/lib'
 
 type CreateUserRequest = {
   name: string
-  password: string
 }
 
 type CreateUserResponse = {
@@ -14,17 +15,17 @@ const { SERVER, USER } = API_ERROR_MESSAGES
 
 export const createUser = async (request: CreateUserRequest): Promise<CreateUserResponse> => {
   try {
-    const { name, password } = request
+    const { name } = request
 
     if (!name) {
       throw new ApiError(USER.USERNAME_REQUIRED, 'errors.api.user.usernameRequired')
     }
 
-    if (!password) {
-      throw new ApiError(USER.PASSWORD_REQUIRED, 'errors.api.user.passwordRequired')
-    }
+    // if (!password) {
+    //   throw new ApiError(USER.PASSWORD_REQUIRED, 'errors.api.user.passwordRequired')
+    // }
 
-    if (typeof name !== 'string' || typeof password !== 'string') {
+    if (typeof name !== 'string') {
       throw new ApiError(SERVER.BAD_REQUEST, 'errors.api.server.badRequest')
     }
 
@@ -32,9 +33,9 @@ export const createUser = async (request: CreateUserRequest): Promise<CreateUser
       throw new ApiError(USER.INVALID_USERNAME, 'errors.api.user.invalidUsername')
     }
 
-    if (!isPasswordValid(password)) {
-      throw new ApiError(USER.INVALID_PASSWORD, 'errors.api.user.invalidPassword')
-    }
+    // if (!isPasswordValid(password)) {
+    //   throw new ApiError(USER.INVALID_PASSWORD, 'errors.api.user.invalidPassword')
+    // }
  
     const user = await prisma.user.create({
       data: {

@@ -1,8 +1,9 @@
-type OmittedFormProps = ''
+type OmittedFormProps = 'onSubmit'
 type FormProps = Omit<React.FormHTMLAttributes<HTMLFormElement>, OmittedFormProps>
 
 export interface IFormProps extends FormProps extends React.PropsWithChildren {
-  onSubmit: (event: React.FormEvent) => void
+  // onSubmit: (event: React.FormEvent) => void
+  action: (formData: FormData) => void
   status?: IFormStatus
   title?: string
   submitLabel?: string
