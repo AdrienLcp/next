@@ -1,3 +1,4 @@
+'use client'
 import { forwardRef, useId, useRef } from 'react'
 
 import type { IInputProps } from './InputTypes'

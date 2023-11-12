@@ -1,3 +1,4 @@
+'use client'
 import type { IContextMenuProps } from './ContextMenuTypes'
 import styles from './ContextMenuStyles.module.sass'
 

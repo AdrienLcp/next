@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import type { IErrorBoundaryProps, IErrorBoundaryClassProps, IErrorBoundaryState } from './ErrorBoundaryTypes'
 import { useLocale } from '@/hooks'

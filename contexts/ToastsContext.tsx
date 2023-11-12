@@ -1,3 +1,4 @@
+'use client'
 import type { IToast, IToastBuilt, IToastsContext } from '@/types'
 
 import { createContext, useState } from 'react'

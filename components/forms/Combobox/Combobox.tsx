@@ -1,3 +1,4 @@
+'use client'
 import styles from './ComboboxStyles.module.sass'
 import type { IComboboxOption, IComboboxProps } from './ComboboxTypes'
 

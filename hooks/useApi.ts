@@ -1,7 +1,8 @@
+'use client'
 import { useCallback, useEffect, useReducer, useRef } from 'react'
 
 import type { Cache, IUseApiState } from '@/types'
-import { getLocalStorageItem, isApiError, ServerError } from '@/utils'
+import { API_ERROR_MESSAGES, getLocalStorageItem, isError } from '@/utils'
 import { fetchReducer } from '@/reducers'
 
 export const useApi = <T = unknown>(url?: string, init?: RequestInit): IUseApiState<T> => {
@@ -51,7 +52,9 @@ export const useApi = <T = unknown>(url?: string, init?: RequestInit): IUseApiSt
 
       dispatch({
         type: 'error',
-        payload: isApiError(error) ? error.message : ServerError.InternalServerError
+        payload: isError(error)
+          ? error.message
+          : API_ERROR_MESSAGES.SERVER.INTERNAL_SERVER_ERROR
       })
     }
   }, [apiKey, baseUrl, init, token])

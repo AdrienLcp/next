@@ -1,3 +1,4 @@
+'use client'
 import styles from './ToastsStyles.module.sass'
 import type { IToastProps } from './ToastsTypes'
 

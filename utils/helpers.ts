@@ -33,7 +33,9 @@ export const getRandomNumber = (max: number = 100, min: number = 0): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-export const parseJSON = <T>(value: string | null, key: string): T | undefined => {
+export const isError = (error: unknown): error is Error => error instanceof Error
+
+export const parseJSON = <T>(value: string, key: string): T | undefined => {
   try {
     return value === 'undefined' ? undefined : JSON.parse(value ?? '')
   } catch {
@@ -43,7 +45,7 @@ export const parseJSON = <T>(value: string | null, key: string): T | undefined =
 }
 
 export const sortByOrder = <T>(array: T[], prop: keyof T, type: 'asc' | 'desc' = 'asc'): T[] => {
-  return array.sort((a, b) => {
+  return array.toSorted((a, b) => {
     const valueA = type === 'asc' ? a[prop] : b[prop]
     const valueB = type === 'asc' ? b[prop] : a[prop]
 

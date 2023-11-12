@@ -1,16 +1,17 @@
-export const getPrismaError = (error: unknown, key?: string): string => {
-  // if (error instanceof Prisma.PrismaClientKnownRequestError) {
-  //   switch (error.code) {
-  //     case 'P2002':
-  //       return `This ${error.meta.target[0]} already exists`
-  //   }
-  // }
+import { Prisma } from '@prisma/client'
 
-  return 'An error occurred'
+export const isPrismaError = (error: unknown): error is Prisma.PrismaClientKnownRequestError => {
+  return error instanceof Prisma.PrismaClientKnownRequestError
 }
 
-// Il faut que j'ai à la fois quelle erreur c'est, et quel champs ça concerne
-// pour le username déjà pris par exemple =>
-//   l'erreur est "déjà pris"
-//   le champs est "username"
-// Et bien sûr il faut traduire le tout
+export const getPrismaErrorTargetKeys = (error: Prisma.PrismaClientKnownRequestError): string[] => {
+  if (error.code === 'P2002') {
+    const targets = error.meta?.target ?? []
+
+    if (Array.isArray(targets) && targets.every(element => typeof element === 'string')) {
+      return targets
+    }
+  }
+
+  return []
+}

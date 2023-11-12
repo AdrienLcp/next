@@ -1,6 +1,8 @@
 export * from './accessibility/ScreenReaderLoading/ScreenReaderLoading'
 export * from './accessibility/Skip/Skip'
 
+export * from './auth/LoginButton'
+
 export * from './errors/ErrorBoundary/ErrorBoundary'
 
 export * from './forms/Combobox/Combobox'

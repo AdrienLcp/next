@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useRef } from 'react'
 import styles from './AlertModalStyles.module.sass'
 import type { IAlertModalProps } from './AlertModalTypes'

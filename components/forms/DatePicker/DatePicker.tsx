@@ -1,3 +1,4 @@
+'use client'
 import type { IComboboxOption } from '@/components/forms/Combobox/ComboboxTypes'
 import type { IDatePickerProps, IMonth, WeekDay } from './DatePickerTypes'
 import styles from './DatePickerStyles.module.sass'

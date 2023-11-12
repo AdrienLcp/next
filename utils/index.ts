@@ -1,4 +1,5 @@
 export * from './api'
+export * from './auth'
 export * from './breakpoints'
 export * from './constants'
 export * from './errors'
