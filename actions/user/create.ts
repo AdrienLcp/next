@@ -1,41 +1,36 @@
-'use server'
-
-import { API_ERROR_MESSAGES, ApiError, getPrismaErrorTargetKeys, isPasswordValid, isPrismaError, isUsernameValid } from '@/utils'
+import type { ApiErrorMessage } from '@/types'
+import { API_ERROR_MESSAGES, getPrismaErrorTargetKeys, isPrismaError, isUsernameValid } from '@/utils'
 import { prisma } from '@/lib'
 
 type CreateUserRequest = {
   name: string
 }
 
-type CreateUserResponse = {
+type CreateUserErrorResponse = {
+  error: ApiErrorMessage
+}
+
+type CreateUserSuccessResponse = {
   name: string
 }
 
-const { SERVER, USER } = API_ERROR_MESSAGES
+type CreateUserResponse = CreateUserSuccessResponse | CreateUserErrorResponse
 
 export const createUser = async (request: CreateUserRequest): Promise<CreateUserResponse> => {
   try {
     const { name } = request
 
     if (!name) {
-      throw new ApiError(USER.USERNAME_REQUIRED, 'errors.api.user.usernameRequired')
+      return { error: API_ERROR_MESSAGES.USER.USERNAME_REQUIRED }
     }
 
-    // if (!password) {
-    //   throw new ApiError(USER.PASSWORD_REQUIRED, 'errors.api.user.passwordRequired')
-    // }
-
     if (typeof name !== 'string') {
-      throw new ApiError(SERVER.BAD_REQUEST, 'errors.api.server.badRequest')
+      return { error: API_ERROR_MESSAGES.SERVER.BAD_REQUEST }
     }
 
     if (!isUsernameValid(name)) {
-      throw new ApiError(USER.INVALID_USERNAME, 'errors.api.user.invalidUsername')
+      return { error: API_ERROR_MESSAGES.USER.INVALID_USERNAME }
     }
-
-    // if (!isPasswordValid(password)) {
-    //   throw new ApiError(USER.INVALID_PASSWORD, 'errors.api.user.invalidPassword')
-    // }
  
     const user = await prisma.user.create({
       data: {
@@ -43,7 +38,8 @@ export const createUser = async (request: CreateUserRequest): Promise<CreateUser
       } 
     })
 
-    return { name: user.name || ''}
+    return { name: user.name || '' }
+    
   } catch (error) {
     console.error(error)
     
@@ -51,10 +47,10 @@ export const createUser = async (request: CreateUserRequest): Promise<CreateUser
       const targetKeys = getPrismaErrorTargetKeys(error)
 
       if (targetKeys.includes('name')) {
-        throw new ApiError(USER.USERNAME_TAKEN, 'errors.api.user.usernameTaken')
+        return { error: API_ERROR_MESSAGES.USER.USERNAME_TAKEN }
       }
     }
 
-    throw new ApiError(SERVER.INTERNAL_SERVER_ERROR, 'errors.api.server.internalServerError')
+    return { error: API_ERROR_MESSAGES.SERVER.INTERNAL }
   }
 }

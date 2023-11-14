@@ -36,6 +36,7 @@ export const Form: React.FC<IFormProps> = ({
 
     <fieldset
       className={classNames(styles.controls, fieldsClassName)}
+      aria-disabled={isDisabled}
       disabled={isDisabled}
     >
       {children}

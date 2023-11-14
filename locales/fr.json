@@ -75,22 +75,32 @@
     "showPassword": "Montrer le mot de passe"
   },
   "errors": {
-    "noResults": "Aucun résultat",
-    "api": {
-      "common": {
-        "internalServerError": "Le server a rencontré un problème. Réessayez plus tard ou contactez-nous.",
-        "badRequest": "La requête est incorrecte. Veuillez réessayer plus tard ou nous contacter."
+    "noResults": "Aucun résultat"
+  },
+  "api": {
+    "errors": {
+      "server": {
+        "internal": "Le server a rencontré un problème. Réessayez plus tard ou contactez-nous.",
+        "bad-request": "La requête est incorrecte. Veuillez réessayer plus tard ou nous contacter.",
+        "unauthorized": "Vous devez être authentifié pour effectuer cette action.",
+        "forbidden": "Vous n'êtes pas autorisé à effectuer cette action. Réessayez plus tard ou contactez-nous.",
+        "not-found": "La ressource demandée n'a pas été trouvée."
       },
       "user": {
-        "usernameRequired": "Le nom d'utilisateur est requis",
-        "passwordRequired": "Le mot de passe est requis",
-        "usernameTaken": "Ce nom d'utilisateur est déjà pris",
-        "invalidPassword": "Le mot de passe doit contenir au moins 8 caractères dont 1 lettre minuscule, 1 lettre majuscule, 1 chiffre & un caractère spécial",
-        "invalidUsername": "Le nom d'utilisateur doit contenir entre 3 et 20 caractères"
+        "username-required": "Le nom d'utilisateur est requis.",
+        "username-taken": "Ce nom d'utilisateur est déjà pris.",
+        "invalid-username": "Le nom d'utilisateur doit contenir entre 3 et 20 caractères."
+      }
+    },
+    "success": {
+      "user": {
+        "created": "Profil créé.",
+        "updated": "Profil mis à jour.",
+        "deleted": "Compte supprimé."
       }
     }
   },
   "states": {
-    "loading": "Chargement..."
+    "loading": "Chargement"
   }
 }

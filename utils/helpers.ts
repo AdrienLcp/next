@@ -44,13 +44,17 @@ export const parseJSON = <T>(value: string, key: string): T | undefined => {
   }
 }
 
-export const sortByOrder = <T>(array: T[], prop: keyof T, type: 'asc' | 'desc' = 'asc'): T[] => {
+export const getSortedArray = <T>(array: T[], prop: keyof T, type: 'asc' | 'desc' = 'asc'): T[] => {
   return array.toSorted((a, b) => {
     const valueA = type === 'asc' ? a[prop] : b[prop]
     const valueB = type === 'asc' ? b[prop] : a[prop]
 
     if (typeof valueA === 'number' && typeof valueB === 'number') {
       return valueA - valueB
+    }
+
+    if (valueA instanceof Date && valueB instanceof Date) {
+      return valueA.getTime() - valueB.getTime()
     }
     
     return String(valueA).localeCompare(String(valueB))

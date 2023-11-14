@@ -1,20 +1,35 @@
-'use server'
-
+import type { Item } from '@prisma/client'
 import { revalidatePath } from 'next/cache'
+
+import type { ApiErrorMessage } from '@/types'
+import { API_ERROR_MESSAGES, getAuthSession } from '@/utils'
 import { prisma } from '@/lib'
 
 type CreateItemRequest = {
-  userId: string
   title: string
 }
 
-export const createItem = async (request: CreateItemRequest, pathToRevalidate?: string) => {
+type CreateItemSuccessResponse = {
+  item: Item
+}
+
+type CreateItemErrorResponse = {
+  error: ApiErrorMessage
+}
+
+type CreateItemResponse = CreateItemSuccessResponse | CreateItemErrorResponse
+
+export const createItem = async (request: CreateItemRequest, pathToRevalidate?: string): Promise<CreateItemResponse> => {
   try {
-    const { userId, title } = request
+    const session = await getAuthSession()
+
+    if (!session) {
+      return { error: API_ERROR_MESSAGES.SERVER.UNAUTHORIZED }
+    }
 
     const result = await prisma.item.create({
       data: {
-        userId: request.userId,
+        userId: session.user.id,
         title: request.title
       }
     })
@@ -22,7 +37,10 @@ export const createItem = async (request: CreateItemRequest, pathToRevalidate?: 
     if (pathToRevalidate) {
       revalidatePath(pathToRevalidate)
     }
+
+    return { item: result }
   } catch (error) {
     console.error(error)
+    return { error: API_ERROR_MESSAGES.SERVER.INTERNAL_ERROR }
   }
 }

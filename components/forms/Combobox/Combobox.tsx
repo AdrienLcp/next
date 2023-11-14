@@ -7,7 +7,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { SearchIcon, ArrowIcon, CheckIcon } from '@/icons'
 import { Button, TextField } from '@/components'
 import { useLocale } from '@/hooks'
-import { classNames, sortByOrder  } from '@/utils'
+import { classNames, getSortedArray  } from '@/utils'
 
 export const Combobox: React.FC<IComboboxProps> = ({
   options = [],
@@ -57,7 +57,7 @@ export const Combobox: React.FC<IComboboxProps> = ({
 
   const sortedOptions = useMemo(() => {
     if (isAlphabeticallySorted) {
-      return sortByOrder(options, 'value')
+      return getSortedArray(options, 'value')
     }
 
     return options

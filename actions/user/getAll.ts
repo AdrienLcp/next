@@ -1,5 +1,3 @@
-'use server'
-
 import { prisma } from '@/lib'
 
 export const getAllUsers = async () => {
