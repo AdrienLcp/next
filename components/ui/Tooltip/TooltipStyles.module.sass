@@ -11,7 +11,7 @@
       opacity: 1
 
 .tooltip
-  @include posAbsolute(calc(100% + calc(var(--spacing) / 2)), auto, auto, 50%)
+  @include absolute(calc(100% + calc(var(--spacing) / 2)), auto, auto, 50%)
   z-index: 50
   visibility: hidden
   opacity: 0
@@ -30,7 +30,7 @@
 
   &::before
     content: ''
-    @include posAbsolute(-0.3rem, auto, auto, 50%)
+    @include absolute(-0.3rem, auto, auto, 50%)
     width: calc(var(--spacing) / 2)
     height: calc(var(--spacing) / 2)
     background-color: hsl(var(--muted))

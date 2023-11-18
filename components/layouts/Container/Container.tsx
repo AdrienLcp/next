@@ -18,7 +18,7 @@ export const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
         headingFont.variable,
         bodyFont.variable,
         `theme-${selectedHue}`,
-        isDarkModeActive ? 'dark' : null
+        isDarkModeActive && 'dark'
       )}>
         <ErrorBoundary>
 

@@ -19,7 +19,7 @@
     border-color: hsl(var(--red-foreground))
 
 .message
-  @include textEllipsis
+  @include text-ellipsis
   color: hsl(var(--muted-foreground))
   position: absolute
   top: calc(100% - var(--font-size-xs))
@@ -32,7 +32,7 @@
   transition: transform var(--transition-200), opacity var(--transition-200)
 
 .label
-  @include textEllipsis
+  @include text-ellipsis
   color: hsl(var(--muted-foreground))
   font-weight: 500
   padding: 0 0.7ch

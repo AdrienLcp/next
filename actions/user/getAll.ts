@@ -7,7 +7,6 @@ export const getAllUsers = async () => {
         name: true
       }
     })
-    console.log(result)
     return result
   } catch (error) {
     console.error(error)

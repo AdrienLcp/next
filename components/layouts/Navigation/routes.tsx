@@ -4,6 +4,7 @@ export const routes: IRoute[] = [
   {
     label: '',
     pathname: '',
-    icon: <></>
+    icon: <></>,
+    roles: []
   }
 ]

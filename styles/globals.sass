@@ -3,11 +3,14 @@
 @import '@/styles/animations.sass'
 @import '@/styles/vars.sass'
 @import '@/styles/colors.sass'
+@import '@/styles/functions.sass'
   
 *::-webkit-scrollbar
-  background-color: hsla(var(--primary), 0.1)
-  border-radius: var(--radius)
   width: 0.5rem
+
+  &-track
+    background-color: hsla(var(--primary), 0.1)
+    border-radius: var(--radius)
 
   &-thumb
     background-color: hsla(var(--primary), 0.2)
@@ -23,12 +26,16 @@ html
 body
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
-  min-height: 100vh
-  // line-height: 1.6
+  overflow-x: hidden
+  min-height: 100svh
+  line-height: line-height()
   background-color: hsl(var(--background))
   color: hsl(var(--foreground))
   font-family: var(--font-body)
   font-size: var(--font-size-s)
+
+  &::-webkit-scrollbar
+    width: 1rem
   
   ::selection
     background-color: hsl(var(--foreground))
